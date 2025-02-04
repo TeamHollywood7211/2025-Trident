@@ -13,6 +13,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  public static class ImportantConstants {
+    public static final double driveSpeed = 1.00; //In the event we need to run the robot at a slower speed
+  }
+
+
+
+
   public static class IntakeConstants {
 
     public static final int intakeID = 51;

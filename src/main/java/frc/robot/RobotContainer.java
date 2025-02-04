@@ -6,12 +6,10 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
-import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathConstraints;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -24,9 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.generated.TunerConstants;
@@ -37,7 +34,7 @@ public class RobotContainer {
 
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
                                                                                         // speed
-    public static double OriginalMaxSpeed = MaxSpeed*0.9;
+    public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Gonna be so On G I have no clue if this actually did anything lol
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
                                                                                              // second max angular
                                                                                              // velocity
@@ -130,7 +127,7 @@ public class RobotContainer {
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
         // AUTO STICK
-        autoStick.a().onTrue(drivetrain.run(() -> autoToPosition(ImportantPositions.coral4))); // dont ask me how
+        autoStick.a().onTrue(drivetrain.run(() -> AutoToPosition(ImportantPositions.coral4))); // dont ask me how
                                                                                                // drivetrain.run() is
                                                                                                // used here, it just
                                                                                                // maybe works.
@@ -207,7 +204,7 @@ public class RobotContainer {
 
     }
 
-    public void autoToPosition(double[] positions) // Should in theory move us to a pose of x, y. Waiting till we have
+    public void AutoToPosition(double[] positions) // Should in theory move us to a pose of x, y. Waiting till we have
                                                    // more of the field to tell
     {
         // stolen from https://pathplanner.dev/pplib-pathfinding.html#pathfind-to-pose
@@ -221,6 +218,7 @@ public class RobotContainer {
                 Units.degreesToRadians(autoConfigConstants.maxAngularVelocitySq));
 
         // Since AutoBuilder is configured, we can use it to build pathfinding commands
+        @SuppressWarnings("unused") //I get annoyed by yellow
         Command pathfindingCommand = AutoBuilder.pathfindToPose(
                 targetPose,
                 constraints,
