@@ -24,7 +24,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   double ElevatorSetpoint = encoderLeft;
 
   public ElevatorSubsystem() {
-    
+
   }
 
 
@@ -43,10 +43,10 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     double currentLeftPos = getMotorLeftPosition();
     double currentRightPos = getMotorRightPosition();
-    //SmartDashboard.putNumber("Arm Position", currentPos);
+    //SmartDashboard.putNumber("Arm Position", currentPos); 
     //SmartDashboard.putNumber("Arm Target Pos", ArmSetpoint);
     motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, ElevatorSetpoint), -0.5, 0.5));
-    motorRight.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -0.5, 0.5));
+    motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, -ElevatorSetpoint), -0.5, 0.5));
     SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint);
     //SmartDashboard.putNumber("Percentage to Pos: ", (currentPos / ArmSetpoint) * 100);
   }
