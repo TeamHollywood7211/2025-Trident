@@ -36,7 +36,11 @@ public final class Constants {
   public static class ClimberConstants {
     public static final int armMotorID = 50;
   }
-
+  public static class ElevatorConstants {
+    public static final int leftMotorID = 0;
+    public static final int rightMotorID = 0;
+    public static final double motorSpeed = 0.25;
+  }
 
 
   public static class ImportantPositions { //Holds all our important positions for pathplanner

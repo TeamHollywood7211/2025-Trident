@@ -26,12 +26,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class RobotContainer {
-
-
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
                                                                                         // speed
     public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Gonna be so On G I have no clue if this actually did anything lol
@@ -39,7 +39,7 @@ public class RobotContainer {
                                                                                              // second max angular
                                                                                              // velocity
 
-
+    private static IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -63,6 +63,8 @@ public class RobotContainer {
     private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+
+    public final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
 
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
@@ -106,7 +108,7 @@ public class RobotContainer {
 
         );
 
-
+        m_IntakeSubsystem.setDefaultCommand(m_IntakeCommand);
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
         driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
@@ -134,12 +136,6 @@ public class RobotContainer {
                                                                                                
         //autoStick.b().onTrue(m_MusicSubsystem.runOnce(() -> m_MusicSubsystem.playSong("chirp/portal.chrp")));
         // OPERATOR STICK
-
-
-        //operatorStick.leftTrigger() .onTrue(m_IntakeCommand)  ;
-        //operatorStick.rightTrigger().onTrue(m_IntakeCommand)  ;
-        //operatorStick.leftTrigger() .onFalse(m_IntakeCommand) ;
-        //operatorStick.rightTrigger().onFalse(m_IntakeCommand) ;
 
         // DUMB TELEMETRY THATS ACTUALLY REALLY USEFUL BUT IT ANNOYS ME
 

@@ -605,6 +605,7 @@ public class LimelightHelpers {
         return poseEstimate;
     }
 
+    @SuppressWarnings("unused")
     private static RawFiducial[] getRawFiducials(String limelightName) {
         var entry = LimelightHelpers.getLimelightNTTableEntry(limelightName, "rawfiducials");
         var rawFiducialArray = entry.getDoubleArray(new double[0]);
