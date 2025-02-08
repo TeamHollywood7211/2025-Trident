@@ -4,12 +4,16 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ExampleSubsystem extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  SparkMax motorL = new SparkMax(10, MotorType.kBrushless);
+  public IntakeSubsystem() {}
 
   /**
    * Example command factory method.
@@ -44,4 +48,11 @@ public class ExampleSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+  public void setMotorSpeed(double speed)
+  {
+    motorL.set(speed);
+  }
+
+
+  
 }
