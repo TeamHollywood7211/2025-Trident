@@ -4,16 +4,32 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+
 
 public class IntakeSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  SparkMax motorL = new SparkMax(10, MotorType.kBrushless);
-  public IntakeSubsystem() {}
+
+  TalonFX IntakeMotor1 = new TalonFX(Constants.IntakeConstants.intakeID, "main");
+
+  //RelativeEncoder IntakeEncoder = IntakeMotor1.getEncoder();
+  //RelativeEncoder IntakeEncoder2 = IntakeMotor2.getEncoder();
+
+
+ 
+  //DifferentialDrive differentialDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
+
+  public IntakeSubsystem(){ 
+
+
+   
+    
+   
+  }
 
   /**
    * Example command factory method.
@@ -21,11 +37,10 @@ public class IntakeSubsystem extends SubsystemBase {
    * @return a command
    */
   public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
+
     return runOnce(
         () -> {
-          /* one-time action goes here */
+
         });
   }
 
@@ -48,11 +63,15 @@ public class IntakeSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
-  public void setMotorSpeed(double speed)
-  {
-    motorL.set(speed);
-  }
 
+public void runGripIn(double speed){
+  IntakeMotor1.set(-1 * speed);
+}
+public void runGripOut(double speed){
+  IntakeMotor1.set(speed);
+}
+public void stopGrip(){
+  IntakeMotor1.set(0);
+}
 
-  
 }
