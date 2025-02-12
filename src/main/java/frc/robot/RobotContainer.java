@@ -26,10 +26,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
-import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.AlgaeIntakeCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.AlgaeIntakeSubsystem;
 
 public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
@@ -39,7 +39,7 @@ public class RobotContainer {
                                                                                              // second max angular
                                                                                              // velocity
 
-    private static IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
+    private static AlgaeIntakeSubsystem m_IntakeSubsystem = new AlgaeIntakeSubsystem();
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -64,7 +64,7 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-    public final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
+    public final AlgaeIntakeCommand m_IntakeCommand = new AlgaeIntakeCommand(m_IntakeSubsystem, operatorStick);
 
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);

@@ -12,7 +12,7 @@ import frc.robot.Constants;
 
 
 
-public class IntakeSubsystem extends SubsystemBase {
+public class AlgaeIntakeSubsystem extends SubsystemBase {
 
   TalonFX IntakeMotor1 = new TalonFX(Constants.IntakeConstants.intakeID, "main");
 
@@ -23,7 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
  
   //DifferentialDrive differentialDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
-  public IntakeSubsystem(){ 
+  public AlgaeIntakeSubsystem(){ 
 
 
    
@@ -72,6 +72,9 @@ public void runGripOut(double speed){
 }
 public void stopGrip(){
   IntakeMotor1.set(0);
+}
+public void motorSet(double input) {
+IntakeMotor1.set(input);
 }
 
 }
