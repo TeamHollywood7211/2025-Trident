@@ -32,12 +32,12 @@ public class ElevatorCommand extends Command {
   public void execute() {
     if(m_controller.pov(0).getAsBoolean())
     {
-      m_elevator.setPosition(0.5);
+      m_elevator.addPosition(0.5);
       //m_elevator.forceSetSpeed(0.3);
     }
     if(m_controller.pov(180).getAsBoolean())
     {
-      m_elevator.setPosition(-0.5);
+      m_elevator.addPosition(-0.5);
       //m_elevator.forceSetSpeed(-0.3);
     }
   }

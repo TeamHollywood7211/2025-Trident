@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ClimberConstants;
 
 public class ClimberSubsystem extends SubsystemBase {
   
@@ -37,5 +38,17 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
 
+  }
+
+  public void servoOpen()
+  {
+    climberServo.setAngle(ClimberConstants.servoOpen); //servo open 
+  }
+
+  
+
+  public void servoClose()
+  {
+    climberServo.setAngle(0);
   }
 }

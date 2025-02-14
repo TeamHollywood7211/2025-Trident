@@ -21,84 +21,75 @@ import frc.robot.RobotContainer;
 public class AlgaeSubsystem extends SubsystemBase {
 
   TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus);
-  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
-  
+  static TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
 
+    double wristEncoder = wristMotor.getPosition().getValueAsDouble();
+    static double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
 
-  double wristEncoder = wristMotor.getPosition().getValueAsDouble();
-  double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
+    PIDController wristPID = new PIDController(0.03, 0, 0.005);
 
-  
-
-  PIDController wristPID = new PIDController(0.03, 0, 0.005);
-
-  TalonFXSConfiguration config = new TalonFXSConfiguration();
-  
-  public AlgaeSubsystem(){
+    TalonFXSConfiguration config = new TalonFXSConfiguration();
     
-  }
+    public AlgaeSubsystem(){}
+    public Command exampleMethodCommand() {
+  
+      return runOnce(
+          () -> {
+  
+          });
+    }
 
-  /**
-   * Example command factory method.
-   *
-   * @return a command
-   */
-  public Command exampleMethodCommand() {
-
-    return runOnce(
-        () -> {
-
-        });
-  }
-
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
-  }
-
-  @Override
-  public void periodic() {
-    wristEncoder = wristMotor.getPosition().getValueAsDouble();
-
-    wristMotor.set(MathUtil.clamp(wristPID.calculate(wristEncoder, wristSetpoint), -0.5, 0.5));
-
-
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
-
-  public void runGrip(double speed)
-  {
-    intakeMotor.set(speed);
-  }
-
-  public void setPosition(double val)
-  {
-    wristSetpoint += val;
-  }
+    public boolean exampleCondition() {
+      // Query some boolean state, such as a digital sensor.
+      return false;
+    }
+  
+    @Override
+    public void periodic() {
+      wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
+  
+      wristMotor.set(MathUtil.clamp(
+        wristPID.calculate(wristEncoder, wristSetpoint),
+       -1, 1));
+  
+  
+    }
+  
+    @Override
+    public void simulationPeriodic() {
+      // This method will be called once per scheduler run during simulation
+    }
+  
+    public void runGrip(double speed)
+    {
+      intakeMotor.set(speed);
+    }
+  
+    public static void addPosition(double val)
+    {
+      wristSetpoint += val;
+    }
+    public static void setPosition(double val)
+    {
+      wristSetpoint = val;
+    }
 
 
 
-  public void gotoHighest()
-  {
-    setPosition(Constants.AlgaeConstants.positions.highest);
-  }
-  public void gotoHigh()
-  {
-    setPosition(Constants.AlgaeConstants.positions.high);
-  }
-  public void gotoLow()
-  {
-    setPosition(Constants.AlgaeConstants.positions.low);
-  }
+    public static void gotoIn()
+    {
+        setPosition(0);
+    }
+    public static void gotoOut()
+    {
+      setPosition(46);
+    }
+
+  
+
+
+
+
 
 
 

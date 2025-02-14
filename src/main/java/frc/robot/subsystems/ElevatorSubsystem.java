@@ -11,6 +11,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.ElevatorConstants;
 import frc.robot.RobotContainer;
 
@@ -61,6 +62,10 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void setPosition(double val)
   {
+    ElevatorSetpoint = val;
+  }
+  public void addPosition(double val)
+  {
     ElevatorSetpoint += val;
   }
 
@@ -69,6 +74,28 @@ public class ElevatorSubsystem extends SubsystemBase {
     motorLeft.set(speed);
     motorRight.set(-speed);
   }
+
+  public void gotoAlgae_Highest()
+  {
+    setPosition(Constants.ElevatorConstants.positions.highest);
+    AlgaeSubsystem.gotoOut(); //Sets the Algae arm out
+  }
+  public void gotoAlgae_High()
+  {
+    setPosition(Constants.ElevatorConstants.positions.high);
+    AlgaeSubsystem.gotoOut();
+  }
+  public void gotoAlgae_Low()
+  {
+    setPosition(Constants.ElevatorConstants.positions.low);
+    AlgaeSubsystem.gotoOut();
+  }
+  public void gotoHome()
+  {
+    setPosition(3); //Setting a little above zero just in case our zero gets effed up
+  }
+
+
 
   public double getMotorLeftPosition()
   {

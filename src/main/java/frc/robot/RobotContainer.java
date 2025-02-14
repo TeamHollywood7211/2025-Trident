@@ -11,6 +11,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathConstraints;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -87,6 +88,9 @@ public class RobotContainer {
 
 
         //NamedCommands.registerCommand("act_wait_for_piece", a_waitForPiece);
+        NamedCommands.registerCommand("act_algaeHighest", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Highest));
+        NamedCommands.registerCommand("act_algaeHigh",    new InstantCommand(m_ElevatorSubsystem::gotoAlgae_High));
+        NamedCommands.registerCommand("act_algaeLow",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Low));
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
