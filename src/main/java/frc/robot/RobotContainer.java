@@ -44,7 +44,7 @@ public class RobotContainer {
     public static CANBus MainBus = new CANBus("main");    
     
     // second max angular
-    private final AlgaeSubsystem m_IntakeSubsystem = new AlgaeSubsystem();                                                                                // velocity
+    private final AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -73,7 +73,7 @@ public class RobotContainer {
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
-    private final AlgaeCommand m_IntakeCommand = new AlgaeCommand(m_IntakeSubsystem, operatorStick);
+    private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
 
     /* Path follower */
@@ -111,7 +111,7 @@ public class RobotContainer {
                 )
 
         );
-        m_IntakeSubsystem.setDefaultCommand(m_IntakeCommand);
+        m_AlgaeSubsystem.setDefaultCommand(m_AlgaeCommand);
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));

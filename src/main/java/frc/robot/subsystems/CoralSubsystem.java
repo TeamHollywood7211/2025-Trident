@@ -17,6 +17,7 @@ public class CoralSubsystem extends SubsystemBase {
   TalonFX IntakeMotor1 = new TalonFX(Constants.CoralConstants.intakeID, "main");
 
   //RelativeEncoder IntakeEncoder = IntakeMotor1.getEncoder();
+  
   //RelativeEncoder IntakeEncoder2 = IntakeMotor2.getEncoder();
 
 
