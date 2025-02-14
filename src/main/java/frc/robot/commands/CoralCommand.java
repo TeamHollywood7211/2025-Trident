@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.CoralSubsystem;
 //import frc.robot.Constants.*;
 
@@ -23,18 +24,11 @@ public class CoralCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
+  
   public void execute() {
-    if(m_controller.leftBumper().equals(true)){
-      m_coralIntakeSubsystem.runCoralTake(1);
-      
-      // TODO: we gotta fix the parameters for the 
-    } else if(m_controller.rightBumper().equals(true)){
-      m_coralIntakeSubsystem.runCoralThrow(1);
-    }
-    else{
-      //m_gripSubsystem.setGripOut();
-      m_coralIntakeSubsystem.stopCoral();
-    }
+    
+    m_coralIntakeSubsystem.runCoralThrow(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
+     - RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
   }
   // Called once the command ends or is interrupted.
   @Override
