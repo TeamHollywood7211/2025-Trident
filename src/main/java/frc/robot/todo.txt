@@ -1,4 +1,32 @@
-wow VS code auto names this as a checklist thats cool
+
+
+
+
+
+
+
+IDS:
+    0-30: Drivetrain
+    40 - Pigeon
+    41 - Climb 
+    42 - Elevator Left 
+    43 - Elevator Right
+    48 - CAN Range  
+    49 - Candle
+    50  Coral and Algae
+    {
+        50 - Coral Running motor
+        51 - Coral Side to side
+        52 - Algae runner   
+        53 - Algae wrist
+    }
+
+
+
+
+
+
+
 
 a. I named it Trident cuz it sounded cool and underwater-ish
 b. There is no other reason
@@ -12,6 +40,9 @@ Pathplanner and swerve should be auto-integrated.
 
 - Elevator subsystem (its cool)
 - Limelight
+- Coral Manipulator Subsystem 
+- Algae Manipulator Subsystem(Intake and moving bit)
+- Climber
 
 
 
@@ -35,3 +66,6 @@ Notes to understand for this bot (pseudo 2024-Astley/2025-KitBot post mordem (mo
     - Java is stupid
     - You can use emojis in comments 🦊
     - 
+
+
+

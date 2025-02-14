@@ -14,16 +14,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ElevatorConstants;
 import frc.robot.RobotContainer;
 
-public class ElevatorSubsystem extends SubsystemBase {
+public class ElevatorSubsystemManual extends SubsystemBase {
 
   TalonFX motorLeft = new TalonFX(ElevatorConstants.leftMotorID, RobotContainer.MainBus);
   TalonFX motorRight = new TalonFX(ElevatorConstants.rightMotorID, RobotContainer.MainBus);
-  PIDController ArmPID = new PIDController(0.03, 0, 0.0005);
+  PIDController ArmPID = new PIDController(0.03, 0, 0.01);
   double encoderLeft = motorLeft.getPosition().getValueAsDouble();
   double encoderRight = motorRight.getPosition().getValueAsDouble();
   double ElevatorSetpoint = encoderLeft;
 
-  public ElevatorSubsystem() {
+  public ElevatorSubsystemManual() {
 
   }
 
@@ -43,14 +43,11 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     double currentLeftPos = getMotorLeftPosition();
     double currentRightPos = getMotorRightPosition();
-    ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, 200);
     //SmartDashboard.putNumber("Arm Position", currentPos); 
     //SmartDashboard.putNumber("Arm Target Pos", ArmSetpoint);
-    motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -0.5, 0.5));
-    motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -0.5, 0.5));
+    //motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, ElevatorSetpoint), -0.5, 0.5));
+    //motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, -ElevatorSetpoint), -0.5, 0.5));
     SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint);
-    SmartDashboard.putNumber("Elevator Position", currentRightPos);
-    
     //SmartDashboard.putNumber("Percentage to Pos: ", (currentPos / ArmSetpoint) * 100);
   }
 
@@ -63,6 +60,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   {
     ElevatorSetpoint += val;
   }
+
 
   public void forceSetSpeed(double speed)
   {

@@ -1,19 +1,21 @@
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.AlgaeSubsystem;
 //import frc.robot.Constants.*;
 
-public class IntakeCommand extends Command {
+public class AlgaeCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private IntakeSubsystem m_intakeSubsystem;
+  private AlgaeSubsystem m_intakeSubsystem;
   private CommandXboxController m_controller;
-  public IntakeCommand(IntakeSubsystem intakeSubsystem, CommandXboxController controller) {
+  public AlgaeCommand(AlgaeSubsystem intakeSubsystem, CommandXboxController controller) {
     this.m_controller = controller;
     this.m_intakeSubsystem = intakeSubsystem;
-    addRequirements();
+    addRequirements(intakeSubsystem);
   } 
 
   //public IntakeCommand(IntakeSubsystem intakeSubsystem, CommandXboxController m_driverController) {
@@ -26,23 +28,24 @@ public class IntakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_controller.getRightTriggerAxis() > 0.05){
-      m_intakeSubsystem.runGripIn(m_controller.getRightTriggerAxis());
-      
-    } else if(m_controller.getLeftTriggerAxis() > 0.05){
-      m_intakeSubsystem.runGripOut(m_controller.getLeftTriggerAxis());
+
+    m_intakeSubsystem.runGrip(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()) - RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
+    //System.out.println(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()));
+  
+
+    if(Math.abs(m_controller.getRightY()) > 0.05 )
+    {
+      m_intakeSubsystem.setPosition(m_controller.getRightY() * 0.1);
     }
-    else{
-      //m_gripSubsystem.setGripOut();
-      m_intakeSubsystem.stopGrip();
-    }
+    
+  
+  
+  
   }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
-public void grabAlgaeHard(){
-  
-}
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
