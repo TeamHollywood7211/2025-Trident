@@ -12,9 +12,9 @@ import frc.robot.Constants;
 
 
 
-public class AlgaeIntakeSubsystem extends SubsystemBase {
+public class CoralSubsystem extends SubsystemBase {
 
-  TalonFX IntakeMotor1 = new TalonFX(Constants.IntakeConstants.intakeID, "main");
+  TalonFX IntakeMotor1 = new TalonFX(Constants.CoralConstants.intakeID, "main");
 
   //RelativeEncoder IntakeEncoder = IntakeMotor1.getEncoder();
   //RelativeEncoder IntakeEncoder2 = IntakeMotor2.getEncoder();
@@ -23,7 +23,7 @@ public class AlgaeIntakeSubsystem extends SubsystemBase {
  
   //DifferentialDrive differentialDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
-  public AlgaeIntakeSubsystem(){ 
+  public CoralSubsystem(){ 
 
 
    
@@ -64,17 +64,14 @@ public class AlgaeIntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-public void runGripIn(double speed){
+public void runCoralTake(double speed){
   IntakeMotor1.set(-1 * speed);
 }
-public void runGripOut(double speed){
+public void runCoralThrow(double speed){
   IntakeMotor1.set(speed);
 }
-public void stopGrip(){
+public void stopCoral(){
   IntakeMotor1.set(0);
-}
-public void motorSet(double input) {
-IntakeMotor1.set(input);
 }
 
 }

@@ -2,16 +2,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems. CoralIntakeSubsystem;
+import frc.robot.subsystems. CoralSubsystem;
 //import frc.robot.Constants.*;
 
-public class CoralIntakeCommand extends Command {
+public class CoralCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private CoralIntakeSubsystem m_coralIntakeSubsystem;
+  private CoralSubsystem m_coralIntakeSubsystem;
   private CommandXboxController m_controller;
 
-  public CoralIntakeCommand(CoralIntakeSubsystem intakeSubsystem, CommandXboxController controller) {
+  public CoralCommand(CoralSubsystem intakeSubsystem, CommandXboxController controller) {
     this.m_controller = controller;
     this.m_coralIntakeSubsystem = intakeSubsystem;
     addRequirements(intakeSubsystem);

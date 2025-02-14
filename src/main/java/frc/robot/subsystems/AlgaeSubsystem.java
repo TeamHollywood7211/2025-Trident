@@ -23,8 +23,7 @@ public class AlgaeSubsystem extends SubsystemBase {
   TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus);
   TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
   
-
-
+  
 
   double wristEncoder = wristMotor.getPosition().getValueAsDouble();
   double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 

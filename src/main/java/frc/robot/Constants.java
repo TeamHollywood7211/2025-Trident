@@ -25,6 +25,12 @@ public final class Constants {
     public static final int wristID = 53;
   
   }
+
+  public static class CoralConstants {
+    public static final int intakeID = 69420;
+  }
+
+
   public static class autoConfigConstants {
     public static final double maxVelocityMPS = 3;
     public static final double maxVelocityMPSSq = 3;

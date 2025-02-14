@@ -6,6 +6,7 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -26,21 +27,25 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
-import frc.robot.commands.AlgaeIntakeCommand;
+import frc.robot.commands.ElevatorCommand;
+import frc.robot.commands.AlgaeCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import frc.robot.subsystems.AlgaeIntakeSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.AlgaeSubsystem;
 
 public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
                                                                                         // speed
     public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Gonna be so On G I have no clue if this actually did anything lol
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
-                                                                                             // second max angular
-                                                                                             // velocity
-
-    private static AlgaeIntakeSubsystem m_IntakeSubsystem = new AlgaeIntakeSubsystem();
-
+           
+    
+    public static CANBus MainBus = new CANBus("main");    
+    
+    // second max angular
+    private final AlgaeSubsystem m_IntakeSubsystem = new AlgaeSubsystem();                                                                                // velocity
+    private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -64,13 +69,12 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-    public final AlgaeIntakeCommand m_IntakeCommand = new AlgaeIntakeCommand(m_IntakeSubsystem, operatorStick);
-
+    
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
-   
-
+    private final AlgaeCommand m_IntakeCommand = new AlgaeCommand(m_IntakeSubsystem, operatorStick);
+    private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -107,8 +111,8 @@ public class RobotContainer {
                 )
 
         );
-
         m_IntakeSubsystem.setDefaultCommand(m_IntakeCommand);
+        m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
         driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
