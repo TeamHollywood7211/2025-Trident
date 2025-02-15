@@ -2,11 +2,13 @@
   "robotWidth": 0.9,
   "robotLength": 0.9,
   "holonomicMode": true,
-  "pathFolders": [],
+  "pathFolders": [
+    "Right Start"
+  ],
   "autoFolders": [
-    "New Folder",
-    "New New Folder",
-    "New New New Folder",
+    "Start Right",
+    "Start Center",
+    "Start Left",
     "New New New New Folder",
     "New New New New New Folder",
     "New New New New New New Folder"

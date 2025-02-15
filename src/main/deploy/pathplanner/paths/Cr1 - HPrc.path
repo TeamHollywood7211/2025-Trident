@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.975085616438356,
+        "y": 4.009974315068493
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.7794270833333328,
+        "y": 3.1724826388888885
+      },
+      "isLocked": false,
+      "linkedName": "Coral 1"
+    },
+    {
+      "anchor": {
+        "x": 1.8631849315068494,
+        "y": 1.455607876712329
+      },
+      "prevControl": {
+        "x": 2.2623263888888876,
+        "y": 2.208159722222222
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "HPR Center"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 38.29016319224307
+  },
+  "reversed": false,
+  "folder": "Right Start",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}

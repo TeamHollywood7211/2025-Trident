@@ -1,0 +1,70 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.258989726027397,
+        "y": 2.792893835616438
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.19888698630137,
+        "y": 2.1918664383561643
+      },
+      "isLocked": false,
+      "linkedName": "Coral 3"
+    },
+    {
+      "anchor": {
+        "x": 3.81652397260274,
+        "y": 1.6659674657534242
+      },
+      "prevControl": {
+        "x": 4.787403632084562,
+        "y": 1.9055351739372501
+      },
+      "nextControl": {
+        "x": 2.6595462328767128,
+        "y": 1.3804794520547943
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.8631849315068494,
+        "y": 1.455607876712329
+      },
+      "prevControl": {
+        "x": 2.6294948630136985,
+        "y": 1.4105308219178085
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "HPR Center"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 38.29016319224307
+  },
+  "reversed": false,
+  "folder": "Right Start",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 120.17352002964431
+  },
+  "useDefaultConstraints": true
+}
