@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "St Cen - Cr4"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_coralMid_L"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaeHigh"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Cr4 - Processor"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaefloor"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Start Center",
+  "choreoAuto": false
+}

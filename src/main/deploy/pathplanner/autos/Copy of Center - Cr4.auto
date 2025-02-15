@@ -11,15 +11,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "act_algaeHigh"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": null
+            "waitTime": 0.2
           }
         }
       ]
