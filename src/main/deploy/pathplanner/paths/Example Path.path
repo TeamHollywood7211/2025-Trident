@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 4.0,
-        "y": 6.0
+        "x": 5.379195205479452,
+        "y": 5.437414383561644
       },
       "prevControl": {
-        "x": 3.0,
-        "y": 6.0
+        "x": 4.379195205479452,
+        "y": 5.437414383561644
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Coral 5"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -114.44395478041656
   },
   "reversed": false,
   "folder": null,
