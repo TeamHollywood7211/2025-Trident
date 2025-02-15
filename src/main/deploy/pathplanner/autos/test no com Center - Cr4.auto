@@ -13,7 +13,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 3.0
+            "waitTime": 1.5
           }
         },
         {
@@ -26,12 +26,6 @@
           "type": "wait",
           "data": {
             "waitTime": 3.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Copy of test"
           }
         }
       ]
