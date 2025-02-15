@@ -183,9 +183,57 @@
         "x": 5.250596472335188,
         "y": 4.402285557577055
       },
+      "nextControl": {
+        "x": -0.4123259243899824,
+        "y": -2.4827650096318497
+      },
+      "isLocked": false,
+      "linkedName": "HPR Right"
+    },
+    {
+      "anchor": {
+        "x": 1.2170804794520549,
+        "y": 1.8763270547945206
+      },
+      "prevControl": {
+        "x": 0.40237727753103636,
+        "y": -0.30321897741866466
+      },
+      "nextControl": {
+        "x": 2.0317836813730734,
+        "y": 4.055873087007706
+      },
+      "isLocked": false,
+      "linkedName": "HPR Left"
+    },
+    {
+      "anchor": {
+        "x": 1.3823630136986302,
+        "y": 6.369006849315068
+      },
+      "prevControl": {
+        "x": 1.7220990324673586,
+        "y": 5.039644591449058
+      },
+      "nextControl": {
+        "x": 1.0426269949299019,
+        "y": 7.698369107181078
+      },
+      "isLocked": false,
+      "linkedName": "HPL Right"
+    },
+    {
+      "anchor": {
+        "x": 2.4191352739726026,
+        "y": 7.1954195205479445
+      },
+      "prevControl": {
+        "x": 1.7008297645882384,
+        "y": 7.4844585261932775
+      },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "HPL Left"
     }
   ],
   "rotationTargets": [],
@@ -202,7 +250,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -133.36342295838327
+    "rotation": -48.99091309842986
   },
   "reversed": false,
   "folder": null,
