@@ -3,15 +3,14 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
-    "Right Start"
+    "Left Start",
+    "Middel",
+    "Right start HP center "
   ],
   "autoFolders": [
-    "Start Right",
     "Start Center",
     "Start Left",
-    "New New New New Folder",
-    "New New New New New Folder",
-    "New New New New New New Folder"
+    "Start Right"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

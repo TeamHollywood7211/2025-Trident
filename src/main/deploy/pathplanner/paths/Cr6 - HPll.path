@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.8631849315068494,
-        "y": 1.455607876712329
+        "x": 3.6362157534246573,
+        "y": 5.437414383561644
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0201626712328764,
-        "y": 2.3421232876712326
+        "x": 3.198697916666666,
+        "y": 6.0375
       },
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": "Coral 6"
     },
     {
       "anchor": {
-        "x": 2.975085616438356,
-        "y": 4.009974315068493
+        "x": 2.3461805555555544,
+        "y": 7.197482638888889
       },
       "prevControl": {
-        "x": 2.2087756849315068,
-        "y": 3.7395119863013697
+        "x": 2.968933124048704,
+        "y": 6.793598982115678
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral 1"
+      "linkedName": "HPL Left"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -48.99091309842986
   },
   "reversed": false,
-  "folder": "Right Start",
+  "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 38.29016319224307
+    "rotation": -60.3092734879832
   },
   "useDefaultConstraints": true
 }

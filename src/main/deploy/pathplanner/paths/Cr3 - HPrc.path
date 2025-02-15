@@ -16,22 +16,6 @@
     },
     {
       "anchor": {
-        "x": 3.81652397260274,
-        "y": 1.6659674657534242
-      },
-      "prevControl": {
-        "x": 4.787403632084562,
-        "y": 1.9055351739372501
-      },
-      "nextControl": {
-        "x": 2.6595462328767128,
-        "y": 1.3804794520547943
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
         "x": 1.8631849315068494,
         "y": 1.455607876712329
       },
@@ -61,7 +45,7 @@
     "rotation": 38.29016319224307
   },
   "reversed": false,
-  "folder": "Right Start",
+  "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 120.17352002964431

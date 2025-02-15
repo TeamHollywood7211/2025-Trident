@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.975085616438356,
-        "y": 4.009974315068493
+        "x": 3.756421232876712,
+        "y": 2.6576626712328766
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.108593749999999,
-        "y": 3.284288194444444
+        "x": 3.3357020547945204,
+        "y": 2.206892123287671
       },
       "isLocked": false,
-      "linkedName": "Coral 1"
+      "linkedName": "Coral 2"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 1.455607876712329
       },
       "prevControl": {
-        "x": 1.95486111111111,
-        "y": 2.417795138888888
+        "x": 2.7647260273972605,
+        "y": 2.0265839041095886
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 59.42077312751098
   },
   "useDefaultConstraints": true
 }
