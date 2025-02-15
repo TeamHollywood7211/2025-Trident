@@ -76,11 +76,11 @@ public class AlgaeSubsystem extends SubsystemBase {
 
 
 
-    public static void gotoIn()
+    public void gotoIn()
     {
         setPosition(0);
     }
-    public static void gotoOut()
+    public void gotoOut()
     {
       setPosition(46);
     }

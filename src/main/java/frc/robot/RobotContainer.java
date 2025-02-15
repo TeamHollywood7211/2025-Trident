@@ -45,7 +45,7 @@ public class RobotContainer {
     public static CANBus MainBus = new CANBus("main");    
     
     // second max angular
-    private final AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
+    public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -87,10 +87,35 @@ public class RobotContainer {
     public RobotContainer() {
 
 
-        //NamedCommands.registerCommand("act_wait_for_piece", a_waitForPiece);
+        //Algae positions
         NamedCommands.registerCommand("act_algaeHighest", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Highest));
-        NamedCommands.registerCommand("act_algaeHigh",    new InstantCommand(m_ElevatorSubsystem::gotoAlgae_High));
-        NamedCommands.registerCommand("act_algaeLow",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Low));
+        NamedCommands.registerCommand("act_algaeHigh",    new InstantCommand(m_ElevatorSubsystem::gotoAlgae_High))   ;
+        NamedCommands.registerCommand("act_algaeLow",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Low))    ;
+        NamedCommands.registerCommand("act_algaeFloor",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+        //TODO: FILL THESE IN!!!!!
+        //Coral positions
+        NamedCommands.registerCommand("act_coralLow_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+        NamedCommands.registerCommand("act_coralMid_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+        NamedCommands.registerCommand("act_coralHigh_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+
+        NamedCommands.registerCommand("act_coralLow_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+        NamedCommands.registerCommand("act_coralMid_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+        NamedCommands.registerCommand("act_coralHigh_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
+
+
+        //Manual thingies
+                    
+        NamedCommands.registerCommand("act_algaeClose", new InstantCommand(m_AlgaeSubsystem::gotoIn  ));
+        NamedCommands.registerCommand("act_algaeOpen",  new InstantCommand(m_AlgaeSubsystem::gotoOut ));
+
+        NamedCommands.registerCommand("act_coral_L", new InstantCommand(m_AlgaeSubsystem::gotoIn  ));
+        NamedCommands.registerCommand("act_coral_R",  new InstantCommand(m_AlgaeSubsystem::gotoOut ));
+
+
+
+
+
+
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);

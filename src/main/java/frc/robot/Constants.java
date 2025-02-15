@@ -24,7 +24,11 @@ public final class Constants {
     public static final int intakeID = 52;
     public static final int wristID = 53;
   
-    
+    public static class positions {
+      public static final int highest = 210;
+      public static final int high =    130;
+      public static final int low =     90;
+    }
 
 
   }
@@ -50,11 +54,7 @@ public final class Constants {
     public static final double motorSpeed = 0.25;
 
 
-    public static class positions {
-      public static final int highest = 210;
-      public static final int high =    130;
-      public static final int low =     90;
-    }
+    
 
   }
 

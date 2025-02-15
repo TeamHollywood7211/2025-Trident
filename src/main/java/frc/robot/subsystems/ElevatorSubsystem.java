@@ -50,7 +50,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -0.5, 0.5));
     motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -0.5, 0.5));
     SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint);
-    SmartDashboard.putNumber("Elevator Position", currentRightPos);
+    SmartDashboard.putNumber("Elevator Position", currentRightPos) ;
     
     //SmartDashboard.putNumber("Percentage to Pos: ", (currentPos / ArmSetpoint) * 100);
   }
@@ -77,17 +77,22 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void gotoAlgae_Highest()
   {
-    setPosition(Constants.ElevatorConstants.positions.highest);
+    setPosition(Constants.AlgaeConstants.positions.highest);
     AlgaeSubsystem.gotoOut(); //Sets the Algae arm out
   }
   public void gotoAlgae_High()
   {
-    setPosition(Constants.ElevatorConstants.positions.high);
+    setPosition(Constants.AlgaeConstants.positions.high);
     AlgaeSubsystem.gotoOut();
   }
   public void gotoAlgae_Low()
   {
-    setPosition(Constants.ElevatorConstants.positions.low);
+    setPosition(Constants.AlgaeConstants.positions.low);
+    AlgaeSubsystem.gotoOut();
+  }
+  public void gotoAlgae_Floor()
+  {
+    gotoHome();
     AlgaeSubsystem.gotoOut();
   }
   public void gotoHome()
