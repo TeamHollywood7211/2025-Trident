@@ -4,9 +4,14 @@
 
 package frc.robot.commands.Autos;
 
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+
+import com.pathplanner.lib.config.RobotConfig;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
@@ -42,8 +47,14 @@ public class auto_coralMove extends Command {
   public void execute() {
 
     m_elevator.setPosition(elevatorPos);
-    m_coral.setPosition(coralPos);
-    finished = true;
+    RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
+    if(RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.grabbing+0.5)) //Ensures that the thing is down :)
+    {
+      m_coral.setPosition(coralPos);
+      finished = true;
+    }
+    
+    
   }
 
   // Called once the command ends or is interrupted.

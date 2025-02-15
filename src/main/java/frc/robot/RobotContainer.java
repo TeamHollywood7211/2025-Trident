@@ -73,8 +73,12 @@ public class RobotContainer {
 
     private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
     private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
-    private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
-    private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
+   // private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
+    //private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
+    
+    private final CommandXboxController buttonBox1 = new CommandXboxController(2);
+    private final CommandXboxController buttonBox2 = new CommandXboxController(3);
+    
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     
@@ -120,7 +124,8 @@ public class RobotContainer {
     // Constants.ElevatorConstants.positions.a_high);
     private final auto_algaeMove a_algaeFloor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_floor);
-
+    private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
+    , Constants.ElevatorConstants.positions.a_processing);
 
 
     private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
@@ -212,8 +217,24 @@ public class RobotContainer {
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
-        deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
-        deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
+        //deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
+        //deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
+
+
+        //Coral Left
+        buttonBox2.button(6).onTrue(a_coralHighL);
+        buttonBox1.button(8).onTrue(a_coralMidL);
+        buttonBox1.button(5).onTrue(a_coralLowL);
+        //Coral Right
+        buttonBox2.button(5).onTrue(a_coralHighR);
+        buttonBox1.button(7).onTrue(a_coralMidR);
+        buttonBox1.button(6).onTrue(a_coralLowR);
+
+
+        buttonBox2.button(3).onTrue(a_algaeMid);
+        buttonBox2.button(4).onTrue(a_algaeLow);
+        
+        buttonBox1.button(3).onTrue(a_algaeProcessor);
 
 
 

@@ -10,6 +10,7 @@ import com.ctre.phoenix6.hardware.TalonFXS;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -47,7 +48,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
       wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
-  
+      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
       wristMotor.set(MathUtil.clamp(
         wristPID.calculate(wristEncoder, wristSetpoint),
        -1, 1));
@@ -62,7 +63,7 @@ public class AlgaeSubsystem extends SubsystemBase {
 
     public void runGrip(double speed)
     {
-      System.out.println(speed);
+      //System.out.println(speed);
       intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5));
     }
   
@@ -74,7 +75,10 @@ public class AlgaeSubsystem extends SubsystemBase {
     {
       wristSetpoint = val;
     }
-
+    public double getPosition()
+    {
+      return wristMotor.getPosition().getValueAsDouble();
+    }
 
 
     public void gotoIn()

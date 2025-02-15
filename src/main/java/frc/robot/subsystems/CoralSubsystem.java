@@ -10,6 +10,7 @@ import com.ctre.phoenix6.hardware.TalonFXS;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -63,7 +64,7 @@ public class CoralSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     moverEncoder = moverMotor.getPosition().getValueAsDouble();
-
+    SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
     moverMotor.set(MathUtil.clamp(
       moverPID.calculate(moverEncoder, moverSetpoint)
     , -0.5, 0.5));

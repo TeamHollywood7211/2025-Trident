@@ -23,7 +23,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   PIDController ArmPID = new PIDController(0.03, 0, 0.0005);
   double encoderLeft = motorLeft.getPosition().getValueAsDouble();
   double encoderRight = motorRight.getPosition().getValueAsDouble();
-  double ElevatorSetpoint = encoderLeft;
+  double ElevatorSetpoint = encoderRight;
 
   public ElevatorSubsystem() {
 

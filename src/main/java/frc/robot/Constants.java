@@ -24,7 +24,12 @@ public final class Constants {
     public static final int intakeID = 52;
     public static final int wristID = 53;
   
-    
+    public static class positions {
+      public static final int home = 0;
+
+
+      public static final int grabbing = -7; //fill this in plz :3
+    }
 
 
   }
@@ -58,10 +63,12 @@ public final class Constants {
     public static final double motorSpeed = 0.25;
 
     public static class positions {
-      public static final int a_high = 210; //potentially rename these (DO NOT GO HIGH)
-      public static final int a_mid =    130;
-      public static final int a_low =     90;
-      public static final int a_floor =    0;
+      public static final int a_high =        210; //potentially rename these (DO NOT GO HIGH)
+      public static final int a_mid =         130;
+      public static final int a_low =         90;
+      public static final int a_floor =       0;
+      public static final int a_processing =  46;
+
 
 
       public static final int c_home = 0;
