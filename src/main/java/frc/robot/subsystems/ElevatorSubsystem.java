@@ -10,6 +10,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.ElevatorConstants;
@@ -74,27 +75,66 @@ public class ElevatorSubsystem extends SubsystemBase {
     motorLeft.set(speed);
     motorRight.set(-speed);
   }
-
+  /* 
   public void gotoAlgae_Highest()
   {
-    setPosition(Constants.AlgaeConstants.positions.highest);
-    AlgaeSubsystem.gotoOut(); //Sets the Algae arm out
+    setPosition(Constants.AlgaeConstants.positions.a_high);
+    RobotContainer.m_AlgaeSubsystem.gotoOut();
+    //public func = new InstantCommand(AlgaeSubsystem::gotoOut);
+    //AlgaeSubsystem.gotoOut(); //Sets the Algae arm out
   }
   public void gotoAlgae_High()
   {
-    setPosition(Constants.AlgaeConstants.positions.high);
-    AlgaeSubsystem.gotoOut();
+    setPosition(Constants.AlgaeConstants.positions.a_mid);
+    RobotContainer.m_AlgaeSubsystem.gotoOut();
   }
   public void gotoAlgae_Low()
   {
-    setPosition(Constants.AlgaeConstants.positions.low);
-    AlgaeSubsystem.gotoOut();
+    setPosition(Constants.AlgaeConstants.positions.a_low);
+    RobotContainer.m_AlgaeSubsystem.gotoOut();
   }
   public void gotoAlgae_Floor()
   {
     gotoHome();
-    AlgaeSubsystem.gotoOut();
+    RobotContainer.m_AlgaeSubsystem.gotoOut();
   }
+  //LEFT POSITIONS 
+  //May be best to move these to individual commands later
+  // 
+  public void gotoCoralLow_L(){
+    RobotContainer.m_CoralSubsystem.gotoLeft();
+    setPosition(Constants.AlgaeConstants.positions.c_low);
+  }
+  public void gotoCoralMid_L(){
+    RobotContainer.m_CoralSubsystem.gotoLeft();
+    setPosition(Constants.AlgaeConstants.positions.c_mid);
+  }
+  public void gotoCoralHigh_L(){
+    RobotContainer.m_CoralSubsystem.gotoLeft();
+    setPosition(Constants.AlgaeConstants.positions.c_high);
+  }
+
+  //RIGHT POSITIONS
+  public void gotoCoralLow_R(){
+    RobotContainer.m_CoralSubsystem.gotoRight();
+    setPosition(Constants.AlgaeConstants.positions.c_low);
+  }
+  public void gotoCoralMid_R(){
+    RobotContainer.m_CoralSubsystem.gotoRight();
+    setPosition(Constants.AlgaeConstants.positions.c_mid);
+  }
+  public void gotoCoralHigh_R(){
+    RobotContainer.m_CoralSubsystem.gotoRight();
+    setPosition(Constants.AlgaeConstants.positions.c_high);
+  }
+  */
+
+
+
+
+
+
+
   public void gotoHome()
   {
     setPosition(3); //Setting a little above zero just in case our zero gets effed up

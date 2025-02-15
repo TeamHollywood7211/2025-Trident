@@ -29,9 +29,15 @@ import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
+import frc.robot.commands.Autos.auto_algaeMove;
+import frc.robot.commands.Autos.auto_coralMove;
+import frc.robot.commands.Autos.auto_moveCoral;
+import frc.robot.commands.Autos.auto_waitIntake;
 import frc.robot.commands.AlgaeCommand;
+import frc.robot.commands.CoralCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.AlgaeSubsystem;
 
@@ -47,6 +53,7 @@ public class RobotContainer {
     // second max angular
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
+    public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -67,7 +74,7 @@ public class RobotContainer {
     private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
     private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
     private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
-
+    private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     
@@ -75,7 +82,50 @@ public class RobotContainer {
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, operatorStick);
+    private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
+    
+    
+    
+    //AUTO COMMANDS
+    private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, 4); //The second input is how much time (in seconds) we take till we give up on intake
+
+
+
+    //CORAL POSITIONS
+    private final auto_coralMove a_coralLowL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low);
+    private final auto_coralMove a_coralMidL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid);
+
+    private final auto_coralMove a_coralHighL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high);
+
+    private final auto_coralMove a_coralLowR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low);
+    private final auto_coralMove a_coralMidR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid);
+
+    private final auto_coralMove a_coralHighR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high);
+
+    private final auto_coralMove a_coralBottom = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     0, Constants.ElevatorConstants.positions.c_bottom);
+
+    private final auto_algaeMove a_algaeLow = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+     Constants.ElevatorConstants.positions.a_low);
+    private final auto_algaeMove a_algaeMid = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+     Constants.ElevatorConstants.positions.a_mid);
+    //private final auto_algaeMove a_algaeHigh = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+    // Constants.ElevatorConstants.positions.a_high);
+    private final auto_algaeMove a_algaeFloor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+     Constants.ElevatorConstants.positions.a_floor);
+
+
+
+    private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
+    private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
+    private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -85,33 +135,33 @@ public class RobotContainer {
     }
 
     public RobotContainer() {
-
-
         //Algae positions
-        NamedCommands.registerCommand("act_algaeHighest", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Highest));
-        NamedCommands.registerCommand("act_algaeHigh",    new InstantCommand(m_ElevatorSubsystem::gotoAlgae_High))   ;
-        NamedCommands.registerCommand("act_algaeLow",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Low))    ;
-        NamedCommands.registerCommand("act_algaeFloor",     new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-        //TODO: FILL THESE IN!!!!!
+        //NamedCommands.registerCommand("act_algaeNet", a_algaeHigh);
+        NamedCommands.registerCommand("act_algaeHigh",    a_algaeMid); //Algae top
+        NamedCommands.registerCommand("act_algaeLow",     a_algaeLow); //Algae bottom
+        NamedCommands.registerCommand("act_algaeFloor",   a_algaeFloor); //Picking up/placing from floor
         //Coral positions
-        NamedCommands.registerCommand("act_coralLow_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-        NamedCommands.registerCommand("act_coralMid_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-        NamedCommands.registerCommand("act_coralHigh_L", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-
-        NamedCommands.registerCommand("act_coralLow_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-        NamedCommands.registerCommand("act_coralMid_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-        NamedCommands.registerCommand("act_coralHigh_R", new InstantCommand(m_ElevatorSubsystem::gotoAlgae_Floor));
-
-
-        //Manual thingies
-                    
-        NamedCommands.registerCommand("act_algaeClose", new InstantCommand(m_AlgaeSubsystem::gotoIn  ));
-        NamedCommands.registerCommand("act_algaeOpen",  new InstantCommand(m_AlgaeSubsystem::gotoOut ));
-
-        NamedCommands.registerCommand("act_coral_L", new InstantCommand(m_AlgaeSubsystem::gotoIn  ));
-        NamedCommands.registerCommand("act_coral_R",  new InstantCommand(m_AlgaeSubsystem::gotoOut ));
+        //THESE ARE LEFT
+        NamedCommands.registerCommand("act_coralLow_L", a_coralLowL); //Coral low tier
+        NamedCommands.registerCommand("act_coralMid_L", a_coralMidL); //Coral middle tier
+        NamedCommands.registerCommand("act_coralHigh_L", a_coralHighL); //Coral high tier
+        //THESE ARE RIGHT
+        NamedCommands.registerCommand("act_coralLow_R", a_coralLowR);
+        NamedCommands.registerCommand("act_coralMid_R", a_coralMidR);
+        NamedCommands.registerCommand("act_coralHigh_R", a_coralHighR);
+        NamedCommands.registerCommand("act_coralBottom", a_coralBottom);
 
 
+        //Manual manipulations             
+        NamedCommands.registerCommand("act_algaeClose", new InstantCommand(m_AlgaeSubsystem::gotoIn )); 
+        NamedCommands.registerCommand("act_algaeOpen",  new InstantCommand(m_AlgaeSubsystem::gotoOut));
+
+        NamedCommands.registerCommand("act_coral_L", a_coralLeft);
+        NamedCommands.registerCommand("act_coral_R",  a_coralRight);
+        NamedCommands.registerCommand("act_coral_H", a_coralHome); //This is the center (sends it to 0)
+
+        //Auto functions
+        NamedCommands.registerCommand("act_waitIntake", a_waitIntake);
 
 
 
@@ -120,7 +170,7 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-        createFrontUsbCamera();
+        //createFrontUsbCamera();
         configureBindings();
         LimelightHelpers.outputToSmartDashboard(); //This is a quick function that just outputs the X and Y to SmartDashboard
     }
@@ -138,9 +188,9 @@ public class RobotContainer {
                         .withRotationalRate(-driverStick.getRightX() * MaxAngularRate) // Drive counterclockwise with
                                                                                        // negative X (left)
                 )
-
         );
         m_AlgaeSubsystem.setDefaultCommand(m_AlgaeCommand);
+        m_CoralSubsystem.setDefaultCommand(m_CoralCommand);
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
@@ -152,17 +202,26 @@ public class RobotContainer {
                 .applyRequest(() -> forwardStraight.withVelocityX(-0.5).withVelocityY(0).withRotationalRate(0))
 
         );
+
         driverStick.pov(90).whileTrue(drivetrain
-                .applyRequest(() -> forwardStraight.withVelocityY(0.5).withVelocityX(0).withRotationalRate(0)));
-        driverStick.pov(270).whileTrue(drivetrain
                 .applyRequest(() -> forwardStraight.withVelocityY(-0.5).withVelocityX(0).withRotationalRate(0)));
+        driverStick.pov(270).whileTrue(drivetrain
+                .applyRequest(() -> forwardStraight.withVelocityY(0.5).withVelocityX(0).withRotationalRate(0)));
 
         // reset the field-centric heading on left bumper press
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
+        deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
+        deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
+
+
+
+        //deb_CoralStick.povLeft().onTrue(new InstantCommand(m_ElevatorSubsystem::gotoCoralMid_L));
+
+
         // AUTO STICK
-        autoStick.a().onTrue(drivetrain.run(() -> AutoToPosition(ImportantPositions.coral4))); // dont ask me how
+        //autoStick.a().onTrue(drivetrain.run(() -> AutoToPosition(ImportantPositions.coral4))); // dont ask me how
                                                                                                // drivetrain.run() is
                                                                                                // used here, it just
                                                                                                // maybe works.

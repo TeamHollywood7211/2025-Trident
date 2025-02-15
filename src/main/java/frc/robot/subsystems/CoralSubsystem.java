@@ -4,25 +4,30 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.CANrange;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.hardware.TalonFXS;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 
 
 public class CoralSubsystem extends SubsystemBase {
 
-  TalonFX IntakeMotor1 = new TalonFX(Constants.CoralConstants.intakeID, "main");
+  TalonFX intakeMotor = new TalonFX(Constants.CoralConstants.intakeID, RobotContainer.MainBus);
+  TalonFXS moverMotor = new TalonFXS(Constants.CoralConstants.moverID, RobotContainer.MainBus);
+  PIDController moverPID = new PIDController(0.03, 0, 0.005);
+  CANrange rangeSensor = new CANrange(Constants.CoralConstants.canRangeID, RobotContainer.MainBus);
 
-  //RelativeEncoder IntakeEncoder = IntakeMotor1.getEncoder();
-  
-  //RelativeEncoder IntakeEncoder2 = IntakeMotor2.getEncoder();
+  double moverEncoder = moverMotor.getPosition().getValueAsDouble();
+  double moverSetpoint = moverMotor.getPosition().getValueAsDouble();
 
 
- 
-  //DifferentialDrive differentialDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
   public CoralSubsystem(){ 
 
@@ -57,7 +62,11 @@ public class CoralSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    moverEncoder = moverMotor.getPosition().getValueAsDouble();
+
+    moverMotor.set(MathUtil.clamp(
+      moverPID.calculate(moverEncoder, moverSetpoint)
+    , -0.5, 0.5));
   }
 
   @Override
@@ -65,14 +74,50 @@ public class CoralSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-public void runCoralTake(double speed){
-  IntakeMotor1.set(-1 * speed);
-}
-public void runCoralThrow(double speed){
-  IntakeMotor1.set(speed);
-}
-public void stopCoral(){
-  IntakeMotor1.set(0);
-}
+
+  public void runCoral(double speed){
+    intakeMotor.set(speed);
+  }
+  public void stopCoral(){
+    intakeMotor.set(0);
+  }
+
+  public void addPosition(double val)
+  {
+    moverSetpoint += val;
+  }
+  public void setPosition(double val)
+  {
+    moverSetpoint = val;
+  }
+
+  
+  public void gotoLeft(){
+    setPosition(Constants.CoralConstants.positions.left);
+  }
+  public void gotoRight(){
+    setPosition(Constants.CoralConstants.positions.right);
+  }
+  public void gotoHome(){
+    setPosition(0);
+  }
+  
+  public double getRange()
+  {
+    return rangeSensor.getDistance().getValueAsDouble();
+  }
+  public boolean pieceInRange()
+  {
+    if(getRange() < Constants.CoralConstants.coralInRange)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+ 
+
 
 }

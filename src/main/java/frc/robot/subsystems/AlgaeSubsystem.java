@@ -21,14 +21,14 @@ import frc.robot.RobotContainer;
 public class AlgaeSubsystem extends SubsystemBase {
 
   TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus);
-  static TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
+  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
 
     double wristEncoder = wristMotor.getPosition().getValueAsDouble();
-    static double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
+    double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
 
     PIDController wristPID = new PIDController(0.03, 0, 0.005);
 
-    TalonFXSConfiguration config = new TalonFXSConfiguration();
+    //TalonFXSConfiguration config = new TalonFXSConfiguration();
     
     public AlgaeSubsystem(){}
     public Command exampleMethodCommand() {
@@ -59,17 +59,18 @@ public class AlgaeSubsystem extends SubsystemBase {
     public void simulationPeriodic() {
       // This method will be called once per scheduler run during simulation
     }
-  
+
     public void runGrip(double speed)
     {
-      intakeMotor.set(speed);
+      System.out.println(speed);
+      intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5));
     }
   
-    public static void addPosition(double val)
+    public void addPosition(double val)
     {
       wristSetpoint += val;
     }
-    public static void setPosition(double val)
+    public void setPosition(double val)
     {
       wristSetpoint = val;
     }

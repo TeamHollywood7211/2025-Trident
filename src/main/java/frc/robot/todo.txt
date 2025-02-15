@@ -22,9 +22,7 @@ IDS:
     }
 
 
-Pathplanner and swerve should be auto-integrated.
 
 ==Subsystems we need to make==
 - Limelight
-- Coral Manipulator Subsystem 
 - Climber

@@ -10,11 +10,11 @@ import frc.robot.subsystems.AlgaeSubsystem;
 public class AlgaeCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private AlgaeSubsystem m_intakeSubsystem;
+  private AlgaeSubsystem m_algae;
   private CommandXboxController m_controller;
   public AlgaeCommand(AlgaeSubsystem intakeSubsystem, CommandXboxController controller) {
     this.m_controller = controller;
-    this.m_intakeSubsystem = intakeSubsystem;
+    this.m_algae = intakeSubsystem;
     addRequirements(intakeSubsystem);
   } 
 
@@ -29,16 +29,27 @@ public class AlgaeCommand extends Command {
   @Override
   public void execute() {
 
-    m_intakeSubsystem.runGrip(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()) - RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
+    m_algae.runGrip(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()) 
+    - RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
     //System.out.println(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()));
-  
+    if(m_controller.leftTrigger().getAsBoolean())
+    {
+      m_algae.runGrip(1);
+    }
+    if(m_controller.rightTrigger().getAsBoolean())
+    {
+      m_algae.runGrip(-1);
+    }
+    if((!m_controller.rightTrigger().getAsBoolean()) && (!m_controller.leftTrigger().getAsBoolean()))
+    {
+      m_algae.runGrip(0);
+    }
+
 
     if(Math.abs(m_controller.getRightY()) > 0.05 )
     {
-      m_intakeSubsystem.addPosition(m_controller.getRightY() * 0.1);
+      m_algae.addPosition(m_controller.getRightY() * 0.1);
     }
-    
-  
   
   
   }

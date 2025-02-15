@@ -9,12 +9,12 @@ import frc.robot.subsystems.CoralSubsystem;
 public class CoralCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private CoralSubsystem m_coralIntakeSubsystem;
+  private CoralSubsystem m_coral;
   private CommandXboxController m_controller;
 
   public CoralCommand(CoralSubsystem intakeSubsystem, CommandXboxController controller) {
     this.m_controller = controller;
-    this.m_coralIntakeSubsystem = intakeSubsystem;
+    this.m_coral = intakeSubsystem;
     addRequirements(intakeSubsystem);
   } 
 
@@ -27,16 +27,22 @@ public class CoralCommand extends Command {
   
   public void execute() {
     
-    m_coralIntakeSubsystem.runCoralThrow(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
+    m_coral.runCoral(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
      - RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
-  }
+    //System.out.println(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
+    //- RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
+  
+     if(Math.abs(m_controller.getLeftX()) > 0.05 )
+     {
+      m_coral.addPosition(m_controller.getLeftX() * 0.1);
+     }
+  
+    }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
   
-  public void grabCoralHard(double speed){
-    m_coralIntakeSubsystem.runCoralTake(speed * 2);
-    } 
+
   
   // Returns true when the command should end.
   @Override

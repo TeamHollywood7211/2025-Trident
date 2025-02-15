@@ -24,17 +24,21 @@ public final class Constants {
     public static final int intakeID = 52;
     public static final int wristID = 53;
   
-    public static class positions {
-      public static final int highest = 210;
-      public static final int high =    130;
-      public static final int low =     90;
-    }
+    
 
 
   }
 
   public static class CoralConstants {
-    public static final int intakeID = 69420;
+    public static final int intakeID = 50;
+    public static final int moverID = 51;
+    public static final int canRangeID = 48; 
+    public static final double coralInRange = 0.106; //The value (meters) of the MAX distance between the range sensor and the game piece when typically inputted
+
+    public static class positions { //the movers positions
+      public static final int left = -17;
+      public static final int right = 17;
+    }
   }
 
 
@@ -53,7 +57,19 @@ public final class Constants {
     public static final int rightMotorID = 43;
     public static final double motorSpeed = 0.25;
 
+    public static class positions {
+      public static final int a_high = 210; //potentially rename these (DO NOT GO HIGH)
+      public static final int a_mid =    130;
+      public static final int a_low =     90;
+      public static final int a_floor =    0;
 
+
+      public static final int c_home = 0;
+      public static final int c_bottom = 20; //THESE ARE TEMP
+      public static final int c_low = 70;
+      public static final int c_mid = 108;
+      public static final int c_high = 150;
+    }
     
 
   }
