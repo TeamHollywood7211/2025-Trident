@@ -77,7 +77,7 @@ public class RobotContainer {
     //private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
     
     private final CommandXboxController buttonBox1 = new CommandXboxController(2);
-    private final CommandXboxController buttonBox2 = new CommandXboxController(3);
+    public final CommandXboxController buttonBox2 = new CommandXboxController(3);
     
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -85,8 +85,8 @@ public class RobotContainer {
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
-    private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, operatorStick);
-    private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, operatorStick);
+    private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
+    private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
     
     

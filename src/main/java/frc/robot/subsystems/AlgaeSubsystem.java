@@ -47,8 +47,14 @@ public class AlgaeSubsystem extends SubsystemBase {
   
     @Override
     public void periodic() {
+      //var wristSim = wristMotor.getSimState();
       wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
-      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
+      //SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
+
+      //SmartDashboard.putNumber("Wrist Sim", wristSim.get);
+
+
+
       wristMotor.set(MathUtil.clamp(
         wristPID.calculate(wristEncoder, wristSetpoint),
        -1, 1));
@@ -63,7 +69,7 @@ public class AlgaeSubsystem extends SubsystemBase {
 
     public void runGrip(double speed)
     {
-      //System.out.println(speed);
+      System.out.println(speed);
       intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5));
     }
   
@@ -87,7 +93,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
     public void gotoOut()
     {
-      setPosition(46);
+      setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
 
   

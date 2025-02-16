@@ -11,8 +11,12 @@ public class AlgaeCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
   private AlgaeSubsystem m_algae;
+  private CommandXboxController m_bb0;
+  private CommandXboxController m_bb1;
   private CommandXboxController m_controller;
-  public AlgaeCommand(AlgaeSubsystem intakeSubsystem, CommandXboxController controller) {
+  public AlgaeCommand(AlgaeSubsystem intakeSubsystem, CommandXboxController bb0, CommandXboxController bb1, CommandXboxController controller) {
+    this.m_bb0 = bb0;
+    this.m_bb1 = bb1;
     this.m_controller = controller;
     this.m_algae = intakeSubsystem;
     addRequirements(intakeSubsystem);
@@ -29,8 +33,16 @@ public class AlgaeCommand extends Command {
   @Override
   public void execute() {
 
-    m_algae.runGrip(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()) 
-    - RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
+    //m_algae.runGrip(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()) 
+    //- RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
+    
+    m_algae.runGrip(
+      RobotContainer.booleanToDouble(m_bb0.button(1).getAsBoolean())
+      -
+      RobotContainer.booleanToDouble(m_bb0.button(10).getAsBoolean())
+    );
+    
+    
     //System.out.println(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()));
     /*if(m_controller.leftTrigger().getAsBoolean())
     {

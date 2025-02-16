@@ -24,7 +24,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   double encoderLeft = motorLeft.getPosition().getValueAsDouble();
   double encoderRight = motorRight.getPosition().getValueAsDouble();
   double ElevatorSetpoint = encoderRight;
-
   public ElevatorSubsystem() {
 
   }

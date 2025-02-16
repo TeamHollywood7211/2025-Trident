@@ -11,10 +11,14 @@ public class CoralCommand extends Command {
 
   private CoralSubsystem m_coral;
   private CommandXboxController m_controller;
+  private CommandXboxController m_bb0;
+  private CommandXboxController m_bb1;
 
-  public CoralCommand(CoralSubsystem intakeSubsystem, CommandXboxController controller) {
+  public CoralCommand(CoralSubsystem intakeSubsystem, CommandXboxController bb0, CommandXboxController bb1, CommandXboxController controller) {
     this.m_controller = controller;
     this.m_coral = intakeSubsystem;
+    this.m_bb0 = bb0;
+    this.m_bb1 = bb1;
     addRequirements(intakeSubsystem);
   } 
 
@@ -27,11 +31,17 @@ public class CoralCommand extends Command {
   
   public void execute() {
     
-    m_coral.runCoral(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
-     - RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
+    //m_coral.runCoral(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
+    // - RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
     //System.out.println(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
     //- RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
   
+
+    m_coral.runCoral(
+      RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean())
+    );
+
+
      if(Math.abs(m_controller.getLeftX()) > 0.05 )
      {
       m_coral.addPosition(m_controller.getLeftX() * 0.1);
