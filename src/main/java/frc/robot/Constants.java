@@ -28,7 +28,7 @@ public final class Constants {
       public static final int home = 0;
 
 
-      public static final int grabbing = -7; //fill this in plz :3
+      public static final int grabbing = -14; //fill this in plz :3
     }
 
 
@@ -76,6 +76,7 @@ public final class Constants {
       public static final int c_low = 70;
       public static final int c_mid = 108;
       public static final int c_high = 150;
+      public static final int home = 0;
     }
     
 

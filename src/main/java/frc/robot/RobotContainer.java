@@ -31,6 +31,7 @@ import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.Autos.auto_algaeMove;
 import frc.robot.commands.Autos.auto_coralMove;
+import frc.robot.commands.Autos.auto_homeAll;
 import frc.robot.commands.Autos.auto_moveCoral;
 import frc.robot.commands.Autos.auto_waitIntake;
 import frc.robot.commands.AlgaeCommand;
@@ -131,7 +132,7 @@ public class RobotContainer {
     private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
     private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
     private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
-
+    private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
 
@@ -235,7 +236,7 @@ public class RobotContainer {
         buttonBox2.button(4).onTrue(a_algaeLow);
         
         buttonBox1.button(3).onTrue(a_algaeProcessor);
-
+        //somewhere here add home
 
 
         //deb_CoralStick.povLeft().onTrue(new InstantCommand(m_ElevatorSubsystem::gotoCoralMid_L));

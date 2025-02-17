@@ -91,6 +91,10 @@ public class CoralSubsystem extends SubsystemBase {
   {
     moverSetpoint = val;
   }
+  public double getPosition()
+  {
+    return moverMotor.getPosition().getValueAsDouble();
+  }
 
   
   public void gotoLeft(){
