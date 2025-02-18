@@ -74,7 +74,7 @@ public class RobotContainer {
 
     private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
     private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
-   // private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
+    //private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
     //private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
     
     private final CommandXboxController buttonBox1 = new CommandXboxController(2);
@@ -82,7 +82,7 @@ public class RobotContainer {
     
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-    
+
 
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
@@ -127,11 +127,13 @@ public class RobotContainer {
      Constants.ElevatorConstants.positions.a_floor);
     private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing);
+    //
 
-
+    //
     private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
     private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
     private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
+    //
     private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -143,35 +145,19 @@ public class RobotContainer {
     public RobotContainer() {
         //Algae positions
         //NamedCommands.registerCommand("act_algaeNet", a_algaeHigh);
-        NamedCommands.registerCommand("act_algaeHigh",    a_algaeMid); //Algae top
-        NamedCommands.registerCommand("act_algaeLow",     a_algaeLow); //Algae bottom
+        NamedCommands.registerCommand("act_algaeHigh ",    a_algaeMid); //Algae top
+        NamedCommands.registerCommand("act_algaeLow  ",     a_algaeLow); //Algae bottom
         NamedCommands.registerCommand("act_algaeFloor",   a_algaeFloor); //Picking up/placing from floor
         //Coral positions
         //THESE ARE LEFT
-        NamedCommands.registerCommand("act_coralLow_L", a_coralLowL); //Coral low tier
-        NamedCommands.registerCommand("act_coralMid_L", a_coralMidL); //Coral middle tier
+        NamedCommands.registerCommand("act_coralLow_L ", a_coralLowL); //Coral low tier
+        NamedCommands.registerCommand("act_coralMid_L ", a_coralMidL); //Coral middle tier
         NamedCommands.registerCommand("act_coralHigh_L", a_coralHighL); //Coral high tier
         //THESE ARE RIGHT
-        NamedCommands.registerCommand("act_coralLow_R", a_coralLowR);
-        NamedCommands.registerCommand("act_coralMid_R", a_coralMidR);
+        NamedCommands.registerCommand("act_coralLow_R ", a_coralLowR);
+        NamedCommands.registerCommand("act_coralMid_R ", a_coralMidR);
         NamedCommands.registerCommand("act_coralHigh_R", a_coralHighR);
         NamedCommands.registerCommand("act_coralBottom", a_coralBottom);
-
-
-        //Manual manipulations             
-        NamedCommands.registerCommand("act_algaeClose", new InstantCommand(m_AlgaeSubsystem::gotoIn )); 
-        NamedCommands.registerCommand("act_algaeOpen",  new InstantCommand(m_AlgaeSubsystem::gotoOut));
-
-        NamedCommands.registerCommand("act_coral_L", a_coralLeft);
-        NamedCommands.registerCommand("act_coral_R",  a_coralRight);
-        NamedCommands.registerCommand("act_coral_H", a_coralHome); //This is the center (sends it to 0)
-
-        //Auto functions
-        NamedCommands.registerCommand("act_waitIntake", a_waitIntake);
-
-
-
-
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
@@ -230,12 +216,10 @@ public class RobotContainer {
         buttonBox2.button(5).onTrue(a_coralHighR);
         buttonBox1.button(7).onTrue(a_coralMidR);
         buttonBox1.button(6).onTrue(a_coralLowR);
-
-
         buttonBox2.button(3).onTrue(a_algaeMid);
         buttonBox2.button(4).onTrue(a_algaeLow);
-        
         buttonBox1.button(3).onTrue(a_algaeProcessor);
+        buttonBox1.button(4).onTrue(a_homeAll);
         //somewhere here add home
 
 

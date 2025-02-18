@@ -53,8 +53,7 @@ public class auto_coralMove extends Command {
       m_coral.setPosition(coralPos);
       finished = true;
     }
-    
-    
+//    
   }
 
   // Called once the command ends or is interrupted.
