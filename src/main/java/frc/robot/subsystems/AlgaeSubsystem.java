@@ -96,7 +96,10 @@ public class AlgaeSubsystem extends SubsystemBase {
       setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
 
-  
+    public void setSpeed(double speed)
+    {
+      intakeMotor.set(speed);
+    }
 
 
 

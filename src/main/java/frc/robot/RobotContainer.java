@@ -30,7 +30,9 @@ import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.Autos.auto_algaeMove;
+import frc.robot.commands.Autos.auto_algaeRunner;
 import frc.robot.commands.Autos.auto_coralMove;
+import frc.robot.commands.Autos.auto_coralRunner;
 import frc.robot.commands.Autos.auto_homeAll;
 import frc.robot.commands.Autos.auto_moveCoral;
 import frc.robot.commands.Autos.auto_waitIntake;
@@ -133,6 +135,25 @@ public class RobotContainer {
     private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
     private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
     private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
+
+
+
+
+    private final auto_algaeRunner a_algaeIntake = new auto_algaeRunner(m_AlgaeSubsystem, Constants.AlgaeConstants.intakeSpeed);
+    private final auto_algaeRunner a_algaeOuttake = new auto_algaeRunner(m_AlgaeSubsystem, -Constants.AlgaeConstants.intakeSpeed);
+    private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0);
+
+    private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
+
+
+
+
+
+    //private final 
+
+
     //
     private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
     /* Path follower */
@@ -158,6 +179,22 @@ public class RobotContainer {
         NamedCommands.registerCommand("act_coralMid_R ", a_coralMidR);
         NamedCommands.registerCommand("act_coralHigh_R", a_coralHighR);
         NamedCommands.registerCommand("act_coralBottom", a_coralBottom);
+        NamedCommands.registerCommand("act_coralHP", a_waitIntake);
+
+        NamedCommands.registerCommand("act_algaeRintake", a_algaeIntake);
+        NamedCommands.registerCommand("act_algaeRouttake", a_algaeOuttake);
+        NamedCommands.registerCommand("act_algaeRstop", a_algaeStop);
+
+        NamedCommands.registerCommand("act_coralRintake", a_coralIntake);
+        NamedCommands.registerCommand("act_coralRouttake", a_coralOuttake);
+        NamedCommands.registerCommand("act_coralRstop", a_coralStop);
+
+
+
+        //Add act_algaeRintake and act_algaeRstop, act_algaeRouttake
+        //Add act_intakeRstart and act_intakeRstop 
+        //act_coralHP
+        //R means runner. Idk man
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
@@ -214,12 +251,12 @@ public class RobotContainer {
         buttonBox1.button(5).onTrue(a_coralLowL);
         //Coral Right
         buttonBox2.button(5).onTrue(a_coralHighR);
-        buttonBox1.button(7).onTrue(a_coralMidR);
-        buttonBox1.button(6).onTrue(a_coralLowR);
-        buttonBox2.button(3).onTrue(a_algaeMid);
-        buttonBox2.button(4).onTrue(a_algaeLow);
+        buttonBox1.button(7).onTrue(a_coralMidR) ;
+        buttonBox1.button(6).onTrue(a_coralLowR) ;
+        buttonBox2.button(3).onTrue(a_algaeMid)  ;
+        buttonBox2.button(4).onTrue(a_algaeLow)  ;
         buttonBox1.button(3).onTrue(a_algaeProcessor);
-        buttonBox1.button(4).onTrue(a_homeAll);
+        buttonBox1.button(4).onTrue(a_homeAll)   ;
         //somewhere here add home
 
 

@@ -24,6 +24,9 @@ public final class Constants {
     public static final int intakeID = 52;
     public static final int wristID = 53;
   
+    public static final double intakeSpeed = 0.5;
+
+
     public static class positions {
       public static final int home = 0;
 
@@ -39,6 +42,9 @@ public final class Constants {
     public static final int moverID = 51;
     public static final int canRangeID = 48; 
     public static final double coralInRange = 0.106; //The value (meters) of the MAX distance between the range sensor and the game piece when typically inputted
+
+    public static final double intakeSpeed = 0.5;
+
 
     public static class positions { //the movers positions
       public static final int left = -17;
