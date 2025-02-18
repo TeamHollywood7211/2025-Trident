@@ -121,8 +121,14 @@ public class CoralSubsystem extends SubsystemBase {
     {
       return false;
     }
+
   }
- 
+  
+  public void setSpeed(double speed)
+  {
+    intakeMotor.set(speed);
+  }
+
 
 
 }
