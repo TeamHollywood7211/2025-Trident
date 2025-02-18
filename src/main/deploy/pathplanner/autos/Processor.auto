@@ -1,0 +1,147 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "St Cen - Cr4"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_coralMid_L"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaeHigh"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Cr4 - Processor"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaefloor"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Processor - Cr3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeLow"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Cr3 - Processor"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeHigh"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Processor - Cr5"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeLow"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Cr5 - Processor"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeHigh"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Start Center",
+  "choreoAuto": false
+}
