@@ -34,7 +34,7 @@ import frc.robot.commands.Autos.auto_algaeRunner;
 import frc.robot.commands.Autos.auto_coralMove;
 import frc.robot.commands.Autos.auto_coralRunner;
 import frc.robot.commands.Autos.auto_homeAll;
-import frc.robot.commands.Autos.auto_moveCoral;
+
 import frc.robot.commands.Autos.auto_waitIntake;
 import frc.robot.commands.AlgaeCommand;
 import frc.robot.commands.CoralCommand;
@@ -130,25 +130,28 @@ public class RobotContainer {
     private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing);
     //
-
+        //
     //
-    private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
-    private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
-    private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
+    //private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
+    //private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
+    //private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
 
 
 
+    /////RUNNERS (intakes and such)
 
+    //ALGAE
     private final auto_algaeRunner a_algaeIntake = new auto_algaeRunner(m_AlgaeSubsystem, Constants.AlgaeConstants.intakeSpeed);
     private final auto_algaeRunner a_algaeOuttake = new auto_algaeRunner(m_AlgaeSubsystem, -Constants.AlgaeConstants.intakeSpeed);
     private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0);
 
+    //CORAL
     private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
     private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
     private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
 
 
-
+        //
 
 
     //private final 
@@ -199,7 +202,7 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-        //createFrontUsbCamera();
+        createFrontUsbCamera();
         configureBindings();
         LimelightHelpers.outputToSmartDashboard(); //This is a quick function that just outputs the X and Y to SmartDashboard
     }
@@ -253,12 +256,18 @@ public class RobotContainer {
         buttonBox2.button(5).onTrue(a_coralHighR);
         buttonBox1.button(7).onTrue(a_coralMidR) ;
         buttonBox1.button(6).onTrue(a_coralLowR) ;
+
         buttonBox2.button(3).onTrue(a_algaeMid)  ;
         buttonBox2.button(4).onTrue(a_algaeLow)  ;
         buttonBox1.button(3).onTrue(a_algaeProcessor);
         buttonBox1.button(4).onTrue(a_homeAll)   ;
-        //somewhere here add home
 
+
+
+        buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
+        buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));
+        
+        //somewhere here add home
 
         //deb_CoralStick.povLeft().onTrue(new InstantCommand(m_ElevatorSubsystem::gotoCoralMid_L));
 

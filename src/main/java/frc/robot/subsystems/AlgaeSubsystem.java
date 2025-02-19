@@ -69,7 +69,7 @@ public class AlgaeSubsystem extends SubsystemBase {
 
     public void runGrip(double speed)
     {
-      System.out.println(speed);
+      //System.out.println(speed);
       intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5));
     }
   
@@ -94,6 +94,10 @@ public class AlgaeSubsystem extends SubsystemBase {
     public void gotoOut()
     {
       setPosition(Constants.AlgaeConstants.positions.grabbing);
+    }
+    public double getTarget()
+    {
+      return wristSetpoint;
     }
 
     public void setSpeed(double speed)

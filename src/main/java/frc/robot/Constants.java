@@ -31,7 +31,8 @@ public final class Constants {
       public static final int home = 0;
 
 
-      public static final int grabbing = -14; //fill this in plz :3
+      public static final int grabbing = -14; 
+      public static final int grabbingHome = -10;
     }
 
 
@@ -71,17 +72,17 @@ public final class Constants {
     public static class positions {
       public static final int a_high =        210; //potentially rename these (DO NOT GO HIGH)
       public static final int a_mid =         130;
-      public static final int a_low =         90;
+      public static final int a_low =         108;
       public static final int a_floor =       0;
       public static final int a_processing =  46;
 
-
+      public static final int max =           210;
 
       public static final int c_home = 0;
-      public static final int c_bottom = 20; //THESE ARE TEMP
-      public static final int c_low = 70;
+      public static final int c_bottom = 3; //THESE ARE TEMP
+      public static final int c_low = 58;
       public static final int c_mid = 108;
-      public static final int c_high = 150;
+      public static final int c_high = 209;
       public static final int home = 0;
     }
     
