@@ -13,25 +13,37 @@
         {
           "type": "named",
           "data": {
-            "name": "act_coralMid_L"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "name": "act_algaeHigh"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "act_algaeHigh"
+            "name": "act_algaeRintake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaeRstop"
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "Cr4 - Processor"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_algaeProcessor"
           }
         },
         {
@@ -43,7 +55,7 @@
         {
           "type": "named",
           "data": {
-            "name": "act_algaefloor"
+            "name": "act_algaeRintake"
           }
         },
         {
@@ -69,9 +81,21 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeRintake"
+                }
+              },
+              {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeRstop"
                 }
               },
               {
@@ -83,13 +107,19 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeHigh"
+                  "name": "act_algaeProcessor"
                 }
               },
               {
                 "type": "wait",
                 "data": {
                   "waitTime": 0.5
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "act_algaeRstop"
                 }
               }
             ]
@@ -126,7 +156,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeHigh"
+                  "name": "act_algaeLow"
                 }
               },
               {
