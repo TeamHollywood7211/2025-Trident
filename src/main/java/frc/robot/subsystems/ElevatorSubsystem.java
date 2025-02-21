@@ -44,11 +44,11 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     double currentLeftPos = getMotorLeftPosition();
     double currentRightPos = getMotorRightPosition();
-    ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, 200);
+    ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, Constants.ElevatorConstants.positions.max);
     //SmartDashboard.putNumber("Arm Position", currentPos); 
     //SmartDashboard.putNumber("Arm Target Pos", ArmSetpoint);
-    motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -0.5, 0.5));
-    motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -0.5, 0.5));
+    motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1));
+    motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -1, 1));
     SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint);
     SmartDashboard.putNumber("Elevator Position", currentRightPos) ;
     

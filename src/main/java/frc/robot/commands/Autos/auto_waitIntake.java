@@ -22,6 +22,8 @@ public class auto_waitIntake extends Command {
   int timesRan = 1;
   double timer = 0;
   double timeToKill = 4; //Time until to give up on the intake
+  boolean pieceIsIn = false;
+  boolean postPieceIn = false;
 
   //Timer time;
  // double timer = 0;
@@ -45,7 +47,7 @@ public class auto_waitIntake extends Command {
     
     System.out.println("AUTO INTAKE: TIME: " + (startTime - DriverStation.getMatchTime()) + "  ");
     System.out.println("AUTO INTAKE: RING? :" + m_coral.getRange() + "\n");
-    
+    m_coral.setSpeed(0.5);
 
 
     if(resetTimer)
@@ -55,6 +57,9 @@ public class auto_waitIntake extends Command {
       System.out.println("AUTO INTAKE: RESETING TIMER");
       timer = 0; //sets the actual timer variable to 0
     }
+
+
+    
 
     
     timer = (startTime - DriverStation.getMatchTime()); //calculate time between now and last time we reset timer
@@ -66,19 +71,37 @@ public class auto_waitIntake extends Command {
     {
       //uhhh
     }
-    if((timer > timeToKill + 0.1) || (m_coral.getRange() > Constants.CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
+    //(timer > timeToKill + 0.1) || 
+    if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
     {
+      
       System.out.println("AUTO INTAKE: MAY OR MAY NOT HAVE THE CORAL, IDC WE MOVIN' "); 
       System.out.println("AUTO INTAKE: TIME RAN: " + timesRan);                          
-      finished = true; //say we done :3
+      pieceIsIn = true; //say we done :3
     }
     else
     {
       finished = false; //if not done, say we aint done
     }
 
-
-
+    if(pieceIsIn)
+    {
+      m_coral.setSpeed(0.3);
+      if(!(m_coral.getRange() < Constants.CoralConstants.coralInRange))
+      {
+        m_coral.setSpeed(-0.05);
+        postPieceIn = true;
+        
+      }
+    }
+    if(postPieceIn)
+    {
+      if((m_coral.getRange() < Constants.CoralConstants.coralInRange))
+      {
+        m_coral.setSpeed(0);
+        finished = true;
+      }
+    }
   }
 
   @Override
