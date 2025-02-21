@@ -11,13 +11,13 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "St L - Cr 5"
+                  "pathName": "StL - Cr5"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "act_coralLow_L"
+                  "name": "coral_L2_Left"
                 }
               },
               {
@@ -54,7 +54,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_coralHigh_L"
+                  "name": "coral_L4_Left"
                 }
               },
               {

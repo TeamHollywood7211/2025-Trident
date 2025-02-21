@@ -13,13 +13,13 @@
         {
           "type": "named",
           "data": {
-            "name": "act_algaeHigh"
+            "name": "algaeHigh"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "act_algaeRintake"
+            "name": "algaeRintake"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "named",
           "data": {
-            "name": "act_algaeRstop"
+            "name": "algaeRstop"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "named",
           "data": {
-            "name": "act_algaeProcessor"
+            "name": "algaeProcessor"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "named",
           "data": {
-            "name": "act_algaeRintake"
+            "name": "algaeRintake"
           }
         },
         {
@@ -77,13 +77,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeLow"
+                  "name": "algaeLow"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeRintake"
+                  "name": "algaeRintake"
                 }
               },
               {
@@ -95,7 +95,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeRstop"
+                  "name": "algaeRstop"
                 }
               },
               {
@@ -107,7 +107,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeProcessor"
+                  "name": "algaeProcessor"
                 }
               },
               {
@@ -119,7 +119,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeRstop"
+                  "name": "algaeRstop"
                 }
               }
             ]
@@ -138,7 +138,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeLow"
+                  "name": "algaeLow"
                 }
               },
               {
@@ -156,7 +156,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "act_algaeLow"
+                  "name": "algaeLow"
                 }
               },
               {
