@@ -133,7 +133,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "shoot Cr2"
+                        "pathName": "Cr2 - HPrc"
                       }
                     },
                     {
@@ -243,6 +243,12 @@
                 "type": "named",
                 "data": {
                   "name": "coral_HP"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
                 }
               }
             ]
