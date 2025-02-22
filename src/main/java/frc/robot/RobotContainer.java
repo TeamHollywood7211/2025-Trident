@@ -15,6 +15,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathConstraints;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -26,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.AlgaeConstants;
 import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
@@ -55,7 +57,7 @@ public class RobotContainer {
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
     
-    public static CANBus MainBus = new CANBus("main");    
+    public static CANBus MainBus = new CANBus("rio");    
     
     // second max angular
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
@@ -109,23 +111,23 @@ public class RobotContainer {
 
     //CORAL POSITIONS
     private final auto_coralMove a_coralLowL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
     private final auto_coralMove a_coralMidL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final auto_coralMove a_coralHighL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     private final auto_coralMove a_coralLowR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
     private final auto_coralMove a_coralMidR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final auto_coralMove a_coralHighR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     private final auto_coralMove a_coralBottom = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     0, Constants.ElevatorConstants.positions.c_bottom);
+     0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
 
     private final auto_algaeMove a_algaeLow = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_low);
@@ -165,11 +167,19 @@ public class RobotContainer {
 
 
     private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
+
+
+    UsbCamera camera1;
+    UsbCamera camera2;
+
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
 
     public void createFrontUsbCamera() {
-        CameraServer.startAutomaticCapture(); // Camera stuff :3
+        //CameraServer.startAutomaticCapture(); // Camera stuff :3
+        //CameraServer.startAutomaticCapture(); // Camera stuff :3
+        camera1 = CameraServer.startAutomaticCapture(0);
+        camera2 = CameraServer.startAutomaticCapture(1);
     }
 
     public RobotContainer() {

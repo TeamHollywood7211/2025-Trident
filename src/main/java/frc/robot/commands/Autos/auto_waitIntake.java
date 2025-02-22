@@ -38,7 +38,8 @@ public class auto_waitIntake extends Command {
   @Override
   public void initialize() {
     System.out.println("AUTO INTAKE: START THE INTAKE!!");
-    //time.reset();
+    pieceIsIn = false  ;
+    postPieceIn = false;
     startTime = DriverStation.getMatchTime(); //Reset the timer
   }
 
@@ -58,14 +59,7 @@ public class auto_waitIntake extends Command {
       timer = 0; //sets the actual timer variable to 0
     }
 
-
-    
-
-    
     timer = (startTime - DriverStation.getMatchTime()); //calculate time between now and last time we reset timer
-    //time.start();
-    //timer = time.get();
-
 
     if(timer > timeToKill) //if we dont grab and we pass our time to kill
     {

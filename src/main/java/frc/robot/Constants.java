@@ -32,12 +32,13 @@ public final class Constants {
 
 
     public static class positions {
-      public static final int home = 0;
+      public static final double home = 0;//0.66;
 
 
-      public static final int grabbing = -14; 
-      public static final int grabbingHome = -10;
-
+      public static final double grabbing = -12;//0.81;//-14; 
+      public static final double grabbingHome = -10;//0.691;//-10;
+      public static final double lowpos = -6;
+      //public static final int home = 0.66;
 
       public static final int safety = -5; //TODO: Grab better safety positions :3
     }
@@ -55,8 +56,8 @@ public final class Constants {
 
 
     public static class positions { //the movers positions
-      public static final int right = -17;
-      public static final int left = 17;
+      public static final int right = -0;
+      public static final int left = 0; //17
     }
   }
 
@@ -83,7 +84,7 @@ public final class Constants {
       public static final int a_high =         102;
       public static final int a_low =         63; //
       public static final int a_floor =       0;
-      public static final int a_processing =  46;
+      public static final int a_processing =  31;
       public static final int a_home = 0;
 
 

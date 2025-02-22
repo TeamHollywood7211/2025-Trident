@@ -20,6 +20,7 @@ public class auto_coralMove extends Command {
   
   double coralPos;
   double elevatorPos;
+  double algaePos;
   boolean finished = false;
 
   /**
@@ -27,11 +28,12 @@ public class auto_coralMove extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public auto_coralMove(ElevatorSubsystem elevator, CoralSubsystem coral, double corPos, double ElPos) {
+  public auto_coralMove(ElevatorSubsystem elevator, CoralSubsystem coral, double corPos, double ElPos, double alPos) {
     m_elevator = elevator;
     m_coral = coral;
     coralPos = corPos;
     elevatorPos = ElPos;
+    algaePos = alPos;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(elevator);
   }
@@ -47,7 +49,10 @@ public class auto_coralMove extends Command {
   public void execute() {
 
     m_elevator.setPosition(elevatorPos);
-    RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
+    
+    RobotContainer.m_AlgaeSubsystem.setPosition(algaePos);
+    
+    //RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
     //Safety check: Ensures that the algae is passed the safety position
     if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.safety) || (Constants.safetyBypass)))
     {
