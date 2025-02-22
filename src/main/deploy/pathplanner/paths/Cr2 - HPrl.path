@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 0.8264126712328768,
-        "y": 0.8696061643835616
+        "x": 0.7512842465753424,
+        "y": 1.3053510273972597
       },
       "prevControl": {
-        "x": 1.7279537671232879,
-        "y": 1.440582191780821
+        "x": 1.652825342465754,
+        "y": 1.8763270547945192
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 38.29016319224307
+    "rotation": 52.76516601842533
   },
   "reversed": false,
   "folder": "Right start HP center ",

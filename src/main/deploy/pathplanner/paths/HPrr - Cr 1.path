@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4124143835616438,
-        "y": 0.44888698630137014
+        "x": 1.6678510273972602,
+        "y": 0.6442208904109589
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.024268692922374,
-        "y": 1.9208975456621
+        "x": 2.2797053367579903,
+        "y": 2.116231449771689
       },
       "isLocked": false,
       "linkedName": "HPR Right"
@@ -48,7 +48,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 45.624984698996585
+    "rotation": 51.95295746817397
   },
   "useDefaultConstraints": true
 }
