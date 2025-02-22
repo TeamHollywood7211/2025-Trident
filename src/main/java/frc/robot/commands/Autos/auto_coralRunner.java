@@ -4,7 +4,7 @@
 
 package frc.robot.commands.Autos;
 
-import frc.robot.subsystems.AlgaeSubsystem;
+
 import frc.robot.subsystems.CoralSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -43,6 +43,6 @@ public class auto_coralRunner extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

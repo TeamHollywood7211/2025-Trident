@@ -4,18 +4,13 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.configs.TalonFXSConfiguration;
-import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.hardware.TalonFXS;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -25,7 +20,7 @@ import frc.robot.RobotContainer;
 public class AlgaeSubsystem extends SubsystemBase {
 
   TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus);
-  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
+  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
   //DigitalInput encoder = new DigitalInput(1);
   DutyCycleEncoder encoder = new DutyCycleEncoder(1);
 
@@ -66,8 +61,6 @@ public class AlgaeSubsystem extends SubsystemBase {
       wristMotor.set(MathUtil.clamp(
         wristPID.calculate(wristEncoder, wristSetpoint),
        -1, 1));
-  
-  
     }
   
     @Override

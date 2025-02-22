@@ -50,6 +50,12 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_Home"
+                      }
+                    },
+                    {
                       "type": "path",
                       "data": {
                         "pathName": "Cr3 - HPrc"
@@ -112,6 +118,12 @@
                 "type": "parallel",
                 "data": {
                   "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_Home"
+                      }
+                    },
                     {
                       "type": "path",
                       "data": {
@@ -176,6 +188,12 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_Home"
+                      }
+                    },
+                    {
                       "type": "path",
                       "data": {
                         "pathName": "Cr1 - HPrc"
@@ -238,6 +256,12 @@
                 "type": "parallel",
                 "data": {
                   "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_Home"
+                      }
+                    },
                     {
                       "type": "path",
                       "data": {

@@ -37,22 +37,23 @@ public class auto_homeAll extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    algaeMoved = false;
+    coralMoved = false;
+    finished = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_coral.setPosition(0);
-    if(!coralMoved)
+    if(Math.abs(m_coral.getPosition()) < 10)
     {
-      if(Math.abs(m_coral.getPosition()) < 3)
-      {
-        coralMoved = true;
-      }
+      coralMoved = true;
     }
     if(coralMoved){
       m_algae.setPosition(0);
-      if(m_algae.getPosition() > -3)
+      if(m_algae.getPosition() > -7)
       {
         algaeMoved = true;
       }
@@ -60,7 +61,7 @@ public class auto_homeAll extends Command {
     if(algaeMoved)
     {
       m_elevator.setPosition(Constants.ElevatorConstants.positions.home);
-      finished = true;
+      finished = true;/*                                               */
     }
   }
 

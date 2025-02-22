@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.Constants;
+
 import frc.robot.RobotContainer;
 
 public class ClimberSubsystem extends SubsystemBase {
   
   Servo climberServo = new Servo(2);
   Servo intakeServo = new Servo(0);
-  TalonFX climber = new TalonFX(Constants.ClimberConstants.armMotorID, RobotContainer.MainBus);
+  TalonFX climber = new TalonFX(ClimberConstants.armMotorID, RobotContainer.MainBus);
   double encoder = climber.getPosition().getValueAsDouble();
   double setpoint = encoder;
   PIDController pid = new PIDController(0.03, 0, 0.0005);
@@ -53,8 +53,8 @@ public class ClimberSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Intake Servo", intakeServo.getAngle());
-    SmartDashboard.putNumber("Climber Servo", climberServo.getAngle());
+    SmartDashboard.putNumber("Intake Servo", intakeServo.get());   //this doesnt work >:(
+    SmartDashboard.putNumber("Climber Servo", climberServo.get());
     SmartDashboard.putNumber("Climber Setpoint", setpoint);
 
     encoder = climber.getPosition().getValueAsDouble();
@@ -67,9 +67,11 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
-  public void climberEngage()
+  //This code is conviluted and bad. Could be made better 
+  
+  public void climberEngage() //Puts the climber in the "open" position
   {
-    intakeServo.setAngle(75);
+    intakeServo.setAngle(ClimberConstants.servoOpen);
   }
   public void climberServoHome()
   {
@@ -81,12 +83,12 @@ public class ClimberSubsystem extends SubsystemBase {
     setpoint += val;
   }
 
-  public void climberRun1()
+  public void climberRun1() //Starts the climber
   {
-    setpoint = Constants.ClimberConstants.clOpenPosition;
+    setpoint = ClimberConstants.clOpenPosition;
     climberEngage();
   }
-  public void climberRun2()
+  public void climberRun2() //pulls down the climber
   {
     setpoint = 0;
   }

@@ -67,7 +67,7 @@ public class CoralSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
     moverMotor.set(MathUtil.clamp(
       moverPID.calculate(moverEncoder, moverSetpoint)
-    , -0.5, 0.5));
+    , -1, 1));
   }
 
   @Override

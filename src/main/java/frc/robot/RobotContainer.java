@@ -154,21 +154,16 @@ public class RobotContainer {
     private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0);
 
     //CORAL
-    private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
-    private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
     private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
 
     private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
     
 
-
-        //
-
-
-    //private final 
+    // private final //
 
 
-    //
     private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -186,17 +181,18 @@ public class RobotContainer {
         NamedCommands.registerCommand("algaeFloor"  ,   a_algaeFloor); //Picking up/placing from floor
         //Coral positions
         //THESE ARE LEFT
-        NamedCommands.registerCommand("coral_L2_Left ", a_coralLowL); //Coral low tier
-        NamedCommands.registerCommand("coral_L3_Left ", a_coralMidL); //Coral middle tier
+        NamedCommands.registerCommand("coral_L2_Left", a_coralLowL); //Coral low tier
+        NamedCommands.registerCommand("coral_L3_Left", a_coralMidL); //Coral middle tier
         NamedCommands.registerCommand("coral_L4_Left" , a_coralHighL); //Coral high tier
         //THESE ARE RIGHT
-        NamedCommands.registerCommand("coral_L2_Right ", a_coralLowR);
-        NamedCommands.registerCommand("coral_L3_Right ", a_coralMidR);
+        NamedCommands.registerCommand("coral_L2_Right", a_coralLowR);
+        NamedCommands.registerCommand("coral_L3_Right", a_coralMidR);
         NamedCommands.registerCommand("coral_L4_Right" , a_coralHighR);
 
         NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
         NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
         NamedCommands.registerCommand("coral_HP"      , a_waitIntake);
+        NamedCommands.registerCommand("coral_Home", a_homeAll);
 
         NamedCommands.registerCommand("algaeRintake"  , a_algaeIntake);
         NamedCommands.registerCommand("algaeRouttake" , a_algaeOuttake);
@@ -261,6 +257,7 @@ public class RobotContainer {
 
         // reset the field-centric heading on left bumper press
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
 
@@ -270,8 +267,8 @@ public class RobotContainer {
 
         //Coral Left
         buttonBox2.button(6).onTrue(a_coralHighL);
-        buttonBox1.button(8).onTrue(a_coralMidL);
-        buttonBox1.button(5).onTrue(a_coralLowL);
+        buttonBox1.button(8).onTrue(a_coralMidL) ;
+        buttonBox1.button(5).onTrue(a_coralLowL) ;
         //Coral Right
         buttonBox2.button(5).onTrue(a_coralHighR);
         buttonBox1.button(7).onTrue(a_coralMidR) ;
@@ -284,16 +281,18 @@ public class RobotContainer {
         buttonBox1.button(2).onTrue(c_waitIntake);
 
 
+
         buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
         buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));
 
         buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
-        buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
+        buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
 
-        servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
+        //servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
         servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
         servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
+        
 
 
 

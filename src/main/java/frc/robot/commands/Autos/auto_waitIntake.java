@@ -8,7 +8,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.CoralSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class auto_waitIntake extends Command {
