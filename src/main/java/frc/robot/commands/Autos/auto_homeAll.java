@@ -45,15 +45,14 @@ public class auto_homeAll extends Command {
     m_coral.setPosition(0);
     if(!coralMoved)
     {
-      if(Math.abs(m_coral.getPosition()) < 1)
+      if(Math.abs(m_coral.getPosition()) < 3)
       {
         coralMoved = true;
       }
     }
-    else
-    {
+    if(coralMoved){
       m_algae.setPosition(0);
-      if(m_algae.getPosition() < 1)
+      if(m_algae.getPosition() > -3)
       {
         algaeMoved = true;
       }

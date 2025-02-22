@@ -13,6 +13,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+  public static final boolean safetyBypass = false; //Bypass all the safety functions
+
+
   public static class ImportantConstants {
     public static final double driveSpeed = 1.00; //In the event we need to run the robot at a slower speed
   }
@@ -33,6 +37,9 @@ public final class Constants {
 
       public static final int grabbing = -14; 
       public static final int grabbingHome = -10;
+
+
+      public static final int safety = -5; //TODO: Grab better safety positions :3
     }
 
 
@@ -48,8 +55,8 @@ public final class Constants {
 
 
     public static class positions { //the movers positions
-      public static final int left = -17;
-      public static final int right = 17;
+      public static final int right = -17;
+      public static final int left = 17;
     }
   }
 
@@ -61,8 +68,10 @@ public final class Constants {
     public static final double maxAngularVelocitySq = 720;
   }
   public static class ClimberConstants {
-    public static final int armMotorID = 50;
+    public static final int armMotorID = 41;
     public static final int servoOpen = 69; //The degrees to open the servo to
+    public static final int clOpenPosition = -206;
+  
   }
   public static class ElevatorConstants {
     public static final int leftMotorID = 42;
@@ -70,19 +79,26 @@ public final class Constants {
     public static final double motorSpeed = 0.25;
 
     public static class positions {
-      public static final int a_high =        210; //potentially rename these (DO NOT GO HIGH)
-      public static final int a_mid =         130;
-      public static final int a_low =         108;
+      public static final int a_barge =        210; //this is barge
+      public static final int a_high =         102;
+      public static final int a_low =         63; //
       public static final int a_floor =       0;
       public static final int a_processing =  46;
+      public static final int a_home = 0;
 
-      public static final int max =           210;
+
+
+
+
+      public static final int max =           120;
 
       public static final int c_home = 0;
-      public static final int c_bottom = 3; //THESE ARE TEMP
-      public static final int c_low = 58;
-      public static final int c_mid = 108;
-      public static final int c_high = 209;
+      public static final int c_bottom = 11; //THESE ARE TEMP
+      public static final int c_low = 28;
+      public static final int c_mid = 63;
+      public static final int c_high = 117;
+
+      
       public static final int home = 0;
     }
     
@@ -126,4 +142,8 @@ public final class Constants {
     public static double[] rightHumanPlayerRight = {1.714, 7.483, -49.399     };
 
   }
+
+
+
+
 }

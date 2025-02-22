@@ -21,6 +21,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
@@ -309,6 +310,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public Rotation2d getGyro(){
         Pigeon2 gyro = getPigeon2();
         return gyro.getRotation2d();
+    }
+    public double getPitch(){
+        Pigeon2 gyro = getPigeon2();
+        double val = gyro.getPitch().getValueAsDouble();
+        return val;
     }
         /**
      * Adds a vision measurement to the Kalman Filter. This will correct the odometry pose estimate

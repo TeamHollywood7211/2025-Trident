@@ -20,6 +20,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -36,13 +37,16 @@ import frc.robot.commands.Autos.auto_coralRunner;
 import frc.robot.commands.Autos.auto_homeAll;
 
 import frc.robot.commands.Autos.auto_waitIntake;
+import frc.robot.commands.Autos.waitIntakeCommand;
 import frc.robot.commands.AlgaeCommand;
+import frc.robot.commands.ClimberCommand;
 import frc.robot.commands.CoralCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.AlgaeSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 
 public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
@@ -66,6 +70,7 @@ public class RobotContainer {
     // SwerveRequest.PointWheelsAt();
     private final static SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+    private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
     /*
      * public final static SwerveRequest.RobotCentric autonMovement = new
      * SwerveRequest.RobotCentric()
@@ -82,6 +87,9 @@ public class RobotContainer {
     private final CommandXboxController buttonBox1 = new CommandXboxController(2);
     public final CommandXboxController buttonBox2 = new CommandXboxController(3);
     
+
+    public final CommandXboxController servoStick = new CommandXboxController(4);
+
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
 
@@ -91,7 +99,7 @@ public class RobotContainer {
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
-    
+    private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, servoStick);
     
     
     //AUTO COMMANDS
@@ -122,9 +130,9 @@ public class RobotContainer {
     private final auto_algaeMove a_algaeLow = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_low);
     private final auto_algaeMove a_algaeMid = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-     Constants.ElevatorConstants.positions.a_mid);
-    //private final auto_algaeMove a_algaeHigh = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-    // Constants.ElevatorConstants.positions.a_high);
+     Constants.ElevatorConstants.positions.a_high);
+    //private final auto_algaeMove a_algaeBarge = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+    // Constants.ElevatorConstants.positions.a_barge);
     private final auto_algaeMove a_algaeFloor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_floor);
     private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
@@ -150,6 +158,9 @@ public class RobotContainer {
     private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
     private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
 
+    private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
+    
+
 
         //
 
@@ -169,28 +180,31 @@ public class RobotContainer {
     public RobotContainer() {
         //Algae positions
         //NamedCommands.registerCommand("act_algaeNet", a_algaeHigh);
-        NamedCommands.registerCommand("act_algaeHigh ",    a_algaeMid); //Algae top
-        NamedCommands.registerCommand("act_algaeLow  ",     a_algaeLow); //Algae bottom
-        NamedCommands.registerCommand("act_algaeFloor",   a_algaeFloor); //Picking up/placing from floor
+        NamedCommands.registerCommand("algaeHighest",    a_algaeMid); //OBSOLETE: This is just old backup
+        NamedCommands.registerCommand("algaeHigh"   ,    a_algaeMid); //Algae top
+        NamedCommands.registerCommand("algaeLow"    ,     a_algaeLow); //Algae bottom
+        NamedCommands.registerCommand("algaeFloor"  ,   a_algaeFloor); //Picking up/placing from floor
         //Coral positions
         //THESE ARE LEFT
-        NamedCommands.registerCommand("act_coralLow_L ", a_coralLowL); //Coral low tier
-        NamedCommands.registerCommand("act_coralMid_L ", a_coralMidL); //Coral middle tier
-        NamedCommands.registerCommand("act_coralHigh_L", a_coralHighL); //Coral high tier
+        NamedCommands.registerCommand("coral_L2_Left ", a_coralLowL); //Coral low tier
+        NamedCommands.registerCommand("coral_L3_Left ", a_coralMidL); //Coral middle tier
+        NamedCommands.registerCommand("coral_L4_Left" , a_coralHighL); //Coral high tier
         //THESE ARE RIGHT
-        NamedCommands.registerCommand("act_coralLow_R ", a_coralLowR);
-        NamedCommands.registerCommand("act_coralMid_R ", a_coralMidR);
-        NamedCommands.registerCommand("act_coralHigh_R", a_coralHighR);
-        NamedCommands.registerCommand("act_coralBottom", a_coralBottom);
-        NamedCommands.registerCommand("act_coralHP", a_waitIntake);
+        NamedCommands.registerCommand("coral_L2_Right ", a_coralLowR);
+        NamedCommands.registerCommand("coral_L3_Right ", a_coralMidR);
+        NamedCommands.registerCommand("coral_L4_Right" , a_coralHighR);
 
-        NamedCommands.registerCommand("act_algaeRintake", a_algaeIntake);
-        NamedCommands.registerCommand("act_algaeRouttake", a_algaeOuttake);
-        NamedCommands.registerCommand("act_algaeRstop", a_algaeStop);
+        NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
+        NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
+        NamedCommands.registerCommand("coral_HP"      , a_waitIntake);
 
-        NamedCommands.registerCommand("act_coralRintake", a_coralIntake);
-        NamedCommands.registerCommand("act_coralRouttake", a_coralOuttake);
-        NamedCommands.registerCommand("act_coralRstop", a_coralStop);
+        NamedCommands.registerCommand("algaeRintake"  , a_algaeIntake);
+        NamedCommands.registerCommand("algaeRouttake" , a_algaeOuttake);
+        NamedCommands.registerCommand("algaeRstop"    , a_algaeStop);
+
+        NamedCommands.registerCommand("coralRintake" , a_coralIntake);
+        NamedCommands.registerCommand("coralRouttake", a_coralOuttake);
+        NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
 
 
@@ -205,6 +219,7 @@ public class RobotContainer {
         createFrontUsbCamera();
         configureBindings();
         LimelightHelpers.outputToSmartDashboard(); //This is a quick function that just outputs the X and Y to SmartDashboard
+        
     }
 
     private void configureBindings() {
@@ -221,9 +236,13 @@ public class RobotContainer {
                                                                                        // negative X (left)
                 )
         );
-        m_AlgaeSubsystem.setDefaultCommand(m_AlgaeCommand);
-        m_CoralSubsystem.setDefaultCommand(m_CoralCommand);
+        m_AlgaeSubsystem.setDefaultCommand(m_AlgaeCommand)      ;
+        m_CoralSubsystem.setDefaultCommand(m_CoralCommand)      ;
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
+        m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand)  ;
+
+        drivetrain.run(() -> antiTip()); //Only works with Pitch (no yaw) and kinda sucks
+
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
         driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
@@ -244,6 +263,7 @@ public class RobotContainer {
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
+
         //deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
         //deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
 
@@ -261,12 +281,24 @@ public class RobotContainer {
         buttonBox2.button(4).onTrue(a_algaeLow)  ;
         buttonBox1.button(3).onTrue(a_algaeProcessor);
         buttonBox1.button(4).onTrue(a_homeAll)   ;
-
+        buttonBox1.button(2).onTrue(c_waitIntake);
 
 
         buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
         buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));
-        
+
+        buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
+        buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
+
+        servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
+        servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
+        servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
+        servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
+
+
+
+
+
         //somewhere here add home
 
         //deb_CoralStick.povLeft().onTrue(new InstantCommand(m_ElevatorSubsystem::gotoCoralMid_L));
@@ -294,6 +326,38 @@ public class RobotContainer {
         /* Run the path selected from the auto chooser */
         return autoChooser.getSelected();
     }
+
+
+    public void antiTip()
+    {
+        
+        double pitch = drivetrain.getPitch();
+        double amount = 0;  
+        SmartDashboard.putNumber("pitch", pitch);
+
+        if(pitch > 15)
+        {
+            amount = 2;
+        }
+        if(pitch < -15)
+        {
+            amount = -2;
+        }
+        if(Math.abs(pitch) < 15)
+        {
+            amount = 0;
+        }
+
+        if(Math.abs(amount) != 0)
+        {
+            drivetrain.setControl(
+            forwardStraight.withVelocityX(0)
+            .withVelocityY(amount)
+            );
+        }
+        
+    }
+
 
     public static double limelight_range_proportional() {
         double kP = .1;
@@ -371,3 +435,4 @@ public class RobotContainer {
         return 0;
     }
 }
+

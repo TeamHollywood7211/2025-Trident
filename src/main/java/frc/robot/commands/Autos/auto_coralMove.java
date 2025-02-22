@@ -48,8 +48,10 @@ public class auto_coralMove extends Command {
 
     m_elevator.setPosition(elevatorPos);
     RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
-    if(RobotContainer.m_AlgaeSubsystem.getPosition() < (RobotContainer.m_AlgaeSubsystem.getTarget()+0.5)) //Ensures that the thing is down :)
+    //Safety check: Ensures that the algae is passed the safety position
+    if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.safety) || (Constants.safetyBypass)))
     {
+      // -12 < -11.5
       m_coral.setPosition(coralPos);
       finished = true;
     }

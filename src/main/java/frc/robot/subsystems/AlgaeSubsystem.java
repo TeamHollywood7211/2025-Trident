@@ -10,6 +10,9 @@ import com.ctre.phoenix6.hardware.TalonFXS;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
@@ -23,6 +26,8 @@ public class AlgaeSubsystem extends SubsystemBase {
 
   TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus);
   TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus);
+  //DigitalInput encoder = new DigitalInput(1);
+  DutyCycleEncoder encoder = new DutyCycleEncoder(1);
 
     double wristEncoder = wristMotor.getPosition().getValueAsDouble();
     double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
@@ -49,6 +54,9 @@ public class AlgaeSubsystem extends SubsystemBase {
     public void periodic() {
       //var wristSim = wristMotor.getSimState();
       wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
+
+      SmartDashboard.putNumber("Encoder", encoder.get());
+      
       //SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
 
       //SmartDashboard.putNumber("Wrist Sim", wristSim.get);

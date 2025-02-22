@@ -4,16 +4,40 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ClimberSubsystem extends SubsystemBase {
   
   Servo climberServo = new Servo(2);
-  public ClimberSubsystem() {}
+  Servo intakeServo = new Servo(0);
+  TalonFX climber = new TalonFX(Constants.ClimberConstants.armMotorID, RobotContainer.MainBus);
+  double encoder = climber.getPosition().getValueAsDouble();
+  double setpoint = encoder;
+  PIDController pid = new PIDController(0.03, 0, 0.0005);
 
+
+
+  public ClimberSubsystem() {
+    intakeServo.setPulseTimeMicroseconds(500); //?
+  }
+
+
+  /*ON CLIMB ENGAGE
+  
+    - intakeServo switch on
+    - Cage thingy goes up
+
+  */
   public Command exampleMethodCommand() {
 
     return runOnce(
@@ -29,10 +53,13 @@ public class ClimberSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Intake Servo", intakeServo.getAngle());
+    SmartDashboard.putNumber("Climber Servo", climberServo.getAngle());
+    SmartDashboard.putNumber("Climber Setpoint", setpoint);
 
-  }
-  public void servoEngage(){
-    climberServo.set(0);
+    encoder = climber.getPosition().getValueAsDouble();
+
+    climber.set(MathUtil.clamp(pid.calculate(encoder, setpoint), -1, 1));
   }
 
   @Override
@@ -40,15 +67,28 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
-  public void servoOpen()
+  public void climberEngage()
   {
-    climberServo.setAngle(ClimberConstants.servoOpen); //servo open 
+    intakeServo.setAngle(75);
+  }
+  public void climberServoHome()
+  {
+    intakeServo.setAngle(0);
   }
 
-  
-
-  public void servoClose()
+  public void addPosition(double val)
   {
-    climberServo.setAngle(0);
+    setpoint += val;
   }
+
+  public void climberRun1()
+  {
+    setpoint = Constants.ClimberConstants.clOpenPosition;
+    climberEngage();
+  }
+  public void climberRun2()
+  {
+    setpoint = 0;
+  }
+
 }
