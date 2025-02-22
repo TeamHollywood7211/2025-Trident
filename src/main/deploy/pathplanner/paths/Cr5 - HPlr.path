@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.211197916666666,
-        "y": 5.198958333333333
+        "x": 5.141319444444443,
+        "y": 5.087152777777778
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.7853881278538797,
-        "y": 6.0506064497716885
+        "x": 3.7155096556316565,
+        "y": 5.938800894216134
       },
       "isLocked": false,
       "linkedName": "Coral 5"
@@ -48,7 +48,7 @@
   "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -122.9052429229879
+    "rotation": -119.3577535427912
   },
   "useDefaultConstraints": true
 }

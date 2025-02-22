@@ -30,28 +30,10 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeLow"
+                  "name": "algaeRintake"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "St Cen - Cr4"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeLow"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRintake"
           }
         },
         {
@@ -67,15 +49,28 @@
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "Cr4 - Processor"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Cr4 - Processor"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeProcessor"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "algaeProcessor"
+            "name": "algaeRouttake"
           }
         },
         {
@@ -87,13 +82,7 @@
         {
           "type": "named",
           "data": {
-            "name": "algaeRintake"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
+            "name": "algaeRstop"
           }
         },
         {
@@ -101,15 +90,22 @@
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Processor - Cr3"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeHigh"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Processor - Cr3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeHigh"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -131,15 +127,22 @@
                 }
               },
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Cr3 - Processor"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeProcessor"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Cr3 - Processor"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeProcessor"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -168,15 +171,28 @@
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Processor - Cr5"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Processor - Cr5"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeHigh"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeLow"
+                  "name": "algaeRintake"
                 }
               },
               {
@@ -186,15 +202,22 @@
                 }
               },
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Cr5 - Processor"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeLow"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Cr5 - Processor"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeProcessor"
+                      }
+                    }
+                  ]
                 }
               },
               {
