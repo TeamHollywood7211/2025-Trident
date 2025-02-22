@@ -25,7 +25,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   double encoderRight = motorRight.getPosition().getValueAsDouble();
   double ElevatorSetpoint = encoderRight; 
   //We will trust the right motor as the main motor as it going up is always positive.
-  public ElevatorSubsystem() {
+  public ElevatorSubsystem() { //plz work
 
   }
 
