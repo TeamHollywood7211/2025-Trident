@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6377996575342464,
-        "y": 7.360702054794521
+        "x": 1.5216145833333323,
+        "y": 7.5328993055555555
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.461860254946727,
-        "y": 6.735705622146119
+        "x": 2.345675180745813,
+        "y": 6.907902872907154
       },
       "isLocked": false,
       "linkedName": "HPL Left"
@@ -17,11 +17,11 @@
     {
       "anchor": {
         "x": 3.8415798611111103,
-        "y": 5.087152777777778
+        "y": 5.101128472222221
       },
       "prevControl": {
         "x": 3.3341835521308965,
-        "y": 5.5754328386605785
+        "y": 5.589408533105022
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -56.30993247402024
+    "rotation": -54.63753811293093
   },
   "useDefaultConstraints": true
 }
