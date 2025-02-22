@@ -192,7 +192,11 @@ public class RobotContainer {
         NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
         NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
         NamedCommands.registerCommand("coral_HP"      , a_waitIntake);
-        NamedCommands.registerCommand("coral_Home", a_homeAll);
+        
+        NamedCommands.registerCommand("coral_Home",     a_homeAll); //Redundant cuz I (noah) spelt it wrong once
+        NamedCommands.registerCommand("robot_Home",     a_homeAll);
+        NamedCommands.registerCommand("robotHome",     a_homeAll) ;
+        NamedCommands.registerCommand("robot_home",     a_homeAll);
 
         NamedCommands.registerCommand("algaeRintake"  , a_algaeIntake);
         NamedCommands.registerCommand("algaeRouttake" , a_algaeOuttake);
@@ -260,10 +264,12 @@ public class RobotContainer {
 
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
 
+        //
 
         //deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
         //deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
 
+        //
 
         //Coral Left
         buttonBox2.button(6).onTrue(a_coralHighL);
@@ -273,14 +279,14 @@ public class RobotContainer {
         buttonBox2.button(5).onTrue(a_coralHighR);
         buttonBox1.button(7).onTrue(a_coralMidR) ;
         buttonBox1.button(6).onTrue(a_coralLowR) ;
-
+        //
         buttonBox2.button(3).onTrue(a_algaeMid)  ;
         buttonBox2.button(4).onTrue(a_algaeLow)  ;
         buttonBox1.button(3).onTrue(a_algaeProcessor);
         buttonBox1.button(4).onTrue(a_homeAll)   ;
         buttonBox1.button(2).onTrue(c_waitIntake);
 
-
+        //
 
         buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
         buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));

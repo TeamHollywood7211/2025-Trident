@@ -227,12 +227,6 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "robot_Home"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
                         "name": "algaeLow"
                       }
                     }
