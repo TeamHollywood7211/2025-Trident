@@ -121,12 +121,6 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
-                }
-              },
-              {
                 "type": "path",
                 "data": {
                   "pathName": "Cr2-Sh_Pro"
@@ -145,13 +139,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "algaeRouttake"
+                        "name": "robot_Home"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "robot_Home"
+                        "name": "algaeRouttake"
                       }
                     }
                   ]
@@ -171,6 +165,12 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
+                }
+              },
+              {
                 "type": "parallel",
                 "data": {
                   "commands": [
@@ -183,7 +183,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L3_Right"
+                        "name": "coral_L3_Left"
                       }
                     }
                   ]
@@ -222,6 +222,12 @@
                       "type": "path",
                       "data": {
                         "pathName": "Cr2 - HPrc"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "robot_Home"
                       }
                     },
                     {
