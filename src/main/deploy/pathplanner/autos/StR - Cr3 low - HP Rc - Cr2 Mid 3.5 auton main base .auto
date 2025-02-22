@@ -17,7 +17,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coral_L3_Left"
+                  "name": "coral_L2_Right"
                 }
               }
             ]
@@ -58,32 +58,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_HP"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 2.0
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "HPrc - Cr 2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coral_L3_Left"
+                        "name": "robot_Home"
                       }
                     }
                   ]
@@ -92,45 +67,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coralRouttake"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Cr2 - HPrc"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coral_HP"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 2.0
+                  "name": "coral_HP"
                 }
               },
               {
@@ -153,15 +90,71 @@
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "coralRouttake"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralRouttake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "type": "wait",
                 "data": {
                   "waitTime": 0.5
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Cr2-Sh_Pro"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Sh_Pro-Hp rc"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRouttake"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "robot_Home"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -172,28 +165,9 @@
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Cr2 - HPrc"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coral_HP"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 2.0
+                  "name": "coral_HP"
                 }
               },
               {
@@ -209,16 +183,23 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L2_Right"
+                        "name": "coral_L3_Right"
                       }
                     }
                   ]
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "coralRouttake"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralRouttake"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -226,14 +207,13 @@
                 "data": {
                   "waitTime": 0.5
                 }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
+                }
+              },
               {
                 "type": "parallel",
                 "data": {
@@ -247,32 +227,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_HP"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 2.0
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "HPrc - Cr 2"
+                        "name": "robot_Home"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L2_Left"
+                        "name": "algaeLow"
                       }
                     }
                   ]
@@ -281,13 +242,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coralRouttake"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
+                  "name": "coral_HP"
                 }
               }
             ]
