@@ -121,19 +121,13 @@
                 }
               },
               {
-                "type": "path",
-                "data": {
-                  "pathName": "Cr2-Sh_Pro"
-                }
-              },
-              {
                 "type": "parallel",
                 "data": {
                   "commands": [
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Sh_Pro-Hprc"
+                        "pathName": "shoot Cr2"
                       }
                     },
                     {

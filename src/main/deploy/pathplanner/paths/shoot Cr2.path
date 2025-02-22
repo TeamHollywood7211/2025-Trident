@@ -8,30 +8,48 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3789335996955856,
-        "y": 2.4701495909436826
+        "x": 4.512413194444443,
+        "y": 0.9922743055555543
       },
       "isLocked": false,
       "linkedName": "Coral 2"
     },
     {
       "anchor": {
-        "x": 1.6678510273972602,
-        "y": 0.6442208904109589
+        "x": 1.07439236111111,
+        "y": 0.8105902777777771
       },
       "prevControl": {
-        "x": 2.5693921232876713,
-        "y": 1.2151969178082185
+        "x": 2.2763020833333325,
+        "y": 2.0823784722222216
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Right"
+      "linkedName": "HPR Center"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "pointTowardsZones": [],
-  "eventMarkers": [],
+  "pointTowardsZones": [
+    {
+      "fieldPosition": {
+        "x": 5.0,
+        "y": 1.0
+      },
+      "rotationOffset": 0.0,
+      "minWaypointRelativePos": 0.25,
+      "maxWaypointRelativePos": 0.31422505307855625,
+      "name": "Point Towards Zone"
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "algaeRouttake",
+      "waypointRelativePos": 0.26751592356687903,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -42,7 +60,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 51.95295746817397
+    "rotation": 52.76516601842533
   },
   "reversed": false,
   "folder": "Right start HP center ",

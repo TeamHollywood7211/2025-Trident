@@ -130,6 +130,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Start Right",
+  "folder": null,
   "choreoAuto": false
 }
