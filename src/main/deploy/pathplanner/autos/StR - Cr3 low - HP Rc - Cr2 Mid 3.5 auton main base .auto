@@ -71,6 +71,12 @@
                 }
               },
               {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              },
+              {
                 "type": "parallel",
                 "data": {
                   "commands": [
@@ -159,6 +165,12 @@
                 }
               },
               {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.5
+                }
+              },
+              {
                 "type": "named",
                 "data": {
                   "name": "algaeRstop"
@@ -222,12 +234,6 @@
                       "type": "named",
                       "data": {
                         "name": "robot_Home"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeLow"
                       }
                     }
                   ]
