@@ -16,12 +16,15 @@ import com.pathplanner.lib.path.PathConstraints;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSink;
+import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.util.PixelFormat;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -47,7 +50,9 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.AlgaeSubsystem;
+import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 
 public class RobotContainer {
@@ -59,10 +64,14 @@ public class RobotContainer {
     
     public static CANBus MainBus = new CANBus("rio");    
     
+    public static VideoSink server;
+
+
     // second max angular
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
+    public final        LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -73,6 +82,10 @@ public class RobotContainer {
     private final static SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
+    private final CameraSubsystem m_CameraSubsystem = new CameraSubsystem();
+    
+    
+    
     /*
      * public final static SwerveRequest.RobotCentric autonMovement = new
      * SwerveRequest.RobotCentric()
@@ -101,7 +114,7 @@ public class RobotContainer {
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
-    private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, servoStick);
+    private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
     
     
     //AUTO COMMANDS
@@ -111,7 +124,7 @@ public class RobotContainer {
 
     //CORAL POSITIONS
     private final auto_coralMove a_coralLowL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
     private final auto_coralMove a_coralMidL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
@@ -119,7 +132,7 @@ public class RobotContainer {
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     private final auto_coralMove a_coralLowR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
     private final auto_coralMove a_coralMidR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
@@ -130,15 +143,30 @@ public class RobotContainer {
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
 
     private final auto_algaeMove a_algaeLow = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-     Constants.ElevatorConstants.positions.a_low);
+     Constants.ElevatorConstants.positions.a_low, AlgaeConstants.positions.grabbing);
     private final auto_algaeMove a_algaeMid = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-     Constants.ElevatorConstants.positions.a_high);
+     Constants.ElevatorConstants.positions.a_high, AlgaeConstants.positions.grabbing);
     //private final auto_algaeMove a_algaeBarge = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
     // Constants.ElevatorConstants.positions.a_barge);
     private final auto_algaeMove a_algaeFloor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-     Constants.ElevatorConstants.positions.a_floor);
+     Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbing);
     private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
-    , Constants.ElevatorConstants.positions.a_processing);
+    , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
+
+    
+
+
+
+    private final auto_coralMove a_coralLowM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
+    private final auto_coralMove a_coralMidM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
+
+    private final auto_coralMove a_coralHighM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
+    
+
+
     //
         //
     //
@@ -161,7 +189,6 @@ public class RobotContainer {
     private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
 
     private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
-    
 
     // private final //
 
@@ -178,8 +205,18 @@ public class RobotContainer {
     public void createFrontUsbCamera() {
         //CameraServer.startAutomaticCapture(); // Camera stuff :3
         //CameraServer.startAutomaticCapture(); // Camera stuff :3
-        camera1 = CameraServer.startAutomaticCapture(0);
-        camera2 = CameraServer.startAutomaticCapture(1);
+        camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
+        camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
+        //server = CameraServer.getServer();
+        //server.setSource(camera1);
+        camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        camera1.setResolution(70, 70);
+        //camera1.setPixelFormat(PixelFormat.kGray);
+        //camera2.setPixelFormat(PixelFormat.kGray);
+        camera1.setFPS(15);
+        camera2.setResolution(50, 50);
+        camera2.setFPS(10);
     }
 
     public RobotContainer() {
@@ -226,7 +263,7 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-        createFrontUsbCamera();
+        //createFrontUsbCamera();
         configureBindings();
         LimelightHelpers.outputToSmartDashboard(); //This is a quick function that just outputs the X and Y to SmartDashboard
         
@@ -258,16 +295,16 @@ public class RobotContainer {
         driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
 
         driverStick.pov(0).whileTrue(drivetrain
-                .applyRequest(() -> forwardStraight.withVelocityX(0.5).withVelocityY(0).withRotationalRate(0)));
+                .applyRequest(() -> forwardStraight.withVelocityX(1).withVelocityY(0).withRotationalRate(0)));
         driverStick.pov(180).whileTrue(drivetrain
-                .applyRequest(() -> forwardStraight.withVelocityX(-0.5).withVelocityY(0).withRotationalRate(0))
+                .applyRequest(() -> forwardStraight.withVelocityX(-1).withVelocityY(0).withRotationalRate(0))
 
         );
 
         driverStick.pov(90).whileTrue(drivetrain
-                .applyRequest(() -> forwardStraight.withVelocityY(-0.5).withVelocityX(0).withRotationalRate(0)));
+                .applyRequest(() -> forwardStraight.withVelocityY(-1).withVelocityX(0).withRotationalRate(0)));
         driverStick.pov(270).whileTrue(drivetrain
-                .applyRequest(() -> forwardStraight.withVelocityY(0.5).withVelocityX(0).withRotationalRate(0)));
+                .applyRequest(() -> forwardStraight.withVelocityY(1).withVelocityX(0).withRotationalRate(0)));
 
         // reset the field-centric heading on left bumper press
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
@@ -282,9 +319,9 @@ public class RobotContainer {
         //
 
         //Coral Left
-        buttonBox2.button(6).onTrue(a_coralHighL);
-        buttonBox1.button(8).onTrue(a_coralMidL) ;
-        buttonBox1.button(5).onTrue(a_coralLowL) ;
+        buttonBox2.button(6).onTrue(a_coralHighM);
+        buttonBox1.button(8).onTrue(a_coralMidM) ;
+        buttonBox1.button(5).onTrue(a_coralLowM) ;
         //Coral Right
         buttonBox2.button(5).onTrue(a_coralHighR);
         buttonBox1.button(7).onTrue(a_coralMidR) ;
@@ -309,8 +346,8 @@ public class RobotContainer {
         servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
         
-
-
+        //buttonBox2.button(7).onTrue(a_algaeFloor);
+        buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 
 
 
@@ -345,7 +382,6 @@ public class RobotContainer {
 
     public void antiTip()
     {
-        
         double pitch = drivetrain.getPitch();
         double amount = 0;  
         SmartDashboard.putNumber("pitch", pitch);

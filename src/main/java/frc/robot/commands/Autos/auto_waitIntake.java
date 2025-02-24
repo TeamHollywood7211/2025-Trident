@@ -15,7 +15,7 @@ public class auto_waitIntake extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final CoralSubsystem m_coral;
 
-  Double startTime; //TL;DR timers suck. (They are useful just not here)
+  double startTime; //TL;DR timers suck. (They are useful just not here)
   boolean finished = false;
   boolean resetTimer = true;
   
@@ -45,7 +45,7 @@ public class auto_waitIntake extends Command {
 
   @Override
   public void execute() {
-    
+    //TODO: If Jake doesnt get us our 2nd range sensor, add in a wait timer between events.
     System.out.println("AUTO INTAKE: TIME: " + (startTime - DriverStation.getMatchTime()) + "  ");
     System.out.println("AUTO INTAKE: RING? :" + m_coral.getRange() + "\n");
     m_coral.setSpeed(0.5);
@@ -55,6 +55,8 @@ public class auto_waitIntake extends Command {
     {
       startTime = DriverStation.getMatchTime(); //sets the timer the timer started to now
       resetTimer = false; //says "yo we resetted"
+      pieceIsIn = false;
+      postPieceIn = false;
       System.out.println("AUTO INTAKE: RESETING TIMER");
       timer = 0; //sets the actual timer variable to 0
     }
@@ -69,8 +71,8 @@ public class auto_waitIntake extends Command {
     if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
     {
       
-      System.out.println("AUTO INTAKE: MAY OR MAY NOT HAVE THE CORAL, IDC WE MOVIN' "); 
-      System.out.println("AUTO INTAKE: TIME RAN: " + timesRan);                          
+      //System.out.println("AUTO INTAKE: MAY OR MAY NOT HAVE THE CORAL, IDC WE MOVIN' "); 
+      //System.out.println("AUTO INTAKE: TIME RAN: " + timesRan);                          
       pieceIsIn = true; //say we done :3
     }
     else
@@ -90,7 +92,7 @@ public class auto_waitIntake extends Command {
     }
     if(postPieceIn)
     {
-      if((m_coral.getRange() < Constants.CoralConstants.coralInRange))
+      if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //If we HAVE that piece
       {
         m_coral.setSpeed(0);
         finished = true;

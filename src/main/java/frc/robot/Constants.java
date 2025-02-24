@@ -35,15 +35,21 @@ public final class Constants {
       public static final double home = 0;//0.66;
 
 
-      public static final double grabbing = -12;//0.81;//-14; 
+      public static final double grabbing = -15;//0.81;//-14; 
       public static final double grabbingHome = -10;//0.691;//-10;
-      public static final double lowpos = -6;
+      public static final double lowpos = -4;
       //public static final int home = 0.66;
 
-      public static final int safety = -5; //TODO: Grab better safety positions :3
+      public static final int safety = 2; //TODO: Grab better safety positions :3
+                                //Positive values bypass the safety
+    
     }
 
 
+  }
+
+  public static class LEDConstants{
+    public static final int ID = 49;
   }
 
   public static class CoralConstants {
@@ -56,8 +62,9 @@ public final class Constants {
 
 
     public static class positions { //the movers positions
-      public static final int right = -0;
-      public static final int left = 0; //17
+      public static final int right = -17;
+      public static final int left = 17; //17
+      public static final int home = 0;
     }
   }
 

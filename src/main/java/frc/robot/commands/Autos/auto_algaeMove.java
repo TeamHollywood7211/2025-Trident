@@ -23,10 +23,11 @@ public class auto_algaeMove extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public auto_algaeMove(ElevatorSubsystem elevator, AlgaeSubsystem algae, double ElPos) {
+  public auto_algaeMove(ElevatorSubsystem elevator, AlgaeSubsystem algae, double ElPos, double alPos) {
     m_elevator = elevator;
     m_algae = algae;
     elevatorPos = ElPos;
+    algaePos = alPos;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(elevator);
   }
@@ -40,7 +41,8 @@ public class auto_algaeMove extends Command {
   public void execute() {
 
     m_elevator.setPosition(elevatorPos);
-    m_algae.gotoOut();
+    m_algae.setPosition(algaePos);
+    //m_algae.gotoOut();
     //m_algae.setPosition(algaePos);
     finished = true;
   }

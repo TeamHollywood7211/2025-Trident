@@ -87,6 +87,7 @@ public class ClimberSubsystem extends SubsystemBase {
   {
     setpoint = ClimberConstants.clOpenPosition;
     climberEngage();
+    //RobotContainer.server.setSource(RobotContainer.camera1);
   }
   public void climberRun2() //pulls down the climber
   {

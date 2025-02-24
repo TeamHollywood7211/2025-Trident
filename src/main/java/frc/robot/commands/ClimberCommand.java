@@ -35,9 +35,9 @@ public class ClimberCommand extends Command {
   @Override
   public void execute() {
     m_climber.addPosition(
-      RobotContainer.booleanToDouble(m_controller.povDown().getAsBoolean())
+      RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
       -
-      RobotContainer.booleanToDouble(m_controller.povUp().getAsBoolean())
+      RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean())
     );
 
 
