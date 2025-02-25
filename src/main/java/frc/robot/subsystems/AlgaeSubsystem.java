@@ -101,10 +101,10 @@ public class AlgaeSubsystem extends SubsystemBase {
       return wristSetpoint;
     }
 
-    public void setSpeed(double speed)
-    {
-      intakeMotor.set(speed);
-    }
+    //public void setSpeed(double speed)
+    //{
+    //  intakeMotor.set(speed);
+    //}
 
 
 

@@ -82,6 +82,8 @@ public class CameraSubsystem extends SubsystemBase {
       camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
     }
     else{
+
+      
       System.out.println("Switching to CAM 2: Closing CAM 1...");
       server.setSource(camera2);
       camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);

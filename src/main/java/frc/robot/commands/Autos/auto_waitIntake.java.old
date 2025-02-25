@@ -5,8 +5,6 @@
 package frc.robot.commands.Autos;
 
 import frc.robot.Constants;
-import frc.robot.Constants.CoralConstants;
-import frc.robot.Constants.ElevatorConstants;
 import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -22,8 +20,7 @@ public class auto_waitIntake extends Command {
   boolean finished = false;
   boolean resetTimer = true;
   
-  //int timesRan = 1;
-  //double timer = 0;
+
   double timeToKill = 4; //Time until to give up on the intake
   boolean pieceIsIn = false;
   boolean postPieceIn = false;
@@ -31,10 +28,10 @@ public class auto_waitIntake extends Command {
   //Timer time;
  // double timer = 0;
 
-  public auto_waitIntake(CoralSubsystem coral, ElevatorSubsystem elevator) {
+  public auto_waitIntake(CoralSubsystem coral, ElevatorSubsystem elevator, double time) {
     m_coral = coral;
     m_elevator = elevator;
-    //timeToKill = time;
+    timeToKill = time;
 
     addRequirements(coral);
   }
@@ -44,46 +41,51 @@ public class auto_waitIntake extends Command {
     System.out.println("AUTO INTAKE: START THE INTAKE!!");
     pieceIsIn = false  ;
     postPieceIn = false;
-    //startTime = DriverStation.getMatchTime(); //Reset the timer
+    startTime = DriverStation.getMatchTime(); //Reset the timer
   }
 
   @Override
   public void execute() {
-    System.out.println("AUTO INTAKE: RANGE? :" + m_coral.getRange() + "\n");
-    
+    //TODO: If Jake doesnt get us our 2nd range sensor, add in a wait timer between events.
+    System.out.println("AUTO INTAKE: TIME: " + (startTime - DriverStation.getMatchTime()) + "  ");
+    System.out.println("AUTO INTAKE: RING? :" + m_coral.getRange() + "\n");
+    m_coral.setSpeed(0.5);
+
+
     if(resetTimer)
     {
-      resetTimer = false; 
+      startTime = DriverStation.getMatchTime(); //sets the timer the timer started to now
+      resetTimer = false; //says "yo we resetted"
       pieceIsIn = false;
       postPieceIn = false;
-      finished = false;
-
-      System.out.println("AUTO INTAKE: RESET!!");
-      
+      System.out.println("AUTO INTAKE: RESETING TIMER");
+      timer = 0; //sets the actual timer variable to 0
     }
 
-    if(!pieceIsIn)
+    timer = (startTime - DriverStation.getMatchTime()); //calculate time between now and last time we reset timer
+
+    if(timer > timeToKill) //if we dont grab and we pass our time to kill
     {
-      if((m_coral.getRange() < CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
-      {            
-        System.out.println("AUTO INTAKE: STAGE 1 DONE");   
-        if(m_elevator.getRange() < ElevatorConstants.coralRange)  
-        {
-          pieceIsIn = true; //say we done :3
-        }
-      }
-      else
-      {
-        m_coral.setSpeed(0.5);
-      }
+      //uhhh
     }
-  
-    if((pieceIsIn) && (!postPieceIn))
+    //(timer > timeToKill + 0.1) || 
+    if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
+    {
+      
+      //System.out.println("AUTO INTAKE: MAY OR MAY NOT HAVE THE CORAL, IDC WE MOVIN' "); 
+      //System.out.println("AUTO INTAKE: TIME RAN: " + timesRan);                          
+      pieceIsIn = true; //say we done :3
+    }
+    else
+    {
+      finished = false; //if not done, say we aint done
+    }
+
+    if(pieceIsIn)
     {
       m_coral.setSpeed(0.3);
-      if((m_coral.getRange() > CoralConstants.coralInRange))
+      if(!(m_coral.getRange() < Constants.CoralConstants.coralInRange))
       {
-        System.out.println("AUTO INTAKE: STAGE 2 DONE!");
         m_coral.setSpeed(-0.05);
         postPieceIn = true;
         
@@ -91,15 +93,9 @@ public class auto_waitIntake extends Command {
     }
     if(postPieceIn)
     {
-      if((m_coral.getRange() < CoralConstants.coralInRange)) //If we HAVE that piece
+      if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //If we HAVE that piece
       {
         m_coral.setSpeed(0);
-        resetTimer = true;
-        System.out.println("AUTO INTAKE: IM DONE!");
-        System.out.println("AUTO INTAKE: HERE IS SOME DATA:");
-        System.out.println("CURRENT RANGE: " + m_coral.getRange());
-        System.out.println("TARGET RANGE" + CoralConstants.coralInRange);
-        System.out.println("------");
         finished = true;
       }
     }
@@ -108,6 +104,7 @@ public class auto_waitIntake extends Command {
   @Override
   public void end(boolean interrupted) {
     resetTimer = true;
+    timesRan++; //Just a bit of debug info for me 
   }
 
   @Override

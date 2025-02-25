@@ -5,9 +5,11 @@
   "pathFolders": [
     "Left Start",
     "Middel",
+    "Debug",
     "Right start HP center "
   ],
   "autoFolders": [
+    "Debug",
     "Start Center",
     "Start Left",
     "Start Right"

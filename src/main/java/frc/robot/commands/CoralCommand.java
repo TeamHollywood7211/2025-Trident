@@ -30,12 +30,6 @@ public class CoralCommand extends Command {
   @Override
   
   public void execute() {
-    
-    //m_coral.runCoral(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
-    // - RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
-    //System.out.println(RobotContainer.booleanToDouble(m_controller.leftBumper().getAsBoolean())
-    //- RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean()));
-  
 
     m_coral.runCoral(
       RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean())

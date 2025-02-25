@@ -17,8 +17,6 @@ public class waitIntakeCommand extends Command {
   Double startTime; //TL;DR timers suck. (They are useful just not here)
   boolean finished = false;
   boolean resetTimer = true;
-  
-  int timesRan = 1;
   double timer = 0;
   double timeToKill = 4; //Time until to give up on the intake
   boolean pieceIsIn = false;
@@ -29,11 +27,11 @@ public class waitIntakeCommand extends Command {
   //Timer time;
  // double timer = 0;
 
-  public waitIntakeCommand(CoralSubsystem subsystem) {
-    m_coral = subsystem;
+  public waitIntakeCommand(CoralSubsystem coral) {
+    m_coral = coral;
     //timeToKill = time;
 
-    addRequirements(subsystem);
+    addRequirements(coral);
   }
 
   @Override
@@ -47,22 +45,16 @@ public class waitIntakeCommand extends Command {
   @Override
   public void execute() {
 
-
-
-
-
-
     
     if(!pieceIsIn)
     {
-      if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) //if we grab a piece 
+      if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) 
       { 
-        pieceIsIn = true; //say we done :3
+        pieceIsIn = true; 
       }
       else
       {
         m_coral.setSpeed(-0.4);
-        //finished = false; //if not done, say we aint done
       }
     }
     if((pieceIsIn) && (!postPieceIn))

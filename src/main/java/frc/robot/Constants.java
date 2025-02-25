@@ -84,7 +84,13 @@ public final class Constants {
   public static class ElevatorConstants {
     public static final int leftMotorID = 42;
     public static final int rightMotorID = 43;
+    public static final int canRangeID = 47;
+    
+    
     public static final double motorSpeed = 0.25;
+
+    public static final double coralRange = 0.20; //TODO: Fill in
+
 
     public static class positions {
       public static final int a_barge =        210; //this is barge

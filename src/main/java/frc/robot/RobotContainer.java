@@ -25,6 +25,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.util.PixelFormat;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -96,6 +97,9 @@ public class RobotContainer {
 
     private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
     private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
+    
+    
+    
     //private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
     //private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
     
@@ -118,7 +122,7 @@ public class RobotContainer {
     
     
     //AUTO COMMANDS
-    private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, 4); //The second input is how much time (in seconds) we take till we give up on intake
+    private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, m_ElevatorSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
 
 
 
@@ -253,13 +257,15 @@ public class RobotContainer {
         NamedCommands.registerCommand("coralRouttake", a_coralOuttake);
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
-
+        
+        
+        DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
 
         //Add act_algaeRintake and act_algaeRstop, act_algaeRouttake
         //Add act_intakeRstart and act_intakeRstop 
         //act_coralHP
         //R means runner. Idk man
-
+            //
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
 
