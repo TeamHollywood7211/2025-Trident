@@ -347,11 +347,16 @@ public class RobotContainer {
         buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
 
-        //servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
-        servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
-        servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
-        servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
+        servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
+        servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
+        //servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
+        //servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
         
+
+        servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::lockClimb));
+        servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::unlockClimb));
+
+
         //buttonBox2.button(7).onTrue(a_algaeFloor);
         buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 

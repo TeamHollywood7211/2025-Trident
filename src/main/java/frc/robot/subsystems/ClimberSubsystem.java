@@ -23,12 +23,15 @@ public class ClimberSubsystem extends SubsystemBase {
   TalonFX climber = new TalonFX(ClimberConstants.armMotorID, RobotContainer.MainBus);
   double encoder = climber.getPosition().getValueAsDouble();
   double setpoint = encoder;
+  
   PIDController pid = new PIDController(0.03, 0, 0.0005);
 
 
 
   public ClimberSubsystem() {
     intakeServo.setPulseTimeMicroseconds(500); //?
+    climberServo.setPulseTimeMicroseconds(500);
+    climberServo.setAngle(60);
   }
 
 
@@ -92,6 +95,13 @@ public class ClimberSubsystem extends SubsystemBase {
   public void climberRun2() //pulls down the climber
   {
     setpoint = 0;
+  }
+
+  public void lockClimb(){
+    climberServo.setAngle(120);
+  }
+  public void unlockClimb(){
+    climberServo.setAngle(60);
   }
 
 }
