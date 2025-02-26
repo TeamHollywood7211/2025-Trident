@@ -23,8 +23,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.units.measure.Angle;
-import edu.wpi.first.util.PixelFormat;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,7 +32,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.AlgaeConstants;
 import frc.robot.Constants.ImportantConstants;
-import frc.robot.Constants.ImportantPositions;
+
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.Autos.auto_algaeMove;
@@ -41,7 +40,6 @@ import frc.robot.commands.Autos.auto_algaeRunner;
 import frc.robot.commands.Autos.auto_coralMove;
 import frc.robot.commands.Autos.auto_coralRunner;
 import frc.robot.commands.Autos.auto_homeAll;
-
 import frc.robot.commands.Autos.auto_waitIntake;
 import frc.robot.commands.Autos.waitIntakeCommand;
 import frc.robot.commands.AlgaeCommand;
@@ -55,6 +53,8 @@ import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.AlgaeSubsystem;
 import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
+
+
 
 public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
@@ -106,7 +106,6 @@ public class RobotContainer {
     private final CommandXboxController buttonBox1 = new CommandXboxController(2);
     public final CommandXboxController buttonBox2 = new CommandXboxController(3);
     
-
     public final CommandXboxController servoStick = new CommandXboxController(4);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -171,9 +170,6 @@ public class RobotContainer {
     
 
 
-    //
-        //
-    //
     //private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
     //private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
     //private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
@@ -325,19 +321,19 @@ public class RobotContainer {
         //
 
         //Coral Left
-        buttonBox2.button(6).onTrue(a_coralHighM);
-        buttonBox1.button(8).onTrue(a_coralMidM) ;
-        buttonBox1.button(5).onTrue(a_coralLowM) ;
+        buttonBox2.button(6).onTrue(a_coralHighM)    ;
+        buttonBox1.button(8).onTrue(a_coralMidM)     ;
+        buttonBox1.button(5).onTrue(a_coralLowM)     ;
         //Coral Right
-        buttonBox2.button(5).onTrue(a_coralHighR);
-        buttonBox1.button(7).onTrue(a_coralMidR) ;
-        buttonBox1.button(6).onTrue(a_coralLowR) ;
+        buttonBox2.button(5).onTrue(a_coralHighR)    ;
+        buttonBox1.button(7).onTrue(a_coralMidR)     ;
+        buttonBox1.button(6).onTrue(a_coralLowR)     ;
         //
-        buttonBox2.button(3).onTrue(a_algaeMid)  ;
-        buttonBox2.button(4).onTrue(a_algaeLow)  ;
+        buttonBox2.button(3).onTrue(a_algaeMid)      ;
+        buttonBox2.button(4).onTrue(a_algaeLow)      ;
         buttonBox1.button(3).onTrue(a_algaeProcessor);
-        buttonBox1.button(4).onTrue(a_homeAll)   ;
-        buttonBox1.button(2).onTrue(c_waitIntake);
+        buttonBox1.button(4).onTrue(a_homeAll)       ;
+        buttonBox1.button(2).onTrue(c_waitIntake)    ;
 
         //
 
@@ -351,11 +347,9 @@ public class RobotContainer {
         servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
         //servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         //servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
-        
 
-        servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::lockClimb));
-        servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::unlockClimb));
-
+        servoStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::lockClimb)); //This is the end state
+        servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::unlockClimb)); //This is the basic state
 
         //buttonBox2.button(7).onTrue(a_algaeFloor);
         buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));

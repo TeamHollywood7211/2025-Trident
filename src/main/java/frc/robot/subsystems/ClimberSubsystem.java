@@ -31,7 +31,8 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {
     intakeServo.setPulseTimeMicroseconds(500); //?
     climberServo.setPulseTimeMicroseconds(500);
-    climberServo.setAngle(60);
+    //climberServo.setAngle(60);
+    unlockClimb();
   }
 
 
