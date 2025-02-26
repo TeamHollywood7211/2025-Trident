@@ -71,7 +71,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     public void runGrip(double speed)
     {
       //System.out.println(speed);
-      intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5));
+      intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5)); 
     }
   
     public void addPosition(double val)
