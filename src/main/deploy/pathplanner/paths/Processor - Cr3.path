@@ -9,19 +9,19 @@
       "prevControl": null,
       "nextControl": {
         "x": 5.988193812510937,
-        "y": 2.0298309583522034
+        "y": 2.029830958352203
       },
       "isLocked": false,
       "linkedName": "Processor"
     },
     {
       "anchor": {
-        "x": 4.759118852459016,
-        "y": 2.9640881147540985
+        "x": 5.155295138888888,
+        "y": 2.920920138888888
       },
       "prevControl": {
-        "x": 5.2493457503838865,
-        "y": 2.224506785390695
+        "x": 5.645522036813758,
+        "y": 2.1813388095254846
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 120.17352002964431
+    "rotation": 119.35775354279127
   },
   "reversed": false,
   "folder": "Middel",
