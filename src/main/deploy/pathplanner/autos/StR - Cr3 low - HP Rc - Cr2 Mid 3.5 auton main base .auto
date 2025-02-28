@@ -17,7 +17,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coral_L2_Right"
+                  "name": "coral_L4_Left"
                 }
               }
             ]
@@ -93,12 +93,6 @@
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
                 }
               },
               {
