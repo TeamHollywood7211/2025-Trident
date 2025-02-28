@@ -27,20 +27,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   double ElevatorSetpoint = encoderRight;
   CANrange rangeSensor = new CANrange(ElevatorConstants.canRangeID, RobotContainer.MainBus);
   //We will trust the right motor as the main motor as it going up is always positive.
-  public ElevatorSubsystem() { //plz work
+  public ElevatorSubsystem() { 
 
-  }
-
-
-  public Command exampleMethodCommand() {
-    return runOnce(
-        () -> {
-
-        });
-  }
-
-  public boolean exampleCondition() {
-    return false;
   }
 
   @Override
@@ -48,13 +36,12 @@ public class ElevatorSubsystem extends SubsystemBase {
     double currentLeftPos = getMotorLeftPosition(); //Gets positions
     double currentRightPos = getMotorRightPosition();
     ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, Constants.ElevatorConstants.positions.max); //Clamps the values for safety
-    //SmartDashboard.putNumber("Arm Position", currentPos); 
-    //SmartDashboard.putNumber("Arm Target Pos", ArmSetpoint);
-    if(intakeClear())
-    {
-      motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //Runs the arm PID
+
+    if(intakeClear()) //intakeClear() just checks if the range sensor on the robot sees a note.
+    { 
+      motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //The actual code for the PID loops
       motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -1, 1));
-      SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint); //SmartDashboard stuff
+      SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint); //Sends debug information to SmartDashboard
       SmartDashboard.putNumber("Elevator Position", currentRightPos) ;
     }
     else
@@ -62,24 +49,17 @@ public class ElevatorSubsystem extends SubsystemBase {
       System.out.println("WARNING: PLEASE CLEAR INTAKE");
     }
     
-    //SmartDashboard.putNumber("Percentage to Pos: ", (currentPos / ArmSetpoint) * 100);
-  }
-
-  @Override
-  public void simulationPeriodic() {
-
   }
   /**
    * SETS the setpoint of this subsystem, use for auto control
    * @param val The value to set to
    */
-  public void setPosition(double val) //Im ensuring these function names are consistant amonst all subsystems
+  public void setPosition(double val) 
   {
     if(intakeClear())
     {
       ElevatorSetpoint = val;
     }
-    //ElevatorSetpoint = val; 
   }
   /**
    * ADDS to the setpoint of this subsystem, use for manual control

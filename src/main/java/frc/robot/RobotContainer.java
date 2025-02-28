@@ -239,7 +239,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
         NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
         NamedCommands.registerCommand("coral_HP"      , a_waitIntake);
-        
+
         NamedCommands.registerCommand("coral_Home",     a_homeAll); //Redundant cuz I (noah) spelt it wrong once
         NamedCommands.registerCommand("robot_Home",     a_homeAll);
         NamedCommands.registerCommand("robotHome",     a_homeAll) ;
