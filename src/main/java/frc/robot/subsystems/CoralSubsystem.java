@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.CANrange;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.hardware.TalonFXS;
@@ -24,6 +26,10 @@ public class CoralSubsystem extends SubsystemBase {
   TalonFXS moverMotor = new TalonFXS(Constants.CoralConstants.moverID, RobotContainer.MainBus);
   PIDController moverPID = new PIDController(0.03, 0, 0.005);
   CANrange rangeSensor = new CANrange(Constants.CoralConstants.canRangeID, RobotContainer.MainBus);
+
+  
+
+
 
   double moverEncoder = moverMotor.getPosition().getValueAsDouble();
   double moverSetpoint = moverMotor.getPosition().getValueAsDouble();

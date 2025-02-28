@@ -70,11 +70,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     ElevatorSetpoint += val; 
   }
 
-  public void forceSetSpeed(double speed) //Dont run this
-  {
-    motorLeft.set(speed)  ;
-    motorRight.set(-speed);
-  }
+
 
   public void gotoHome() 
   {

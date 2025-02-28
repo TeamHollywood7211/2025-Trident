@@ -2,20 +2,25 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Autos;
+package frc.robot.commands;
 
-import frc.robot.subsystems.AlgaeSubsystem;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
+
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
-public class auto_algaeMove extends Command {
+public class AllMoveCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ElevatorSubsystem m_elevator;
-  private final AlgaeSubsystem m_algae;
+  private final CoralSubsystem m_coral;
   
-  double algaePos;
+  double coralPos;
   double elevatorPos;
+  double algaePos;
   boolean finished = false;
 
   /**
@@ -23,9 +28,10 @@ public class auto_algaeMove extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public auto_algaeMove(ElevatorSubsystem elevator, AlgaeSubsystem algae, double ElPos, double alPos) {
+  public AllMoveCommand(ElevatorSubsystem elevator, CoralSubsystem coral, double corPos, double ElPos, double alPos) {
     m_elevator = elevator;
-    m_algae = algae;
+    m_coral = coral;
+    coralPos = corPos;
     elevatorPos = ElPos;
     algaePos = alPos;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,17 +40,27 @@ public class auto_algaeMove extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    finished = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
     m_elevator.setPosition(elevatorPos);
-    m_algae.setPosition(algaePos);
-    //m_algae.gotoOut();
-    //m_algae.setPosition(algaePos);
-    finished = true;
+    
+    RobotContainer.m_AlgaeSubsystem.setPosition(algaePos);
+    
+    //RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
+    //Safety check: Ensures that the algae is passed the safety position
+    if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.safety) || (Constants.safetyBypass)))
+    {
+      // -12 < -11.5
+      m_coral.setPosition(coralPos);
+      finished = true;
+    }
+//    
   }
 
   // Called once the command ends or is interrupted.

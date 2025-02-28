@@ -35,13 +35,13 @@ import frc.robot.Constants.ImportantConstants;
 
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
-import frc.robot.commands.Autos.auto_algaeMove;
+import frc.robot.commands.HomeAllCommand;
+import frc.robot.commands.waitIntakeCommand;
+import frc.robot.commands.AllMoveCommand;
+import frc.robot.commands.AlgaeMoveCommand;
 import frc.robot.commands.Autos.auto_algaeRunner;
-import frc.robot.commands.Autos.auto_coralMove;
 import frc.robot.commands.Autos.auto_coralRunner;
-import frc.robot.commands.Autos.auto_homeAll;
 import frc.robot.commands.Autos.auto_waitIntake;
-import frc.robot.commands.Autos.waitIntakeCommand;
 import frc.robot.commands.AlgaeCommand;
 import frc.robot.commands.ClimberCommand;
 import frc.robot.commands.CoralCommand;
@@ -63,7 +63,7 @@ public class RobotContainer {
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
     
-    public static CANBus MainBus = new CANBus("rio");    
+    public static CANBus MainBus = new CANBus("main");    
     
     public static VideoSink server;
 
@@ -126,46 +126,46 @@ public class RobotContainer {
 
 
     //CORAL POSITIONS
-    private final auto_coralMove a_coralLowL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralLowL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
-    private final auto_coralMove a_coralMidL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralMidL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
-    private final auto_coralMove a_coralHighL = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
-    private final auto_coralMove a_coralLowR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
-    private final auto_coralMove a_coralMidR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralMidR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
-    private final auto_coralMove a_coralHighR = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
-    private final auto_coralMove a_coralBottom = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
 
-    private final auto_algaeMove a_algaeLow = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+    private final AlgaeMoveCommand a_algaeLow = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_low, AlgaeConstants.positions.grabbing);
-    private final auto_algaeMove a_algaeMid = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+    private final AlgaeMoveCommand a_algaeMid = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_high, AlgaeConstants.positions.grabbing);
     //private final auto_algaeMove a_algaeBarge = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
     // Constants.ElevatorConstants.positions.a_barge);
-    private final auto_algaeMove a_algaeFloor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
+    private final AlgaeMoveCommand a_algaeFloor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbing);
-    private final auto_algaeMove a_algaeProcessor = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem
+    private final AlgaeMoveCommand a_algaeProcessor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
 
     
 
 
 
-    private final auto_coralMove a_coralLowM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralLowM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
-    private final auto_coralMove a_coralMidM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralMidM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
-    private final auto_coralMove a_coralHighM = new auto_coralMove(m_ElevatorSubsystem, m_CoralSubsystem,
+    private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
     
 
@@ -193,7 +193,7 @@ public class RobotContainer {
     // private final //
 
 
-    private final auto_homeAll a_homeAll = new auto_homeAll(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
+    private final HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
 
 
     UsbCamera camera1;
@@ -207,13 +207,9 @@ public class RobotContainer {
         //CameraServer.startAutomaticCapture(); // Camera stuff :3
         camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
         camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
-        //server = CameraServer.getServer();
-        //server.setSource(camera1);
         camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
         camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
         camera1.setResolution(70, 70);
-        //camera1.setPixelFormat(PixelFormat.kGray);
-        //camera2.setPixelFormat(PixelFormat.kGray);
         camera1.setFPS(15);
         camera2.setResolution(50, 50);
         camera2.setFPS(10);
@@ -451,15 +447,29 @@ public class RobotContainer {
         final var forward_limelight = RobotContainer.limelight_range_proportional();
         final var rot_limelight = RobotContainer.limelight_aim_proportional();
 
+
+        double ang = LimelightHelpers.getTX("limelight");
+        double dis = LimelightHelpers.getTY("limelight");
+
+
+
+
+        double sideway_limelight = Math.cos(Math.toRadians(ang))*dis; //Its been a minute since I've done trig so this could be very wrong.
+        sideway_limelight *= 0.1;
+
+        sideway_limelight *= MaxSpeed;
+        //sideway_limelight *= -1.0;
+
         double current_rotation = drivetrain.getGyro().getDegrees();
         double pid_output = ll_rotatePID.calculate(current_rotation, current_rotation + rot_limelight);
 
         SmartDashboard.putNumber("Limelight Rot", rot_limelight);
         SmartDashboard.putNumber("Limelight Fwd", forward_limelight);
+        SmartDashboard.putNumber("Limelight Side", sideway_limelight);
 
         drivetrain.setControl(
                 forwardStraight.withVelocityX(MathUtil.clamp(forward_limelight, -.5, .5))
-                        .withVelocityY(0)
+                        .withVelocityY(MathUtil.clamp(sideway_limelight, -.5, .5))
                         .withRotationalRate(MathUtil.clamp(pid_output, -1, 1)));
 
     }

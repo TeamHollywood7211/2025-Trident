@@ -29,16 +29,15 @@ public class ElevatorCommand extends Command {
   @Override
   public void initialize() {}
   @Override
-  public void execute() {
+  public void execute() { 
+    //MANUAL CONTROL:
     if(m_controller.pov(0).getAsBoolean())
     {
       m_elevator.addPosition(0.5);
-      //m_elevator.forceSetSpeed(0.3);
     }
     if(m_controller.pov(180).getAsBoolean())
     {
       m_elevator.addPosition(-0.5);
-      //m_elevator.forceSetSpeed(-0.3);
     }
   }
   @Override

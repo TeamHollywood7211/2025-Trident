@@ -88,6 +88,7 @@ public class CameraSubsystem extends SubsystemBase {
       server.setSource(camera2);
       camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
       camera1.setConnectionStrategy(ConnectionStrategy.kForceClose);
+      
     }
   }
 }

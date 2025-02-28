@@ -11,6 +11,7 @@ IDS:
     41 - Climb 
     42 - Elevator Left 
     43 - Elevator Right
+    46 - CANCoder
     47 - CAN Range (Elevator)
     48 - CAN Range (Coral)
     49 - Candle

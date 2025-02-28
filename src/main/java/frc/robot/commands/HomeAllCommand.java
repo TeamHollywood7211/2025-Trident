@@ -2,25 +2,26 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Autos;
+package frc.robot.commands;
 
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants.AlgaeConstants;
+import frc.robot.Constants.CoralConstants;
+import frc.robot.subsystems.AlgaeSubsystem;
 import frc.robot.subsystems.CoralSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
-
 
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
-public class auto_coralMove extends Command {
+public class HomeAllCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ElevatorSubsystem m_elevator;
+  private final AlgaeSubsystem m_algae;
   private final CoralSubsystem m_coral;
-  
-  double coralPos;
-  double elevatorPos;
-  double algaePos;
+  private final ElevatorSubsystem m_elevator;
+
+  boolean algaeMoved = false;
+  boolean coralMoved = false;
   boolean finished = false;
 
   /**
@@ -28,12 +29,10 @@ public class auto_coralMove extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public auto_coralMove(ElevatorSubsystem elevator, CoralSubsystem coral, double corPos, double ElPos, double alPos) {
-    m_elevator = elevator;
+  public HomeAllCommand(CoralSubsystem coral, ElevatorSubsystem elevator, AlgaeSubsystem algae) {
+    m_algae = algae;
     m_coral = coral;
-    coralPos = corPos;
-    elevatorPos = ElPos;
-    algaePos = alPos;
+    m_elevator = elevator;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(elevator);
   }
@@ -41,26 +40,31 @@ public class auto_coralMove extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    algaeMoved = false;
+    coralMoved = false;
     finished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    m_elevator.setPosition(elevatorPos);
-    
-    RobotContainer.m_AlgaeSubsystem.setPosition(algaePos);
-    
-    //RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
-    //Safety check: Ensures that the algae is passed the safety position
-    if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.safety) || (Constants.safetyBypass)))
+    m_coral.setPosition(0);
+    if(Math.abs(m_coral.getPosition()) < 10)
     {
-      // -12 < -11.5
-      m_coral.setPosition(coralPos);
-      finished = true;
+      coralMoved = true;
     }
-//    
+    if(coralMoved){
+      m_algae.setPosition(0);
+      if(m_algae.getPosition() < AlgaeConstants.positions.safety)
+      {
+        algaeMoved = true;
+      }
+    }
+    if(algaeMoved)
+    {
+      m_elevator.setPosition(Constants.ElevatorConstants.positions.home);
+      finished = true;/*                                               */
+    }
   }
 
   // Called once the command ends or is interrupted.
