@@ -181,7 +181,7 @@ public class RobotContainer {
     //ALGAE
     private final auto_algaeRunner a_algaeIntake = new auto_algaeRunner(m_AlgaeSubsystem, Constants.AlgaeConstants.intakeSpeed);
     private final auto_algaeRunner a_algaeOuttake = new auto_algaeRunner(m_AlgaeSubsystem, -Constants.AlgaeConstants.intakeSpeed);
-    private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0);
+    private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0.1);
 
     //CORAL
     private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
