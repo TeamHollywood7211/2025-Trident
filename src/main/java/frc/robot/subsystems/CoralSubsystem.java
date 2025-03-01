@@ -69,11 +69,14 @@ public class CoralSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    moverEncoder = moverMotor.getPosition().getValueAsDouble();
-    SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
-    moverMotor.set(MathUtil.clamp(
-      moverPID.calculate(moverEncoder, moverSetpoint)
-    , -1, 1));
+    if(RobotContainer.m_ElevatorSubsystem.intakeClear())
+    {
+      moverEncoder = moverMotor.getPosition().getValueAsDouble();
+      SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
+      moverMotor.set(MathUtil.clamp(
+        moverPID.calculate(moverEncoder, moverSetpoint)
+      , -1, 1));
+    }
   }
 
   @Override

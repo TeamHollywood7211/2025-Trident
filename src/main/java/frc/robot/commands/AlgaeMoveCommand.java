@@ -34,7 +34,9 @@ public class AlgaeMoveCommand extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -42,6 +44,7 @@ public class AlgaeMoveCommand extends Command {
 
     m_elevator.setPosition(elevatorPos);
     m_algae.setPosition(algaePos);
+    System.out.println("Moving elevator and algae...");
     //m_algae.gotoOut();
     //m_algae.setPosition(algaePos);
     finished = true;

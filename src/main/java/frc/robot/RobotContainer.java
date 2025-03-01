@@ -70,7 +70,7 @@ public class RobotContainer {
 
     // second max angular
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
-    private final ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
+    public final static ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
     public final        LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -500,5 +500,6 @@ public class RobotContainer {
         }
         return 0;
     }
+    
 }
 

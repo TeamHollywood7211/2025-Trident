@@ -313,6 +313,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
     public void reverseGyro(){
         Pigeon2 gyro = getPigeon2();
+        gyro.setYaw(180);
     }
 
 

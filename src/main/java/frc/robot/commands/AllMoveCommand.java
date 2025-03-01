@@ -41,6 +41,7 @@ public class AllMoveCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("All moved started!");
     finished = false;
   }
 
@@ -59,6 +60,7 @@ public class AllMoveCommand extends Command {
       // -12 < -11.5
       m_coral.setPosition(coralPos);
       finished = true;
+      System.out.println("All moved success!");
     }
 //    
   }
