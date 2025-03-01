@@ -132,7 +132,7 @@ public class RobotContainer {
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
@@ -140,7 +140,7 @@ public class RobotContainer {
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
