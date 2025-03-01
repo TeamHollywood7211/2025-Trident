@@ -132,7 +132,7 @@ public class RobotContainer {
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
 
     private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
@@ -140,7 +140,7 @@ public class RobotContainer {
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
 
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
@@ -386,7 +386,7 @@ public class RobotContainer {
         double pitch = drivetrain.getPitch();
         double amount = 0;  
         SmartDashboard.putNumber("pitch", pitch);
-
+        SmartDashboard.putNumber("gyro", drivetrain.getGyro().getDegrees());
         if(pitch > 15)
         {
             amount = 2;
@@ -409,7 +409,7 @@ public class RobotContainer {
         }
         
     }
-
+    
 
     public static double limelight_range_proportional() {
         double kP = .1;
@@ -445,8 +445,8 @@ public class RobotContainer {
     public void followAprilTag() { // Basic method for driving towards a limelight. Good for debugging not likely
                                    // to actually use this.
         final var forward_limelight = RobotContainer.limelight_range_proportional();
-        final var rot_limelight = RobotContainer.limelight_aim_proportional();
-
+        //final var rot_limelight = RobotContainer.limelight_aim_proportional();
+        final var rot_limelight = 0;
 
         double ang = LimelightHelpers.getTX("limelight");
         double dis = LimelightHelpers.getTY("limelight");
@@ -455,19 +455,15 @@ public class RobotContainer {
 
 
         double sideway_limelight = Math.cos(Math.toRadians(ang))*dis; //Its been a minute since I've done trig so this could be very wrong.
-        //sideway_limelight *= 0.1;
 
         sideway_limelight *= MaxSpeed;
-        //sideway_limelight *= -1.0;
 
-        
-
-        System.out.println(sideway_limelight);
+        System.out.println(ang);
 
         double current_rotation = drivetrain.getGyro().getDegrees();
         double pid_output = ll_rotatePID.calculate(current_rotation, current_rotation + rot_limelight);
 
-        SmartDashboard.putNumber("Limelight Rot", rot_limelight)     ;
+        SmartDashboard.putNumber("Limelight Rot", ang)               ;
         SmartDashboard.putNumber("Limelight Fwd", forward_limelight) ;
         SmartDashboard.putNumber("Limelight Side", sideway_limelight);
 
