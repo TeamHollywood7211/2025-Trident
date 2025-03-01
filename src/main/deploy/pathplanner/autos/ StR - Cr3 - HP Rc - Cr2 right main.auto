@@ -55,6 +55,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "coralRstop"
+          }
+        },
+        {
           "type": "sequential",
           "data": {
             "commands": [
@@ -117,12 +123,6 @@
                       "data": {
                         "name": "coralRouttake"
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRintake"
-                      }
                     }
                   ]
                 }
@@ -134,9 +134,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "coralRstop"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralRstop"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRstop"
+                      }
+                    }
+                  ]
                 }
               },
               {
