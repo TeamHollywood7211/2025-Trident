@@ -57,7 +57,7 @@
         {
           "type": "named",
           "data": {
-            "name": "coralRstop"
+            "name": "algaeRstop"
           }
         },
         {
@@ -92,7 +92,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.45
                 }
               },
               {
@@ -123,6 +123,12 @@
                       "data": {
                         "name": "coralRouttake"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
+                      }
                     }
                   ]
                 }
@@ -130,7 +136,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.2
+                  "waitTime": 0.3
                 }
               },
               {
@@ -167,19 +173,6 @@
                       "data": {
                         "name": "robot_Home"
                       }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.3
-                            }
-                          }
-                        ]
-                      }
                     }
                   ]
                 }
@@ -212,7 +205,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.2
+                  "waitTime": 0.45
                 }
               },
               {
@@ -229,12 +222,6 @@
                       "type": "named",
                       "data": {
                         "name": "coral_L3_Left"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRintake"
                       }
                     }
                   ]

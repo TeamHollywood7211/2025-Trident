@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.7864726027397264,
-        "y": 2.928125
+        "x": 3.735656836461126,
+        "y": 2.9567024128686317
       },
       "prevControl": {
-        "x": 3.2263776094196572,
-        "y": 2.417498952717195
+        "x": 3.1755618431410566,
+        "y": 2.4460763655858266
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "algaeRintake",
-      "waypointRelativePos": 0.5428571428571433,
+      "waypointRelativePos": 0.7500000000000002,
       "endWaypointRelativePos": null,
       "command": null
     }
