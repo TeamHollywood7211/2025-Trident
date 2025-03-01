@@ -154,14 +154,14 @@
                       "data": {
                         "name": "robot_Home"
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRstop"
-                      }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
                 }
               }
             ]

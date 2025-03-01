@@ -9,7 +9,7 @@
       "prevControl": null,
       "nextControl": {
         "x": 3.125342465753425,
-        "y": 2.2219178082191786
+        "y": 2.11673801369863
       },
       "isLocked": false,
       "linkedName": "Coral 2"
@@ -20,8 +20,8 @@
         "y": 0.5590277777777771
       },
       "prevControl": {
-        "x": 2.494263698630137,
-        "y": 1.3804794520547943
+        "x": 2.5092893835616445,
+        "y": 1.7861729452054798
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeRouttake",
+      "waypointRelativePos": 0.35,
+      "endWaypointRelativePos": 0.6404761904761902,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
