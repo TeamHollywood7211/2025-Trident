@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.7996527777777773,
-        "y": 2.948871527777777
+        "x": 3.7864726027397264,
+        "y": 2.928125
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3789335996955856,
-        "y": 2.4981009798325715
+        "x": 3.3657534246575347,
+        "y": 2.4773544520547945
       },
       "isLocked": false,
       "linkedName": "Coral 2"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.09027692082235
+    "rotation": 54.090276920822355
   },
   "reversed": false,
   "folder": "Right start HP center ",
