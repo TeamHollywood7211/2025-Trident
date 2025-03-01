@@ -17,22 +17,35 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coral_L2_Right"
+                  "name": "coral_L4_Left"
                 }
               }
             ]
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "coralRouttake"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRouttake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
+                }
+              }
+            ]
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.2
           }
         },
         {
@@ -73,7 +86,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               },
               {
@@ -117,7 +130,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               },
               {
@@ -141,14 +154,14 @@
                       "data": {
                         "name": "robot_Home"
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRouttake"
-                      }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
                 }
               }
             ]
@@ -165,21 +178,9 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               },
               {
@@ -217,7 +218,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               },
               {
@@ -254,7 +255,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               }
             ]

@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.155295138888888,
-        "y": 2.920920138888888
+        "x": 3.7996527777777773,
+        "y": 2.948871527777777
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.7263698630136988,
-        "y": 1.200171232876712
+        "x": 2.9600599315068497,
+        "y": 1.8162243150684938
       },
       "isLocked": false,
-      "linkedName": "Coral 3"
+      "linkedName": "Coral 2"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 0.5590277777777771
       },
       "prevControl": {
-        "x": 3.4108304794520548,
-        "y": 1.9664811643835622
+        "x": 2.8248287671232877,
+        "y": 2.3571489726027393
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,8 +30,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.38276553106212424,
-      "rotationDegrees": 27.48140812783275
+      "waypointRelativePos": 0.6292585170340682,
+      "rotationDegrees": 18.14869481098754
     }
   ],
   "constraintZones": [],
@@ -39,13 +39,13 @@
   "eventMarkers": [
     {
       "name": "algaeRouttake",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.5952380952380951,
       "endWaypointRelativePos": null,
       "command": null
     },
     {
       "name": "algaeRstop",
-      "waypointRelativePos": 0.85,
+      "waypointRelativePos": 0.897619047619047,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -66,7 +66,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.35775354279127
+    "rotation": 59.42077312751098
   },
   "useDefaultConstraints": true
 }
