@@ -19,7 +19,7 @@ import frc.robot.RobotContainer;
 
 
 public class AlgaeSubsystem extends SubsystemBase {
-  TalonFX intakeMotor = new TalonFX(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
+  TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
   TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
   //DigitalInput encoder = new DigitalInput(1);
   DutyCycleEncoder encoder = new DutyCycleEncoder(1);

@@ -76,17 +76,17 @@ public class CameraSubsystem extends SubsystemBase {
     toggleCam = !toggleCam;
     if(toggleCam)
     {
-      System.out.println("Switching to CAM 1: Closing CAM 2...");
+      System.out.println("Switching to CAM 1: Closing CAM 2...") ;
       server.setSource(camera1);
-      camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+      camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
       camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
     }
     else{
 
       
-      System.out.println("Switching to CAM 2: Closing CAM 1...");
+      System.out.println("Switching to CAM 2: Closing CAM 1...") ;
       server.setSource(camera2);
-      camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+      camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
       camera1.setConnectionStrategy(ConnectionStrategy.kForceClose);
       
     }

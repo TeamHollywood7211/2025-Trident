@@ -18,7 +18,7 @@ import frc.robot.RobotContainer;
 
 public class ClimberSubsystem extends SubsystemBase {
   
-  Servo climberServo = new Servo(2);
+  Servo climberServo = new Servo(1);
   Servo intakeServo = new Servo(0);
   TalonFX climber = new TalonFX(ClimberConstants.armMotorID, RobotContainer.MainBus);
   double encoder = climber.getPosition().getValueAsDouble();

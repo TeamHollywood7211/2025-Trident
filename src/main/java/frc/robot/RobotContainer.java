@@ -245,7 +245,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("algaeRouttake" , a_algaeOuttake);
         NamedCommands.registerCommand("algaeRstop"    , a_algaeStop);
 
-        NamedCommands.registerCommand("coralRintake" , a_coralIntake);
+        NamedCommands.registerCommand("coralRintake" , a_coralIntake) ;
         NamedCommands.registerCommand("coralRouttake", a_coralOuttake);
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
@@ -455,16 +455,20 @@ public class RobotContainer {
 
 
         double sideway_limelight = Math.cos(Math.toRadians(ang))*dis; //Its been a minute since I've done trig so this could be very wrong.
-        sideway_limelight *= 0.1;
+        //sideway_limelight *= 0.1;
 
         sideway_limelight *= MaxSpeed;
         //sideway_limelight *= -1.0;
 
+        
+
+        System.out.println(sideway_limelight);
+
         double current_rotation = drivetrain.getGyro().getDegrees();
         double pid_output = ll_rotatePID.calculate(current_rotation, current_rotation + rot_limelight);
 
-        SmartDashboard.putNumber("Limelight Rot", rot_limelight);
-        SmartDashboard.putNumber("Limelight Fwd", forward_limelight);
+        SmartDashboard.putNumber("Limelight Rot", rot_limelight)     ;
+        SmartDashboard.putNumber("Limelight Fwd", forward_limelight) ;
         SmartDashboard.putNumber("Limelight Side", sideway_limelight);
 
         drivetrain.setControl(

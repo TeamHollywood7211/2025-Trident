@@ -311,6 +311,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         Pigeon2 gyro = getPigeon2();
         return gyro.getRotation2d();
     }
+    public void reverseGyro(){
+        Pigeon2 gyro = getPigeon2();
+    }
+
+
     public double getPitch(){
         Pigeon2 gyro = getPigeon2();
         double val = gyro.getPitch().getValueAsDouble();
