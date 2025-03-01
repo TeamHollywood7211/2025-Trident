@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.2266493055555547,
-        "y": 4.011024305555555
+        "x": 2.0,
+        "y": 7.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.3601574391171978,
-        "y": 3.2853381849315064
+        "x": 2.249567869206699,
+        "y": 6.985307190206501
       },
       "isLocked": false,
-      "linkedName": "Coral 1"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.919235924932975,
-        "y": 0.5827077747989268
+        "x": 2.0,
+        "y": 7.0
       },
       "prevControl": {
-        "x": 1.010912104537236,
-        "y": 1.5448950369754857
+        "x": 1.7500547777235886,
+        "y": 7.005233150217151
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.25319461272526
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Right start HP center ",
+  "folder": "Middel",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0

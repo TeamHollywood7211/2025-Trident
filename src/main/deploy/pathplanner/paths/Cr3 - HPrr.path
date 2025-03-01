@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.155295138888888,
-        "y": 2.920920138888888
+        "x": 5.116890080428954,
+        "y": 2.89195710455764
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.095192399162861,
-        "y": 2.3198927416286144
+        "x": 5.056787340702927,
+        "y": 2.2909297072973662
       },
       "isLocked": false,
       "linkedName": "Coral 3"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.09027692082235
+    "rotation": 54.090276920822355
   },
   "reversed": false,
   "folder": "Right start HP center ",

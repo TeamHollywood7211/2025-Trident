@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.155295138888888,
-        "y": 2.920920138888888
+        "x": 5.116890080428954,
+        "y": 2.89195710455764
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.859490165163843,
-        "y": 2.040226207813374
+        "x": 5.45576215733917,
+        "y": 1.6133886944205176
       },
       "isLocked": false,
       "linkedName": "Coral 3"
     },
     {
       "anchor": {
-        "x": 4.868699731912062,
-        "y": 1.615058519474444
+        "x": 4.153647303577781,
+        "y": 1.4773559990620355
       },
       "prevControl": {
-        "x": 5.846400160309455,
-        "y": 2.1449462466484785
+        "x": 4.405334964805774,
+        "y": 1.6296195070505637
       },
       "nextControl": {
-        "x": 4.520872967327581,
-        "y": 1.4265456290402232
+        "x": 3.6776235962858594,
+        "y": 1.189375892272792
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.1582465277777765,
-        "y": 0.5590277777777771
+        "x": 0.919235924932975,
+        "y": 0.5827077747989268
       },
       "prevControl": {
-        "x": 2.9273290777809464,
-        "y": 0.9668458097535655
+        "x": 2.2151464055173813,
+        "y": 1.1848479981007722
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,8 +46,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.7695390781563126,
-      "rotationDegrees": 42.56687769146776
+      "waypointRelativePos": 0.56,
+      "rotationDegrees": 30.288338202540174
     }
   ],
   "constraintZones": [],
@@ -55,7 +55,7 @@
   "eventMarkers": [
     {
       "name": "algaeRouttake",
-      "waypointRelativePos": 1.2333333333333312,
+      "waypointRelativePos": 0.3095238095238096,
       "endWaypointRelativePos": null,
       "command": null
     },
@@ -76,7 +76,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.96835617047383
+    "rotation": 52.25319461272526
   },
   "reversed": false,
   "folder": "Right start HP center ",
