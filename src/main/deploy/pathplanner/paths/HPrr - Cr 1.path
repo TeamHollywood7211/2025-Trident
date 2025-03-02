@@ -9,7 +9,7 @@
       "prevControl": null,
       "nextControl": {
         "x": 2.1614202815829513,
-        "y": 1.9611598649162847
+        "y": 1.9611598649162845
       },
       "isLocked": false,
       "linkedName": "HPR Right"
@@ -48,7 +48,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 54.09027692082235
+    "rotation": 54.090276920822355
   },
   "useDefaultConstraints": true
 }

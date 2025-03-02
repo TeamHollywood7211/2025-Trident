@@ -92,7 +92,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.45
+                  "waitTime": 0.35
                 }
               },
               {
@@ -100,15 +100,15 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
-                      "data": {
-                        "pathName": "HPrc - Cr 2"
-                      }
-                    },
-                    {
                       "type": "named",
                       "data": {
                         "name": "coral_L3_Right"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "HPrc - Cr 2"
                       }
                     }
                   ]
@@ -173,6 +173,25 @@
                       "data": {
                         "name": "robot_Home"
                       }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.25
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRouttake"
+                            }
+                          }
+                        ]
+                      }
                     }
                   ]
                 }
@@ -205,7 +224,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.45
+                  "waitTime": 0.35
                 }
               },
               {
@@ -250,6 +269,12 @@
                 "type": "named",
                 "data": {
                   "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRouttake"
                 }
               },
               {
