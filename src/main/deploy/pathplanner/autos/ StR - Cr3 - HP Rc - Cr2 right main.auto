@@ -92,7 +92,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.35
+                  "waitTime": 0.45
                 }
               },
               {
@@ -122,12 +122,6 @@
                       "type": "named",
                       "data": {
                         "name": "coralRouttake"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRintake"
                       }
                     }
                   ]
@@ -224,7 +218,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.35
+                  "waitTime": 0.45
                 }
               },
               {

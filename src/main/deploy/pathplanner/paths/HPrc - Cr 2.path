@@ -3,12 +3,12 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.919235924932975,
+        "x": 0.919,
         "y": 0.5827077747989268
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6973792097114324,
+        "x": 1.6971432847784573,
         "y": 1.3222704457163683
       },
       "isLocked": false,
@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.81,
-        "y": 3.02
+        "x": 3.79,
+        "y": 3.03
       },
       "prevControl": {
-        "x": 3.249905006679931,
-        "y": 2.509373952717195
+        "x": 3.229905006679931,
+        "y": 2.5193739527171948
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeRintake",
+      "waypointRelativePos": 0.6976190476190477,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
