@@ -19,6 +19,12 @@
                 "data": {
                   "name": "coral_L4_Left"
                 }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
+                }
               }
             ]
           }
@@ -92,7 +98,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.45
+                  "waitTime": 0.4
                 }
               },
               {
@@ -103,6 +109,12 @@
                       "type": "named",
                       "data": {
                         "name": "coral_L3_Right"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
                       }
                     },
                     {
@@ -130,7 +142,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.3
+                  "waitTime": 0.2
                 }
               },
               {
@@ -141,12 +153,6 @@
                       "type": "named",
                       "data": {
                         "name": "coralRstop"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeRstop"
                       }
                     }
                   ]
@@ -175,7 +181,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.25
+                              "waitTime": 0.4
                             }
                           },
                           {
@@ -183,17 +189,23 @@
                             "data": {
                               "name": "algaeRouttake"
                             }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.6
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRstop"
+                            }
                           }
                         ]
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
                 }
               }
             ]
@@ -206,19 +218,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeRstop"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "coral_HP"
                 }
               },
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.45
+                  "waitTime": 0.4
                 }
               },
               {
@@ -235,6 +241,12 @@
                       "type": "named",
                       "data": {
                         "name": "coral_L3_Left"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
                       }
                     }
                   ]
