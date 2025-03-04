@@ -6,14 +6,21 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.LEDConstants;
 
 import com.ctre.phoenix.led.CANdle;
+import com.ctre.phoenix.led.RainbowAnimation;
 
 public class LEDSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  CANdle LED = new CANdle(LEDConstants.ID);
+  //CANdle LED = new CANdle(LEDConstants.ID);
+  CANdle LED = new CANdle(LEDConstants.ID, RobotContainer.MainBus.getName());
+
+
+  RainbowAnimation rainbow = new RainbowAnimation(255, 0.2, 999);
+
 
   public LEDSubsystem() {
     LED.setLEDs(255, 0, 0);
@@ -49,7 +56,36 @@ public class LEDSubsystem extends SubsystemBase {
   }
   public void setRed()
   {
+    clearAnimation();
     LED.setLEDs(255, 0, 0);
+  }
+  public void setGreen()
+  {
+    clearAnimation();
+    LED.setLEDs(0, 255, 0);
+  }
+  public void setPurple()
+  {
+    clearAnimation();
+    LED.setLEDs(255, 0, 255);
+  }
+  public void setTeal()
+  {
+    clearAnimation();
+    LED.setLEDs(0, 255, 100);
+  }
+  public void setDarkRed()
+  {
+    clearAnimation();
+    LED.setLEDs(100, 0, 0);
+  }
+  public void setRainbow()
+  {
+    LED.animate(rainbow);
+  }
+  public void clearAnimation()
+  {
+    LED.clearAnimation(0);
   }
 
   @Override

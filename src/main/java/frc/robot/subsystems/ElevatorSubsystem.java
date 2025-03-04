@@ -26,6 +26,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   double encoderRight = motorRight.getPosition().getValueAsDouble();
   double ElevatorSetpoint = encoderRight;
   CANrange rangeSensor = new CANrange(ElevatorConstants.canRangeID, RobotContainer.MainBus);
+  boolean elevatorNotRead = false;
+  
+  
   //We will trust the right motor as the main motor as it going up is always positive.
   public ElevatorSubsystem() { 
 
@@ -46,7 +49,22 @@ public class ElevatorSubsystem extends SubsystemBase {
     }
     else
     {
-      System.out.println("WARNING: PLEASE CLEAR INTAKE");
+      System.out.println("Item in intake!!!");
+    }
+
+
+
+    if(!intakeClear())
+    {
+      RobotContainer.m_LedSubsystem.setPurple();
+      elevatorNotRead = false;
+    }
+    else{
+      if(!elevatorNotRead)
+      {
+        RobotContainer.m_LedSubsystem.setRed();
+        elevatorNotRead = true;
+      }
     }
     
   }

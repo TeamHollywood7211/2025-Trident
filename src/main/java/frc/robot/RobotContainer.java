@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.AlgaeConstants;
 import frc.robot.Constants.ImportantConstants;
@@ -72,7 +73,7 @@ public class RobotContainer {
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     public final static ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
-    public final        LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
+    public final static        LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -161,12 +162,12 @@ public class RobotContainer {
 
 
     private final AllMoveCommand a_coralLowM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
     private final AllMoveCommand a_coralMidM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.lowpos);
+     Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.home);
     
 
 
@@ -181,7 +182,7 @@ public class RobotContainer {
     //ALGAE
     private final auto_algaeRunner a_algaeIntake = new auto_algaeRunner(m_AlgaeSubsystem, Constants.AlgaeConstants.intakeSpeed);
     private final auto_algaeRunner a_algaeOuttake = new auto_algaeRunner(m_AlgaeSubsystem, -Constants.AlgaeConstants.intakeSpeed);
-    private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0.0001);
+    private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0.1);
 
     //CORAL
     private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
@@ -193,7 +194,7 @@ public class RobotContainer {
     // private final //
 
 
-    private final HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
+    public final static HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
 
 
     UsbCamera camera1;
@@ -285,8 +286,8 @@ public class RobotContainer {
         m_CoralSubsystem.setDefaultCommand(m_CoralCommand)      ;
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand)  ;
-
-        drivetrain.run(() -> antiTip()); //Only works with Pitch (no yaw) and kinda sucks
+        
+        drivetrain.run(() -> drivetrain.antiTip()); //Only works with Pitch (no yaw) and kinda sucks
 
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
@@ -384,6 +385,7 @@ public class RobotContainer {
     public void antiTip()
     {
         double pitch = drivetrain.getPitch();
+        double yaw = drivetrain.getYaw();
         double amount = 0;  
         SmartDashboard.putNumber("pitch", pitch);
         SmartDashboard.putNumber("gyro", drivetrain.getGyro().getDegrees());
@@ -407,6 +409,17 @@ public class RobotContainer {
             .withVelocityY(amount)
             );
         }
+
+        if(Math.abs(pitch) > 15)
+        {
+            System.out.println("ERROR!!!: INITIATING EMERGENCY DROPPY STUFF!!");
+            new SequentialCommandGroup(a_homeAll);  
+        }
+        if(Math.abs(yaw) > 15)
+        {
+            System.out.println("ERROR!!! INITIATING EMERGENCY DROPPY STUFF!!");
+            new SequentialCommandGroup(a_homeAll);  
+        }
         
     }
     
@@ -414,6 +427,13 @@ public class RobotContainer {
     public static double limelight_range_proportional() {
         double kP = .1;
         double targetingForwardSpeed = LimelightHelpers.getTY("limelight") * kP;
+        targetingForwardSpeed *= MaxSpeed;
+        targetingForwardSpeed *= -1.0;
+        return targetingForwardSpeed;
+    }
+    public static double limelight_horizontal() { //for the horizontal section
+        double kP = .01;
+        double targetingForwardSpeed = LimelightHelpers.getTX("limelight") * kP;
         targetingForwardSpeed *= MaxSpeed;
         targetingForwardSpeed *= -1.0;
         return targetingForwardSpeed;
@@ -442,21 +462,14 @@ public class RobotContainer {
         return targetingAngularVelocity;
     }
 
-    public void followAprilTag() { // Basic method for driving towards a limelight. Good for debugging not likely
-                                   // to actually use this.
+    public void followAprilTag() { // Basic method for driving towards a limelight.
+                                   
         final var forward_limelight = RobotContainer.limelight_range_proportional();
-        //final var rot_limelight = RobotContainer.limelight_aim_proportional();
-        final var rot_limelight = 0;
+        final var rot_limelight = RobotContainer.limelight_aim_proportional();
+        
+        double ang = limelight_horizontal();
 
-        double ang = LimelightHelpers.getTX("limelight");
-        double dis = LimelightHelpers.getTY("limelight");
-
-
-
-
-        double sideway_limelight = Math.cos(Math.toRadians(ang))*dis; //Its been a minute since I've done trig so this could be very wrong.
-
-        sideway_limelight *= MaxSpeed;
+        double sideway_limelight = ang;//Math.cos(Math.toRadians(ang))*dis; //Its been a minute since I've done trig so this could be very wrong.
 
         System.out.println(ang);
 
@@ -468,14 +481,13 @@ public class RobotContainer {
         SmartDashboard.putNumber("Limelight Side", sideway_limelight);
 
         drivetrain.setControl(
-                forwardStraight.withVelocityX(MathUtil.clamp(forward_limelight, -.5, .5))
+                forwardStraight.withVelocityX(MathUtil.clamp(forward_limelight, -1, 1))
                         .withVelocityY(MathUtil.clamp(sideway_limelight, -.5, .5))
                         .withRotationalRate(MathUtil.clamp(pid_output, -1, 1)));
 
     }
 
-    public void AutoToPosition(double[] positions) // Should in theory move us to a pose of x, y. Waiting till we have
-                                                   // more of the field to tell
+    public void AutoToPosition(double[] positions) // Should in theory move us to a pose of x, y based on PathPlanner positions.
     {
         // stolen from https://pathplanner.dev/pplib-pathfinding.html#pathfind-to-pose
         String stupid_dumb_string = String.format("Positions are %s, $2d", positions[0], positions[1]);
@@ -488,7 +500,7 @@ public class RobotContainer {
                 Units.degreesToRadians(autoConfigConstants.maxAngularVelocitySq));
 
         // Since AutoBuilder is configured, we can use it to build pathfinding commands
-        @SuppressWarnings("unused") //I get annoyed by yellow
+        @SuppressWarnings("unused") //I hope to remove this
         Command pathfindingCommand = AutoBuilder.pathfindToPose(
                 targetPose,
                 constraints,
@@ -500,6 +512,13 @@ public class RobotContainer {
         }
         return 0;
     }
-    
-}
 
+
+    public boolean shouldRejectLL3G(final LimelightHelpers.PoseEstimate botPose) {
+    if (botPose.tagCount < 2) {
+      return true;
+    }
+
+    return false;
+    }
+}

@@ -34,8 +34,8 @@
   "eventMarkers": [
     {
       "name": "algaeRouttake",
-      "waypointRelativePos": 0.35,
-      "endWaypointRelativePos": 0.6404761904761902,
+      "waypointRelativePos": 0.4942606347062771,
+      "endWaypointRelativePos": null,
       "command": null
     }
   ],

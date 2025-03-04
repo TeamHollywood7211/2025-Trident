@@ -27,13 +27,13 @@ public final class Constants {
 
     public static final int intakeID = 52;
     public static final int wristID = 53;
+    public static final int algaeSwitch = 9;
   
     public static final double intakeSpeed = 0.5;
 
 
     public static class positions {
-      public static final double home = 0;//0.66;
-
+      public static final double home = 1;//0.66;
 
       public static final double grabbing = -15;//0.81;//-14; 
       public static final double grabbingHome = -10;//0.691;//-10;
@@ -79,6 +79,10 @@ public final class Constants {
     public static final int armMotorID = 41;
     public static final int servoOpen = 75; //The degrees to open the servo to
     public static final int clOpenPosition = -206;
+
+
+    public static final int leftSwitchID = 7;
+    public static final int rightSwitchID = 8;
   
   }
   public static class ElevatorConstants {

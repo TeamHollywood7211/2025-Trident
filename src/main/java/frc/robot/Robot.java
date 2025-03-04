@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -33,7 +34,12 @@ public class Robot extends TimedRobot {
      * of how to use vision should be tuned per-robot and to the team's specification.
      */
     if (kUseLimelight) {
+
       var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
+      
+
+
+
       if (llMeasurement != null && llMeasurement.tagCount > 0) {
         boolean rejectUpdate = false;
         if (llMeasurement.tagCount == 1 && llMeasurement.rawFiducials.length == 1) {
@@ -42,6 +48,7 @@ public class Robot extends TimedRobot {
           }
         }
         if (!rejectUpdate) {
+          m_robotContainer.drivetrain.setVisionMeasurementStdDevs(VecBuilder.fill(0.7, 0.7, 9999999));
           m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
         }
       }

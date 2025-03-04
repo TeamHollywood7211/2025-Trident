@@ -17,18 +17,23 @@ import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.math.Matrix;
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
-
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
@@ -322,6 +327,12 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         double val = gyro.getPitch().getValueAsDouble();
         return val;
     }
+    public double getYaw(){
+        Pigeon2 gyro = getPigeon2();
+        double val = gyro.getYaw().getValueAsDouble();
+        return val;
+    }
+    
         /**
      * Adds a vision measurement to the Kalman Filter. This will correct the odometry pose estimate
      * while still accounting for measurement noise.
@@ -356,4 +367,22 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         super.addVisionMeasurement(visionRobotPoseMeters, Utils.fpgaToCurrentTime(timestampSeconds), visionMeasurementStdDevs);
     }
 
+
+
+
+
+
+    public void antiTip(){
+        Pigeon2 gyro = getPigeon2();
+        double roll = gyro.getRoll().getValueAsDouble();
+        double pitch = gyro.getPitch().getValueAsDouble();
+        SmartDashboard.putNumber("Pitch", pitch);
+        SmartDashboard.putNumber("Roll", roll);
+
+        if((Math.abs(roll) > 30) || (Math.abs(pitch) > 30))
+        {
+            new SequentialCommandGroup(RobotContainer.a_homeAll);
+        }
+    }
+    
 }

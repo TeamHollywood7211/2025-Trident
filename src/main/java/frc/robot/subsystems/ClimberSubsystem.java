@@ -8,6 +8,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,6 +22,14 @@ public class ClimberSubsystem extends SubsystemBase {
   Servo climberServo = new Servo(1);
   Servo intakeServo = new Servo(0);
   TalonFX climber = new TalonFX(ClimberConstants.armMotorID, RobotContainer.MainBus);
+
+  DigitalInput leftGrabberOn = new DigitalInput(ClimberConstants.leftSwitchID );
+  DigitalInput rightGrabberOn = new DigitalInput(ClimberConstants.rightSwitchID);
+    //  //
+  //  //  //
+      
+  //     //
+    /////
   double encoder = climber.getPosition().getValueAsDouble();
   double setpoint = encoder;
   
@@ -60,6 +69,20 @@ public class ClimberSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Intake Servo", intakeServo.get());   //this doesnt work >:(
     SmartDashboard.putNumber("Climber Servo", climberServo.get());
     SmartDashboard.putNumber("Climber Setpoint", setpoint);
+
+    SmartDashboard.putBoolean("ClimberLeft", !leftGrabberOn.get());
+
+    if(!leftGrabberOn.get() && !rightGrabberOn.get())
+    {
+      SmartDashboard.putBoolean("Grabbed", true);
+      RobotContainer.m_LedSubsystem.setRainbow();
+    }
+    else{
+      SmartDashboard.putBoolean("Grabbed", false);
+      //RobotContainer.m_LedSubsystem.setRed();
+    }
+
+
 
     encoder = climber.getPosition().getValueAsDouble();
 

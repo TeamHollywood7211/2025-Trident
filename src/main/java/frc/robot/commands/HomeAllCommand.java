@@ -54,7 +54,7 @@ public class HomeAllCommand extends Command {
       coralMoved = true;
     }
     if(coralMoved){
-      m_algae.setPosition(0);
+      m_algae.setPosition(AlgaeConstants.positions.home);
       if(m_algae.getPosition() < AlgaeConstants.positions.safety)
       {
         algaeMoved = true;

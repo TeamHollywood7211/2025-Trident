@@ -9,26 +9,28 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.AlgaeConstants;
 
 
 
 public class AlgaeSubsystem extends SubsystemBase {
-  TalonFXS intakeMotor = new TalonFXS(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
-  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
+  TalonFXS intakeMotor = new TalonFXS(AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
+  TalonFXS wristMotor =  new TalonFXS(AlgaeConstants.wristID, RobotContainer.MainBus) ;
+  DigitalInput algaeSensor = new DigitalInput(AlgaeConstants.algaeSwitch);
   //DigitalInput encoder = new DigitalInput(1);
   DutyCycleEncoder encoder = new DutyCycleEncoder(1);
 
-    double wristEncoder = wristMotor.getPosition().getValueAsDouble();
-    double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
-
-    PIDController wristPID = new PIDController(0.03, 0, 0.005);
-
+  double wristEncoder = wristMotor.getPosition().getValueAsDouble();
+  double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
+  PIDController wristPID = new PIDController(0.03, 0, 0.005);
+  boolean algaeNotRead = false;
     //TalonFXSConfiguration config = new TalonFXSConfiguration();
     
     public AlgaeSubsystem(){}
@@ -40,10 +42,6 @@ public class AlgaeSubsystem extends SubsystemBase {
           });
     }
 
-    public boolean exampleCondition() {
-      // Query some boolean state, such as a digital sensor.
-      return false;
-    }
   
     @Override
     public void periodic() {
@@ -52,15 +50,24 @@ public class AlgaeSubsystem extends SubsystemBase {
 
       SmartDashboard.putNumber("Encoder", encoder.get());
       
-      //SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
-
-      //SmartDashboard.putNumber("Wrist Sim", wristSim.get);
-
-
-
       wristMotor.set(MathUtil.clamp(
         wristPID.calculate(wristEncoder, wristSetpoint),
        -1, 1));
+
+
+       if(readSensor())
+       {
+        RobotContainer.m_LedSubsystem.setTeal();
+        algaeNotRead = false;
+       }
+       else
+       {
+        if(!algaeNotRead)
+        {
+          algaeNotRead = true;
+          RobotContainer.m_LedSubsystem.setRed();
+        }
+       }
     }
   
     @Override
@@ -94,34 +101,17 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
     public void gotoOut()
     {
-      setPosition(Constants.AlgaeConstants.positions.grabbing);
+      setPosition(AlgaeConstants.positions.grabbing);
     }
     public double getTarget()
     {
       return wristSetpoint;
     }
-
-    //public void setSpeed(double speed)
-    //{
-    //  intakeMotor.set(speed);
-    //}
-
+    
+    public boolean readSensor(){
+      return !algaeSensor.get();
+    }
 
 
-
-
-
-
-
-  /* 
-  public void runGripIn(double speed){
-    IntakeMotor1.set(-1 * speed);
-  }
-  public void runGripOut(double speed){
-    IntakeMotor1.set(speed);
-  }
-  public void stopGrip(){
-    IntakeMotor1.set(0);
-  }*/
 
 }

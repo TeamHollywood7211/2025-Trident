@@ -33,7 +33,7 @@ public class CoralSubsystem extends SubsystemBase {
 
   double moverEncoder = moverMotor.getPosition().getValueAsDouble();
   double moverSetpoint = moverMotor.getPosition().getValueAsDouble();
-
+  boolean intakeNotRead = false;
 
 
   public CoralSubsystem(){ 
@@ -71,12 +71,26 @@ public class CoralSubsystem extends SubsystemBase {
   public void periodic() {
     if(RobotContainer.m_ElevatorSubsystem.intakeClear())
     {
-      moverEncoder = moverMotor.getPosition().getValueAsDouble();
+      moverEncoder = moverMotor.getPosition().getValueAsDouble()   ;
       SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
       moverMotor.set(MathUtil.clamp(
         moverPID.calculate(moverEncoder, moverSetpoint)
       , -1, 1));
     }
+
+
+    if(pieceInRange())
+    {
+      RobotContainer.m_LedSubsystem.setGreen();
+      intakeNotRead = false;
+    }
+    /*else{
+      if(!intakeNotRead)
+      {
+        RobotContainer.m_LedSubsystem.setRed();
+        intakeNotRead = true;
+      }
+    }*/
   }
 
   @Override
