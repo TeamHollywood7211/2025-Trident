@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.848053278688525,
-        "y": 3.1079405737704913
+        "x": 5.814940068493151,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.1737429666641725,
-        "y": 2.2758070596913442
+        "x": 6.536842105263159,
+        "y": 1.7690789473684205
       },
       "isLocked": false,
-      "linkedName": "Coral 2"
+      "linkedName": "Coral 4"
     },
     {
       "anchor": {
@@ -20,15 +20,20 @@
         "y": 0.5827077747989268
       },
       "prevControl": {
-        "x": 2.2702787807168434,
-        "y": 1.8098529422266294
+        "x": 4.381578947368421,
+        "y": 1.5440789473684198
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "HPR Center"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.7204414083026804,
+      "rotationDegrees": 50.40847870671123
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
@@ -60,7 +65,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.42077312751098
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

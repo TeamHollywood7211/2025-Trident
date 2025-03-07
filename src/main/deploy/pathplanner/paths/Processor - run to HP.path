@@ -3,47 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.848053278688525,
-        "y": 3.1079405737704913
+        "x": 6.007812499999999,
+        "y": 0.44722222222222174
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.1737429666641725,
-        "y": 2.2758070596913442
+        "x": 6.074249999999999,
+        "y": 1.1877499999999999
       },
       "isLocked": false,
-      "linkedName": "Coral 2"
+      "linkedName": "Processor"
     },
     {
       "anchor": {
-        "x": 0.919235924932975,
-        "y": 0.5827077747989268
+        "x": 3.6464999999999996,
+        "y": 0.8367499999999995
       },
       "prevControl": {
-        "x": 2.2702787807168434,
-        "y": 1.8098529422266294
+        "x": 4.641,
+        "y": 1.1487500000000002
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "algaeRouttake",
-      "waypointRelativePos": 0.30249831195138627,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "algaeRouttake"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -54,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.25319461272526
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Right start HP center ",
+  "folder": "Middel",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.42077312751098
+    "rotation": -91.29881929584059
   },
   "useDefaultConstraints": true
 }

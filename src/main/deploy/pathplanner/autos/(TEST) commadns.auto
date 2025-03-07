@@ -7,97 +7,115 @@
         {
           "type": "path",
           "data": {
-            "pathName": "New New Path"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeLow"
+            "pathName": "St Cen - Cr4"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRintake"
+            "waitTime": 1.5
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
+            "waitTime": 3.0
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "algaeRstop"
+            "name": "coral_L4_Left"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
+            "waitTime": 0.2
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "algaeRouttake"
+            "name": "coral_L4_Right"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
+            "waitTime": 0.2
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "algaeRstop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRintake"
+            "name": "coral_L3_Left"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
+            "waitTime": 0.2
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "algaeRstop"
+            "name": "coral_L3_Right"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.4
+            "waitTime": 0.2
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "robot_Home"
+            "name": "coral_L2_Left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coral_L2_Right"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coral_L1_Left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coral_L1_Right"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Debug",
   "choreoAuto": false
 }

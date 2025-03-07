@@ -64,7 +64,7 @@ public class RobotContainer {
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
     
-    public static CANBus MainBus = new CANBus("main");    
+    public static CANBus MainBus = new CANBus("rio");    
     
     public static VideoSink server;
 
@@ -163,7 +163,8 @@ public class RobotContainer {
 
     private final AllMoveCommand a_coralLowM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
-    private final AllMoveCommand a_coralMidM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
+
+     private final AllMoveCommand a_coralMidM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
 
     private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
@@ -223,6 +224,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("algaeHigh"   ,    a_algaeMid); //Algae top
         NamedCommands.registerCommand("algaeLow"    ,     a_algaeLow); //Algae bottom
         NamedCommands.registerCommand("algaeFloor"  ,   a_algaeFloor); //Picking up/placing from floor
+        NamedCommands.registerCommand("algaeProcessor"  ,   a_algaeProcessor); //Placing in the processor
         //Coral positions
         //THESE ARE LEFT
         NamedCommands.registerCommand("coral_L2_Left", a_coralLowL); //Coral low tier
@@ -318,11 +320,20 @@ public class RobotContainer {
         //
 
         //Coral Left
+
+
+
+        buttonBox2.button(10).onTrue(a_coralHighL);
+        buttonBox2.button(8).onTrue(a_coralMidL);
+        buttonBox2.button(11).onTrue(a_coralLowL);
+
+
+
         buttonBox2.button(6).onTrue(a_coralHighM)    ;
         buttonBox1.button(8).onTrue(a_coralMidM)     ;
         buttonBox1.button(5).onTrue(a_coralLowM)     ;
         //Coral Right
-        buttonBox2.button(5).onTrue(a_coralHighR)    ;
+        buttonBox1.button(12).onTrue(a_coralHighR)    ;
         buttonBox1.button(7).onTrue(a_coralMidR)     ;
         buttonBox1.button(6).onTrue(a_coralLowR)     ;
         //
@@ -340,6 +351,11 @@ public class RobotContainer {
         buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
 
+
+        buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
+
+
+
         servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
         servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
         //servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
@@ -349,7 +365,6 @@ public class RobotContainer {
         servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::unlockClimb)); //This is the basic state
 
         //buttonBox2.button(7).onTrue(a_algaeFloor);
-        buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 
 
 

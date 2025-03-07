@@ -3,51 +3,55 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.070799180327868,
-        "y": 2.9880635245901637
+        "x": 3.8415798611111103,
+        "y": 5.101128472222221
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.4096712572380845,
-        "y": 1.7094951144530413
+        "x": 2.9568398021308964,
+        "y": 5.435675894216133
       },
       "isLocked": false,
-      "linkedName": "Coral 3"
+      "linkedName": "Coral 6"
     },
     {
       "anchor": {
-        "x": 4.153647303577781,
-        "y": 1.4773559990620355
+        "x": 2.1060000000011176,
+        "y": 5.750750000000246
       },
       "prevControl": {
-        "x": 4.405334964805774,
-        "y": 1.6296195070505637
+        "x": 2.5673172974006886,
+        "y": 5.484211117058271
       },
       "nextControl": {
-        "x": 3.6776235962858594,
-        "y": 1.189375892272792
+        "x": 1.6672500000011177,
+        "y": 6.004250000000247
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.919235924932975,
-        "y": 0.5827077747989268
+        "x": 0.975,
+        "y": 7.164499999999999
       },
       "prevControl": {
-        "x": 2.2151464055173813,
-        "y": 1.1848479981007722
+        "x": 1.4332500000011175,
+        "y": 6.326000000000246
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": "HPL Right"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.56,
-      "rotationDegrees": 30.288338202540174
+      "waypointRelativePos": 0.7796954314720819,
+      "rotationDegrees": -95.40504533605713
+    },
+    {
+      "waypointRelativePos": 1.4233502538071037,
+      "rotationDegrees": -55.907499145237
     }
   ],
   "constraintZones": [],
@@ -55,20 +59,20 @@
   "eventMarkers": [
     {
       "name": "algaeRouttake",
-      "waypointRelativePos": 0.3095238095238096,
-      "endWaypointRelativePos": 1.6263269639065816,
+      "waypointRelativePos": 0.6973201692524703,
+      "endWaypointRelativePos": null,
       "command": null
     },
     {
       "name": "algaeRstop",
-      "waypointRelativePos": 1.7,
+      "waypointRelativePos": 1.3224259520451336,
       "endWaypointRelativePos": null,
       "command": null
     }
   ],
   "globalConstraints": {
     "maxVelocity": 3.0,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -76,13 +80,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.25319461272526
+    "rotation": -54.90418321297385
   },
   "reversed": false,
-  "folder": "Right start HP center ",
+  "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.35775354279127
+    "rotation": -60.3092734879832
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

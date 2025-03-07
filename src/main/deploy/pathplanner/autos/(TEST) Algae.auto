@@ -7,115 +7,97 @@
         {
           "type": "path",
           "data": {
-            "pathName": "St Cen - Cr4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.5
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.0
+            "pathName": "New New Path"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L4_Left"
+            "name": "algaeLow"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L4_Right"
+            "name": "algaeRintake"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L3_Left"
+            "name": "algaeRstop"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L3_Right"
+            "name": "algaeRouttake"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L2_Left"
+            "name": "algaeRstop"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "algaeRintake"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L2_Right"
+            "name": "algaeRstop"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "coral_L1_Left"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "coral_L1_Right"
+            "name": "robot_Home"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Start Center",
+  "folder": "Debug",
   "choreoAuto": false
 }

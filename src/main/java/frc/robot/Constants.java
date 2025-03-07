@@ -80,7 +80,7 @@ public final class Constants {
     public static final int armMotorID = 41;
     public static final int servoOpen = 75; //The degrees to open the servo to
     public static final int clOpenPosition = -206;
-
+    public static final int climberClose = 0;
 
     public static final int leftSwitchID = 7;
     public static final int rightSwitchID = 8;

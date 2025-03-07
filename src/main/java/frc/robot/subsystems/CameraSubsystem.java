@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class CameraSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  UsbCamera camera1;
-  UsbCamera camera2;
+
+  UsbCamera camera1; //front camera
+  UsbCamera camera2; //backup camera
   VideoSink server;
   boolean toggleCam = false;
 
@@ -22,13 +22,8 @@ public class CameraSubsystem extends SubsystemBase {
 
     camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
     camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
-        //server = CameraServer.getServer();
-        //server.setSource(camera1);
-    //camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-    //camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+    
     camera1.setResolution(70, 70);
-        //camera1.setPixelFormat(PixelFormat.kGray);
-        //camera2.setPixelFormat(PixelFormat.kGray);
     camera1.setFPS(15);
     camera2.setResolution(50, 50);
     camera2.setFPS(10);
@@ -38,56 +33,36 @@ public class CameraSubsystem extends SubsystemBase {
 
   }
 
-  /**
-   * Example command factory method.
-   *
-   * @return a command
-   */
-  public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
-  }
 
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
-  }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
   public void toggleCam()
   {
+    int i = 0;
+    System.out.println("Initiating camera switch, this may need a few attempts!");
     toggleCam = !toggleCam;
-    if(toggleCam)
+    if(toggleCam) //Sometimes it takes a second switch to get the camera actually working. (Kinda noticed I think my order of operations was just effed, oops!)
     {
       System.out.println("Switching to CAM 1: Closing CAM 2...") ;
-      server.setSource(camera1);
-      camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
-      camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
-    }
+      while(i < 4)
+      {
+        
+        server.setSource(camera1);
+        camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
+        camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
+        i++;
+      }
+      }
     else{
-
-      
       System.out.println("Switching to CAM 2: Closing CAM 1...") ;
-      server.setSource(camera2);
-      camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
-      camera1.setConnectionStrategy(ConnectionStrategy.kForceClose);
+      while(i < 4)
+      {
+        
+        server.setSource(camera2);
+        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
+        camera1.setConnectionStrategy(ConnectionStrategy.kForceClose);
+        i++;
+      }
+
       
     }
   }

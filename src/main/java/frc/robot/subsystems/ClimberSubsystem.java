@@ -119,7 +119,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   public void climberRun2() //pulls down the climber
   {
-    setpoint = 0;
+    setpoint = ClimberConstants.climberClose;
     lockClimb();
   }
 
