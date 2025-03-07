@@ -55,15 +55,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "coralRstop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRstop"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
+                }
+              }
+            ]
           }
         },
         {
@@ -108,19 +115,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L3_Right"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
                         "name": "algaeRintake"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPrc - Cr 2"
+                        "pathName": "HPrc - Cr 2 mid L4"
                       }
                     }
                   ]
@@ -235,12 +236,6 @@
                       "type": "path",
                       "data": {
                         "pathName": "HPrc - Cr 2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coral_L3_Left"
                       }
                     },
                     {

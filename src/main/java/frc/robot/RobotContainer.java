@@ -192,6 +192,10 @@ public class RobotContainer {
 
     private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
 
+
+    //public final static AlgaeMoveCommand a_closeAlgae = new AlgaeMoveCommand(m_AlgaeSubsystem, null, null, null)
+
+
     // private final //
 
 

@@ -3,49 +3,55 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5685000000000002,
-        "y": 3.1279999999999997
+        "x": 0.919,
+        "y": 0.5827077747989268
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8280861992950648,
-        "y": 2.025188506538761
+        "x": 1.6971432847784573,
+        "y": 1.3222704457163683
       },
       "isLocked": false,
-      "linkedName": "Coral 2"
+      "linkedName": "HPR Center"
     },
     {
       "anchor": {
-        "x": 0.919235924932975,
-        "y": 0.5827077747989268
+        "x": 3.5685000000000002,
+        "y": 3.1279999999999997
       },
       "prevControl": {
-        "x": 2.420701795514227,
-        "y": 3.805661751641459
+        "x": 3.008405006679931,
+        "y": 2.6173739527171946
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": "Coral 2"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.3527054108216433,
-      "rotationDegrees": 4.32996162560489
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "algaeRouttake",
-      "waypointRelativePos": 0.2484076433121019,
-      "endWaypointRelativePos": 0.7749469214437367,
+      "name": "algaeRintake",
+      "waypointRelativePos": 0.12424037812288641,
+      "endWaypointRelativePos": null,
       "command": null
     },
     {
-      "name": "algaeRstop",
-      "waypointRelativePos": 0.8853503184713375,
+      "name": "coral_L4_Right",
+      "waypointRelativePos": 0.5530232558139584,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "coral_L4_Right"
+        }
+      }
+    },
+    {
+      "name": "coral_L4_Right",
+      "waypointRelativePos": 0.638604651162779,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -60,13 +66,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.25319461272526
+    "rotation": 59.42077312751098
   },
   "reversed": false,
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.42077312751098
+    "rotation": 52.25319461272526
   },
   "useDefaultConstraints": true
 }
