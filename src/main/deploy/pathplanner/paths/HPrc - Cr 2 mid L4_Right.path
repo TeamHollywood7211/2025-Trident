@@ -33,12 +33,6 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "algaeRintake",
-      "waypointRelativePos": 0.12424037812288641,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
       "name": "coral_L4_Right",
       "waypointRelativePos": 0.5530232558139584,
       "endWaypointRelativePos": null,
