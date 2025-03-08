@@ -48,12 +48,6 @@
           "name": "coral_L4_Right"
         }
       }
-    },
-    {
-      "name": "coral_L4_Right",
-      "waypointRelativePos": 0.638604651162779,
-      "endWaypointRelativePos": null,
-      "command": null
     }
   ],
   "globalConstraints": {
