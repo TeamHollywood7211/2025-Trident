@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.StaticBrake;
 import com.ctre.phoenix6.hardware.CANrange;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -27,6 +29,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   double ElevatorSetpoint = encoderRight;
   CANrange rangeSensor = new CANrange(ElevatorConstants.canRangeID, RobotContainer.MainBus);
   boolean elevatorNotRead = false;
+
+  boolean emergencyHome = false;
   
   
   //We will trust the right motor as the main motor as it going up is always positive.
@@ -64,6 +68,22 @@ public class ElevatorSubsystem extends SubsystemBase {
       {
         RobotContainer.m_LedSubsystem.setRed();
         elevatorNotRead = true;
+      }
+    }
+
+
+    if(emergencyHome) //DO NOT RUN MOTORS WILL STOP 
+    {
+      double velocity = motorRight.getVelocity().getValueAsDouble();
+      if(Math.abs(velocity) < 0.1)
+      {
+        motorRight.setPosition(0);
+        motorLeft.setPosition(0);
+        emergencyHome = true;
+      }
+      else{
+        motorRight.set(-0.2);
+        motorLeft.set(0.2);
       }
     }
     

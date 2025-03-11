@@ -42,12 +42,6 @@
           "name": "algaeRouttake"
         }
       }
-    },
-    {
-      "name": "algaeRstop",
-      "waypointRelativePos": 0.7214285714285713,
-      "endWaypointRelativePos": null,
-      "command": null
     }
   ],
   "globalConstraints": {
