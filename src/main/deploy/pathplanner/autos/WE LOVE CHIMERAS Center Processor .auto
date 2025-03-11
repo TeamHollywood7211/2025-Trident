@@ -13,12 +13,6 @@
                 "data": {
                   "pathName": "St Cen - Cr4"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeLow"
-                }
               }
             ]
           }
@@ -30,7 +24,32 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeRintake"
+                  "name": "coralRouttake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.2
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeLow"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -53,15 +72,9 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 0.3
                 }
               }
             ]

@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.975,
-        "y": 7.164499999999999
+        "x": 0.9765624999999989,
+        "y": 7.183506944444445
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.919193540715372,
-        "y": 6.648810787671232
+        "x": 1.920756040715371,
+        "y": 6.667817732115678
       },
       "isLocked": false,
-      "linkedName": "HPL Right"
+      "linkedName": "HPL Center"
     },
     {
       "anchor": {
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "algaeRintake",
-      "waypointRelativePos": 0.29788961038961376,
+      "name": "coral_L4_Left",
+      "waypointRelativePos": 0.7404761904761903,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -55,7 +55,7 @@
   "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -54.90418321297385
+    "rotation": -52.802059046233836
   },
   "useDefaultConstraints": true
 }

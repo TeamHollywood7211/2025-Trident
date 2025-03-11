@@ -3,35 +3,42 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.007812499999999,
-        "y": 0.44722222222222174
+        "x": 0.9765624999999989,
+        "y": 7.183506944444445
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.988527397260274,
-        "y": 1.0649400684931507
+        "x": 1.920756040715371,
+        "y": 6.667817732115678
       },
       "isLocked": false,
-      "linkedName": "Processor"
+      "linkedName": "HPL Center"
     },
     {
       "anchor": {
-        "x": 2.6294948630136985,
-        "y": 1.1550941780821915
+        "x": 3.8415798611111103,
+        "y": 5.101128472222221
       },
       "prevControl": {
-        "x": 3.7413955479452046,
-        "y": 1.3804794520547932
+        "x": 2.970815496575341,
+        "y": 5.407724505327243
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Coral 6"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "coral_L4_Right",
+      "waypointRelativePos": 0.7404761904761903,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -42,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 5.355825042855184
+    "rotation": -60.3092734879832
   },
   "reversed": false,
-  "folder": "Middel",
+  "folder": "Left Start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -91.29881929584059
+    "rotation": -52.802059046233836
   },
   "useDefaultConstraints": true
 }
