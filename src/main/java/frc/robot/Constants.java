@@ -36,7 +36,7 @@ public final class Constants {
       public static final double home = 1
       ;//0.66;
 
-      public static final double grabbing = -15;//0.81;//-14; 
+      public static final double grabbing = -17;//0.81;//-14; 
       public static final double grabbingHome = -10;//0.691;//-10;
       public static final double lowpos = -4;
       //public static final int home = 0.66;
@@ -125,6 +125,29 @@ public final class Constants {
   }
 
 
+  public static class autoAlign{
+    public static final double X_REEF_ALIGNMENT_P = 3.3;
+    public static final double X_SETPOINT_REEF_ALIGNMENT = -0.34;
+    public static final double X_TOLERANCE_REEF_ALIGNMENT = 0.02;
+    
+    
+    
+    public static final double Y_REEF_ALIGNMENT_P = 3.3;
+    public static final double Y_SETPOINT_REEF_ALIGNMENT = 0.16;
+    public static final double Y_TOLERANCE_REEF_ALIGNMENT = 0.02;
+
+
+
+    public static final double ROT_REEF_ALIGNMENT_P = 0.058;
+    public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0;
+    public static final double ROT_TOLERANCE_REEF_ALIGNMENT = 1;
+
+    public static final double DONT_SEE_TAG_TIMER = 0.5;
+    public static final double POSE_VALIDATION_TIME = 0.5;
+    
+
+
+  }
 
   public static class ImportantPositions { //Holds all our important positions for pathplanner
     

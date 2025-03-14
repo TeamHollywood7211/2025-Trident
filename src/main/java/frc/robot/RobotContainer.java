@@ -6,6 +6,8 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import javax.naming.NameNotFoundException;
+
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
@@ -39,7 +41,10 @@ import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.HomeAllCommand;
 import frc.robot.commands.waitIntakeCommand;
 import frc.robot.commands.AllMoveCommand;
+import frc.robot.commands.AllMoveCommandWait;
+import frc.robot.commands.AutoAlignCommand;
 import frc.robot.commands.AlgaeMoveCommand;
+import frc.robot.commands.AlgaeMoveCommandWait;
 import frc.robot.commands.Autos.auto_algaeRunner;
 import frc.robot.commands.Autos.auto_coralRunner;
 import frc.robot.commands.Autos.auto_waitIntake;
@@ -81,7 +86,7 @@ public class RobotContainer {
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
     // private final SwerveRequest.PointWheelsAt point = new
     // SwerveRequest.PointWheelsAt();
-    private final static SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
+    public final static SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
     private final CameraSubsystem m_CameraSubsystem = new CameraSubsystem();
@@ -119,9 +124,12 @@ public class RobotContainer {
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
-    
-    
+
+
     //AUTO COMMANDS
+
+    private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
+
     private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, m_ElevatorSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
 
 
@@ -155,6 +163,10 @@ public class RobotContainer {
     private final AlgaeMoveCommand a_algaeFloor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbing);
     private final AlgaeMoveCommand a_algaeProcessor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem
+    , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
+
+
+    private final AlgaeMoveCommandWait a_algaeProcessorWait = new AlgaeMoveCommandWait(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
 
     
@@ -229,6 +241,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("algaeLow"    ,     a_algaeLow); //Algae bottom
         NamedCommands.registerCommand("algaeFloor"  ,   a_algaeFloor); //Picking up/placing from floor
         NamedCommands.registerCommand("algaeProcessor"  ,   a_algaeProcessor); //Placing in the processor
+        NamedCommands.registerCommand("algaeProcessorWait", a_algaeProcessorWait);
+        
         //Coral positions
         //THESE ARE LEFT
         NamedCommands.registerCommand("coral_L2_Left", a_coralLowL); //Coral low tier
@@ -256,7 +270,9 @@ public class RobotContainer {
         NamedCommands.registerCommand("coralRouttake", a_coralOuttake);
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
-        
+        NamedCommands.registerCommand("autoPos", a_autoAligncommand);
+
+
         
         DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
 
@@ -315,6 +331,9 @@ public class RobotContainer {
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
         driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
+
+
+        driverStick.start().onTrue(a_autoAligncommand);
 
         //
 
@@ -480,6 +499,8 @@ public class RobotContainer {
 
         return targetingAngularVelocity;
     }
+
+
 
     public void followAprilTag() { // Basic method for driving towards a limelight.
                                    
