@@ -27,11 +27,15 @@ public class AlgaeSubsystem extends SubsystemBase {
 
   double wristSetpoint = encoder.getAbsolutePosition().getValueAsDouble();
 
-  PIDController wristPID = new PIDController(0.03, 0, 0.06);
+  PIDController wristPID = new PIDController(0.050, 0, 0.06);
+
+  
 
     //TalonFXSConfiguration config = new TalonFXSConfiguration();
 
-    public AlgaeSubsystem(){}
+    public AlgaeSubsystem(){
+      wristPID.setTolerance(0.01);
+    }
     public Command exampleMethodCommand() {
   
       return runOnce(
@@ -51,13 +55,19 @@ public class AlgaeSubsystem extends SubsystemBase {
       double encoderVal = encoder.getAbsolutePosition().getValueAsDouble();
 
 
-      SmartDashboard.putNumber("Wrist Encoder", encoderVal);
-      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint);
-      
+      SmartDashboard.putNumber("Wrist Encoder", encoderVal)                ;
+      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint)            ;
+      SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint());
+      //SmartDashboard.putNumber("Wrist error", );
 
-      wristMotor.set(MathUtil.clamp(
-        wristPID.calculate(encoderVal, wristSetpoint),
-       -1, 1));
+
+      if(!wristPID.atSetpoint())
+      {
+
+        wristMotor.set(MathUtil.clamp(
+          wristPID.calculate(encoderVal, wristSetpoint),
+         -0.5, 0.5));
+      }
     }
   
     @Override
@@ -74,7 +84,7 @@ public class AlgaeSubsystem extends SubsystemBase {
   
     public void addPosition(double val)
     {
-      wristSetpoint += val/4;
+      wristSetpoint += val/6;
     }
     public void setPosition(double val)
     {

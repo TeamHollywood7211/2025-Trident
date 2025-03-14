@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFXS;
+import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
@@ -25,7 +27,10 @@ public class AlgaeSubsystem extends SubsystemBase {
   TalonFXS wristMotor =  new TalonFXS(AlgaeConstants.wristID, RobotContainer.MainBus) ;
   DigitalInput algaeSensor = new DigitalInput(AlgaeConstants.algaeSwitch);
   //DigitalInput encoder = new DigitalInput(1);
-  DutyCycleEncoder encoder = new DutyCycleEncoder(1);
+  //DutyCycleEncoder encoder = new DutyCycleEncoder(1);
+  CANcoder encoder = new CANcoder(46);
+
+
 
   double wristEncoder = wristMotor.getPosition().getValueAsDouble();
   double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
@@ -48,11 +53,18 @@ public class AlgaeSubsystem extends SubsystemBase {
       //var wristSim = wristMotor.getSimState();
       wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
 
-      SmartDashboard.putNumber("Encoder", encoder.get());
+      SmartDashboard.putNumber("Encoder", encoder.getAbsolutePosition().getValueAsDouble());
       
-      wristMotor.set(MathUtil.clamp(
-        wristPID.calculate(wristEncoder, wristSetpoint),
-       -1, 1));
+      
+      
+      if(!wristPID.atSetpoint())
+      {
+        wristMotor.set(MathUtil.clamp(
+          wristPID.calculate(wristEncoder, wristSetpoint),
+         -1, 1));
+  
+      }
+
 
 
        if(readSensor())
