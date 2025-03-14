@@ -17,7 +17,26 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coral_L4_Left"
+                  "name": "coral_L3_Left"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "autoPos"
                 }
               }
             ]
@@ -38,12 +57,6 @@
                 "data": {
                   "name": "coralRouttake"
                 }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.2
-                }
               }
             ]
           }
@@ -52,12 +65,6 @@
           "type": "sequential",
           "data": {
             "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRintake"
-                }
-              },
               {
                 "type": "wait",
                 "data": {
@@ -114,13 +121,19 @@
         {
           "type": "named",
           "data": {
+            "name": "algaeProcessorWait"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "algaeRouttake"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.3
           }
         },
         {
@@ -148,20 +161,20 @@
                       "data": {
                         "name": "algaeHigh"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
+                      }
                     }
                   ]
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "algaeRintake"
-                }
-              },
-              {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.3
                 }
               },
               {
@@ -187,6 +200,12 @@
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeProcessorWait"
                 }
               },
               {
