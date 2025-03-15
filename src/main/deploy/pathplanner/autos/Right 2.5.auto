@@ -30,6 +30,19 @@
           }
         },
         {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "autoPos"
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -51,7 +64,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.175
           }
         },
         {
@@ -105,7 +118,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.4
+                  "waitTime": 0.35
                 }
               },
               {
@@ -128,9 +141,15 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "autoPos"
+                }
+              },
+              {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.6
+                  "waitTime": 0.2
                 }
               },
               {
@@ -260,6 +279,19 @@
                     {
                       "type": "named",
                       "data": {
+                        "name": "autoPos"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
                         "name": "coralRouttake"
                       }
                     }
@@ -273,15 +305,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "coralRstop"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRouttake"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralRstop"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRstop"
+                      }
+                    }
+                  ]
                 }
               },
               {
