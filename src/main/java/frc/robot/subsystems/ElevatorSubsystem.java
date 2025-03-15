@@ -44,6 +44,9 @@ public class ElevatorSubsystem extends SubsystemBase {
     double currentRightPos = getMotorRightPosition();
     ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, Constants.ElevatorConstants.positions.max); //Clamps the values for safety
 
+
+    SmartDashboard.putNumber("ELEVATOR VOLTAGE", motorRight.getMotorVoltage().getValueAsDouble());
+
     if(intakeClear()) //intakeClear() just checks if the range sensor on the robot sees a note.
     { 
       motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //The actual code for the PID loops
@@ -71,7 +74,7 @@ public class ElevatorSubsystem extends SubsystemBase {
       }
     }
 
-
+    /* 
     if(emergencyHome) //DO NOT RUN MOTORS WILL STOP 
     {
       double velocity = motorRight.getVelocity().getValueAsDouble();
@@ -85,7 +88,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         motorRight.set(-0.2);
         motorLeft.set(0.2);
       }
-    }
+    }*/
     
   }
   /**
@@ -132,6 +135,13 @@ public class ElevatorSubsystem extends SubsystemBase {
   {
     return rangeSensor.getDistance().getValueAsDouble();
   }
+
+  public double getElevatorPosition()
+  {
+    SmartDashboard.putNumber("Elevator Pos", getMotorRightPosition());
+    return Math.abs(getMotorRightPosition());
+  }
+
 
   /**
    * Checks if the intake/elevator is clear

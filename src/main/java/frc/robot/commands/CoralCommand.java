@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.CoralSubsystem;
 //import frc.robot.Constants.*;
@@ -30,9 +31,17 @@ public class CoralCommand extends Command {
   @Override
   
   public void execute() {
+    double power = 1.00;
 
+    if(RobotContainer.m_ElevatorSubsystem.getElevatorPosition() < Constants.ElevatorConstants.positions.c_low)
+    {
+      power = 0.3;
+    }
     m_coral.runCoral(
-      RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean())
+      
+
+
+      RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean()) * power
     );
     if(m_bb0.button(9).getAsBoolean())
     {

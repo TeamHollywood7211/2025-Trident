@@ -69,8 +69,8 @@ public class RobotContainer {
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
     
-    public static CANBus MainBus = new CANBus("rio");    
-    
+    public static CANBus MainBus = new CANBus("rio");
+
     public static VideoSink server;
 
 
@@ -347,8 +347,8 @@ public class RobotContainer {
 
 
         buttonBox2.button(10).onTrue(a_coralHighL);
-        buttonBox2.button(8).onTrue(a_coralMidL);
-        buttonBox2.button(11).onTrue(a_coralLowL);
+        buttonBox2.button(5).onTrue(a_coralMidL);
+        buttonBox1.button(11).onTrue(a_coralLowL);
 
 
 

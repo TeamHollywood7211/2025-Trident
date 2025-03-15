@@ -33,17 +33,22 @@ public final class Constants {
 
 
     public static class positions {
-      public static final double home = 1
+      public static final double home = 0.2;
       ;//0.66;
 
-      public static final double grabbing = -17;//0.81;//-14; 
-      public static final double grabbingHome = -10;//0.691;//-10;
-      public static final double lowpos = -4;
+      public static final double grabbing = 0.42;//0.81;//-14; 
+      public static final double grabbingHome = 0.25;//0.691;//-10;
+      public static final double lowpos = 0.22;
       //public static final int home = 0.66;
 
       public static final int safety = 2; //TODO: Grab better safety positions :3
                                 //Positive values bypass the safety
     
+      public static final double top = 0.2;
+      public static final double bottomL1 = 0.31; //The lowest value if we are below L1 (maybe change to L2)
+      public static final double bottomPostL1 = 0.42; //The lowest value after L1 (read above for maybe)
+
+
     }
 
 

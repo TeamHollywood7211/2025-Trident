@@ -5,13 +5,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFXS;
-import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -19,26 +17,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.AlgaeConstants;
+import frc.robot.Constants.ElevatorConstants;
 
 
 
 public class AlgaeSubsystem extends SubsystemBase {
-  TalonFXS intakeMotor = new TalonFXS(AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
-  TalonFXS wristMotor =  new TalonFXS(AlgaeConstants.wristID, RobotContainer.MainBus) ;
-  DigitalInput algaeSensor = new DigitalInput(AlgaeConstants.algaeSwitch);
-  //DigitalInput encoder = new DigitalInput(1);
-  //DutyCycleEncoder encoder = new DutyCycleEncoder(1);
-  CANcoder encoder = new CANcoder(46);
+  TalonFX intakeMotor = new TalonFX(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
+  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
 
+  CANcoder encoder = new CANcoder(46, RobotContainer.MainBus);
 
+  double wristSetpoint = encoder.getAbsolutePosition().getValueAsDouble();
 
-  double wristEncoder = wristMotor.getPosition().getValueAsDouble();
-  double wristSetpoint = wristMotor.getPosition().getValueAsDouble(); 
-  PIDController wristPID = new PIDController(0.03, 0, 0.005);
-  boolean algaeNotRead = false;
+  PIDController wristPID = new PIDController(5.0, 0, 0.000006);
+
+  
+
     //TalonFXSConfiguration config = new TalonFXSConfiguration();
-    
-    public AlgaeSubsystem(){}
+
+    public AlgaeSubsystem(){
+      wristPID.setTolerance(0.00001);
+    }
     public Command exampleMethodCommand() {
   
       return runOnce(
@@ -46,46 +45,40 @@ public class AlgaeSubsystem extends SubsystemBase {
   
           });
     }
-
   
     @Override
     public void periodic() {
-      //var wristSim = wristMotor.getSimState();
-      wristEncoder = wristMotor.getPosition().getValueAsDouble(); //20
+      
+      double encoderVal = encoder.getAbsolutePosition().getValueAsDouble();
 
-      SmartDashboard.putNumber("Encoder", encoder.getAbsolutePosition().getValueAsDouble());
-      
-      
-      
-      if(!wristPID.atSetpoint())
+
+      SmartDashboard.putNumber("Wrist Encoder", encoderVal)                ;
+      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint)            ;
+      SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint());
+      SmartDashboard.putNumber("Wrist error", wristPID.getError());
+
+      wristPID.setSetpoint(wristSetpoint);
+      double bottomPos;
+
+      if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < ElevatorConstants.positions.c_low)
       {
-        wristMotor.set(MathUtil.clamp(
-          wristPID.calculate(wristEncoder, wristSetpoint),
-         -1, 1));
-  
+        bottomPos = AlgaeConstants.positions.bottomL1;
+      }
+      else
+      {
+        bottomPos = AlgaeConstants.positions.bottomPostL1;
       }
 
+      wristSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
 
-
-       if(readSensor())
-       {
-        RobotContainer.m_LedSubsystem.setTeal();
-        algaeNotRead = false;
-       }
-       else
-       {
-        if(!algaeNotRead)
-        {
-          algaeNotRead = true;
-          RobotContainer.m_LedSubsystem.setRed();
-        }
-       }
+      if(!wristPID.atSetpoint())
+      {
+        wristMotor.set(-MathUtil.clamp(
+          wristPID.calculate(encoderVal, wristSetpoint),
+         -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
+      }
     }
   
-    @Override
-    public void simulationPeriodic() {
-      // This method will be called once per scheduler run during simulation
-    }
 
     public void runGrip(double speed)
     {
@@ -95,7 +88,7 @@ public class AlgaeSubsystem extends SubsystemBase {
   
     public void addPosition(double val)
     {
-      wristSetpoint += val;
+      wristSetpoint += val/20;
     }
     public void setPosition(double val)
     {
@@ -103,27 +96,18 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
     public double getPosition()
     {
-      return wristMotor.getPosition().getValueAsDouble();
+      return encoder.getAbsolutePosition().getValueAsDouble();
     }
-
-
     public void gotoIn()
     {
         setPosition(0);
     }
     public void gotoOut()
     {
-      setPosition(AlgaeConstants.positions.grabbing);
+      setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
     public double getTarget()
     {
       return wristSetpoint;
     }
-    
-    public boolean readSensor(){
-      return !algaeSensor.get();
-    }
-
-
-
 }
