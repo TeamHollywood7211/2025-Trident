@@ -153,6 +153,12 @@ public final class Constants {
 
 
   }
+  public static class LEDValues {
+    public static final int numLED = 308;
+    public static final int teamR = 255;
+    public static final int teamG = 0;
+    public static final int teamB = 0;
+  }
 
   public static class ImportantPositions { //Holds all our important positions for pathplanner
     

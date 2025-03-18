@@ -142,7 +142,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     return Math.abs(getMotorRightPosition());
   }
 
-
   /**
    * Checks if the intake/elevator is clear
    */

@@ -18,21 +18,21 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
-public class AutoAlignCommand extends Command {
+public class AutoAlignManualCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final CommandSwerveDrivetrain m_drivetrain;
   private final boolean isRightScore;
   private PIDController rotController;
   private Timer dontSeeTagTimer, stopTimer;
   private double tagID = -1;
-  private double maxSpeed = 1;
+  private double maxSpeed = RobotContainer.MaxSpeed/2;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AutoAlignCommand(boolean isRightScore, CommandSwerveDrivetrain drivetrain) {
+  public AutoAlignManualCommand(boolean isRightScore, CommandSwerveDrivetrain drivetrain) {
     m_drivetrain = drivetrain;
     this.isRightScore = isRightScore;
     rotController = new PIDController(autoAlign.ROT_REEF_ALIGNMENT_P, 0, 0);
@@ -56,9 +56,6 @@ public class AutoAlignCommand extends Command {
     rotController.setSetpoint(autoAlign.ROT_SETPOINT_REEF_ALIGNMENT);
     rotController.setTolerance(autoAlign.ROT_TOLERANCE_REEF_ALIGNMENT);
 
-
-
-
     if(LimelightHelpers.getTV(""))
     {
       tagID = LimelightHelpers.getFiducialID("");
@@ -79,33 +76,27 @@ public class AutoAlignCommand extends Command {
       final var forward_limelight = RobotContainer.limelight_range_proportional();
       final var hori_limelight = RobotContainer.limelight_aim_proportional();
         
-      System.out.println("(AUTO ALIGN): CURRENT TIMER: " + stopTimer.get());
+      //System.out.println("(AUTO ALIGN): CURRENT TIMER: " + stopTimer.get());
 
       double xSpeed = forward_limelight;
       double ySpeed = hori_limelight;
 
       double rotValue = -rotController.calculate(positions[4]);
 
-
       xSpeed = MathUtil.clamp(xSpeed, -maxSpeed, maxSpeed);
       ySpeed = MathUtil.clamp(ySpeed, -maxSpeed, maxSpeed);
 
+      if(rotController.atSetpoint())
+      {
+        rotValue = 0;
+      }
 
-      //xSpeed = (yController.getError() < autoAlign.Y_TOLERANCE_REEF_ALIGNMENT ? xSpeed : 0);
 
       m_drivetrain.setControl(
         RobotContainer.forwardStraight.withVelocityX(xSpeed)
         .withVelocityY(ySpeed)
         .withRotationalRate(rotValue)
       );      
-
-
-      /*if(!rotController.atSetpoint() ||
-        !xController.atSetpoint() ||
-          !yController.atSetpoint()) {
-            stopTimer.reset();
-          }*/
-
 
     }
     else{
@@ -125,7 +116,6 @@ public class AutoAlignCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.dontSeeTagTimer.hasElapsed(autoAlign.DONT_SEE_TAG_TIMER) || 
-      stopTimer.hasElapsed(autoAlign.POSE_VALIDATION_TIME);
+    return false;
   }
 }

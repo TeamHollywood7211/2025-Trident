@@ -10,6 +10,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,6 +25,8 @@ import frc.robot.Constants.ElevatorConstants;
 public class AlgaeSubsystem extends SubsystemBase {
   TalonFX intakeMotor = new TalonFX(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
   TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
+  DigitalInput algaeSensor = new DigitalInput(AlgaeConstants.algaeSwitch);
+
 
   CANcoder encoder = new CANcoder(46, RobotContainer.MainBus);
 
@@ -32,7 +35,7 @@ public class AlgaeSubsystem extends SubsystemBase {
   PIDController wristPID = new PIDController(5.0, 0, 0.000006);
 
   
-
+  boolean algaeNotRead = false;
     //TalonFXSConfiguration config = new TalonFXSConfiguration();
 
     public AlgaeSubsystem(){
@@ -77,6 +80,21 @@ public class AlgaeSubsystem extends SubsystemBase {
           wristPID.calculate(encoderVal, wristSetpoint),
          -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
       }
+
+
+      if(readSensor())
+       {
+        RobotContainer.m_LedSubsystem.setTeal();
+        algaeNotRead = false;
+       }
+       else
+       {
+        if(!algaeNotRead)
+        {
+          algaeNotRead = true;
+          RobotContainer.m_LedSubsystem.setRed();
+        }
+       }
     }
   
 
@@ -100,7 +118,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
     public void gotoIn()
     {
-        setPosition(0);
+        setPosition(Constants.AlgaeConstants.positions.home);
     }
     public void gotoOut()
     {
@@ -109,5 +127,10 @@ public class AlgaeSubsystem extends SubsystemBase {
     public double getTarget()
     {
       return wristSetpoint;
+    }
+
+
+    public boolean readSensor(){
+      return !algaeSensor.get();
     }
 }

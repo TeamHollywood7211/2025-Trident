@@ -43,6 +43,7 @@ import frc.robot.commands.waitIntakeCommand;
 import frc.robot.commands.AllMoveCommand;
 import frc.robot.commands.AllMoveCommandWait;
 import frc.robot.commands.AutoAlignCommand;
+import frc.robot.commands.AutoAlignManualCommand;
 import frc.robot.commands.AlgaeMoveCommand;
 import frc.robot.commands.AlgaeMoveCommandWait;
 import frc.robot.commands.Autos.auto_algaeRunner;
@@ -68,6 +69,7 @@ public class RobotContainer {
     public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Gonna be so On G I have no clue if this actually did anything lol
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
+    public static boolean forceLEDoff = false;
     
     public static CANBus MainBus = new CANBus("rio");
 
@@ -78,7 +80,7 @@ public class RobotContainer {
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     public final static ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
-    public final static        LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
+    public final static LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -116,8 +118,6 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-
-
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
@@ -129,6 +129,8 @@ public class RobotContainer {
     //AUTO COMMANDS
 
     private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
+
+    private final AutoAlignManualCommand a_AutoAlignManualCommand = new AutoAlignManualCommand(false, drivetrain);
 
     private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, m_ElevatorSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
 
@@ -182,6 +184,9 @@ public class RobotContainer {
     private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.home);
     
+    
+
+
 
 
     //private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
@@ -330,7 +335,7 @@ public class RobotContainer {
         // reset the field-centric heading on left bumper press
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
-        driverStick.x().whileTrue(drivetrain.run(() -> followAprilTag()));
+        driverStick.x().whileTrue(a_AutoAlignManualCommand);
 
 
         driverStick.start().onTrue(a_autoAligncommand);
@@ -484,7 +489,7 @@ public class RobotContainer {
         // if it is too high, the robot will oscillate.
         // if it is too low, the robot will never reach its target
         // if the robot never turns in the correct direction, kP should be inverted.
-        double kP = .035;
+        double kP = .014;
 
         // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the
         // rightmost edge of

@@ -13,12 +13,19 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
+  public static boolean runBootAnimation = false;
 
   private final boolean kUseLimelight = false;
 
+  
   public Robot() {
     m_robotContainer = new RobotContainer();
+    RobotContainer.m_LedSubsystem.setOff();
+    runBootAnimation = true;
   }
+
+  
+
 
   @Override
   public void robotPeriodic() {
@@ -84,7 +91,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_robotContainer.m_LedSubsystem.setRed();
+    //m_robotContainer.m_LedSubsystem.setRed();
   }
 
   @Override
@@ -93,7 +100,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopExit() {}
+  public void teleopExit() {
+    RobotContainer.m_LedSubsystem.setTwinkle();
+  }
 
   @Override
   public void testInit() {
@@ -104,7 +113,9 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {}
 
   @Override
-  public void testExit() {}
+  public void testExit() {
+    
+  }
 
   @Override
   public void simulationPeriodic() {}
