@@ -19,13 +19,17 @@ import com.ctre.phoenix.led.SingleFadeAnimation;
 import com.ctre.phoenix.led.TwinkleAnimation;
 
 public class LEDSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
+  
+  //Sets up the CANdle object (CANdle is the LED Controller)
+  CANdle LED = new CANdle(LEDConstants.ID, RobotContainer.MainBus.getName()); 
+  //We use .getName() on MainBus since CANdle() doesnt except a CANBUS object, but a string of its name.
 
-  //CANdle LED = new CANdle(LEDConstants.ID);
-  CANdle LED = new CANdle(LEDConstants.ID, RobotContainer.MainBus.getName());
 
-  int numLED = LEDValues.numLED;
+  
 
+  int numLED = LEDValues.numLED; 
+
+  //These are for the fancy LED animation that doesnt work properly
   int baLEDLeft = 1; //Boot Animation LED Left
   int baLEDRight = numLED; //Boot ANimated LED Right
   boolean baCalledRedFade = false;
@@ -36,9 +40,10 @@ public class LEDSubsystem extends SubsystemBase {
   double bootDelay = 60;
 
 
+
+  //These are the actual preset animations.
   SingleFadeAnimation redFadeAnim;
   TwinkleAnimation twinkleAnim;
-
   RainbowAnimation rainbow = new RainbowAnimation(255, 0.2, 999);
 
 
@@ -50,6 +55,8 @@ public class LEDSubsystem extends SubsystemBase {
     twinkleAnim = new TwinkleAnimation(12, 250, 140);
     twinkleAnim.setNumLed(numLED);
     twinkleAnim.setSpeed(0.05);
+
+    
     
   }
 
@@ -91,7 +98,7 @@ public class LEDSubsystem extends SubsystemBase {
     {
       if(bootDelay < 0)
       {
-        if(baLEDLeft < baLEDRight)
+        if(baLEDLeft < baLEDRight) //Starts filling the LEDs from left end to right and vice versa, but when crossed we count it as filled in.
         {
           LED.setLEDs((int)baLEDR, (int)baLEDG, (int)baLEDB, 0, baLEDLeft, 1);
           LED.setLEDs((int)baLEDR, (int)baLEDG, (int)baLEDB, 0, baLEDRight, 1);
@@ -101,21 +108,22 @@ public class LEDSubsystem extends SubsystemBase {
         }
         else
         {
-          if(!baCalledRedFade)
+          if(!baCalledRedFade) //Once filled in, we dim all the lights to mimic the fade animation.
           {
-            baLEDR = MathUtil.interpolate(baLEDR, 0, 0.06); //dimming time baby
+            baLEDR = MathUtil.interpolate(baLEDR, 0, 0.06); //interpolate smoothly interpolates the two inputs.
             baLEDG = MathUtil.interpolate(baLEDG, 0, 0.06);
             baLEDB = MathUtil.interpolate(baLEDB, 0, 0.06);
-            
-            baLEDR = MathUtil.clamp(baLEDR, 0, 255); //clamping time baby
+            baLEDR = MathUtil.clamp(baLEDR, 0, 255); //We clamp the values between the lowest and highest possible value.
             baLEDB = MathUtil.clamp(baLEDB, 0, 255);
             baLEDG = MathUtil.clamp(baLEDG, 0, 255);
   
-            setLEDs((int)baLEDR, (int)baLEDG, (int)baLEDB);
-            
-            if(baLEDR+baLEDG+baLEDB <= 1) //Haha look at me doing something partially smart
+            setLEDs((int)baLEDR, (int)baLEDG, (int)baLEDB); //We set the values
+
+            //setLEDs() only accepts ints (full values) so we have to convert our values over to ints.
+
+            if(baLEDR+baLEDG+baLEDB <= 1) 
             {
-              animRedFade();
+              animRedFade(); //Once done we run the red fade animation.
               baCalledRedFade = true;
             }
           }
@@ -123,19 +131,19 @@ public class LEDSubsystem extends SubsystemBase {
       }
       else
       {
-        bootDelay -= 1;
+        bootDelay -= 1; //Im forcing the LEDs off to counteract the LEDs defaulting to on from other subsystems. (Im too lazy to fix it.)
         setOff();
       }
       
     }
-    if(RobotContainer.forceLEDoff)
+    if(RobotContainer.forceLEDoff) 
     {
       setLEDs(0, 0, 0);
     }
     //setErrors();
   } 
 
-  public void setLEDs(int R, int B, int G)
+  public void setLEDs(int R, int B, int G) 
   {
     clearAnimation();
     LED.setLEDs(R, G, B, 255, 0  , numLED-10);
@@ -148,7 +156,7 @@ public class LEDSubsystem extends SubsystemBase {
 
   }
 
-  public void setErrors()
+  public void setErrors() //UNUSED: Meant to  display errors on the LED strip. 
   {
     LED.setLEDs(0, 255, 255, 255, numLED-10, 10);
 

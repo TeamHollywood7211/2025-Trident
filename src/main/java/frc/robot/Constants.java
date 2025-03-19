@@ -33,21 +33,23 @@ public final class Constants {
 
 
     public static class positions {
-      public static final double home = 0.2;
+      public static final double offset = 0.26;
+      public static final double home = 0.2-offset;
       ;//0.66;
 
-      public static final double grabbing = 0.42;//0.81;//-14; 
-      public static final double grabbingHome = 0.25;//0.691;//-10;
-      public static final double lowpos = 0.22;
+      public static final double grabbing = 0.42-offset;//0.81;//-14; 
+      public static final double grabbingHome = 0.25-offset;//0.691;//-10;
+      public static final double lowpos = 0.22-offset;
       //public static final int home = 0.66;
 
       public static final int safety = 2; //TODO: Grab better safety positions :3
                                 //Positive values bypass the safety
     
-      public static final double top = 0.2;
-      public static final double bottomL1 = 0.31; //The lowest value if we are below L1 (maybe change to L2)
-      public static final double bottomPostL1 = 0.42; //The lowest value after L1 (read above for maybe)
+      public static final double top = 0.2-offset;
+      public static final double bottomL1 = 0.31-offset; //The lowest value if we are below L1 (maybe change to L2)
+      public static final double bottomPostL1 = 0.42-offset; //The lowest value after L1 (read above for maybe)
 
+      
 
     }
 
@@ -83,7 +85,8 @@ public final class Constants {
   }
   public static class ClimberConstants {
     public static final int armMotorID = 41;
-    public static final int servoOpen = 75; //The degrees to open the servo to
+    public static final int servoOpen = 40; //The degrees to open the servo to
+    public static final int servoClose = 115;
     public static final int clOpenPosition = -206;
     public static final int climberClose = 0;
 
@@ -114,7 +117,7 @@ public final class Constants {
 
 
 
-      public static final int max =           120;
+      public static final int max =           106;
 
       public static final int c_home = 0;
       public static final int c_bottom = 11; //THESE ARE TEMP

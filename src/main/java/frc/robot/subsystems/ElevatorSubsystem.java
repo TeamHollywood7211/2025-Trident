@@ -21,15 +21,22 @@ import frc.robot.RobotContainer;
 
 public class ElevatorSubsystem extends SubsystemBase {
 
-  TalonFX motorLeft = new TalonFX(ElevatorConstants.leftMotorID, RobotContainer.MainBus)  ; //Sets up the motors
-  TalonFX motorRight = new TalonFX(ElevatorConstants.rightMotorID, RobotContainer.MainBus);
-  PIDController ArmPID = new PIDController(0.03, 0, 0.0005); //PID for the arm
+  TalonFX motorLeft = new TalonFX(ElevatorConstants.rightMotorID, RobotContainer.MainBus)  ; //Sets up the motors
+  TalonFX motorRight = new TalonFX(ElevatorConstants.leftMotorID, RobotContainer.MainBus);
+  //
+  // Had to swap the left and right motors for main bot. This looks really bad :(
+  //
+
+  PIDController ArmPID = new PIDController(0.03, 0, 0.0009); //PID for the arm
+  
+  
   double encoderLeft = motorLeft.getPosition().getValueAsDouble(); //Gets the encoder values of the left and right motor
   double encoderRight = motorRight.getPosition().getValueAsDouble();
+  
   double ElevatorSetpoint = encoderRight;
+  
   CANrange rangeSensor = new CANrange(ElevatorConstants.canRangeID, RobotContainer.MainBus);
   boolean elevatorNotRead = false;
-
   boolean emergencyHome = false;
   
   
@@ -40,19 +47,25 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    double currentLeftPos = getMotorLeftPosition(); //Gets positions
-    double currentRightPos = getMotorRightPosition();
+    double currentLeftPos = getMotorLeftPosition()   ; // Gets positions
+    double currentRightPos = getMotorRightPosition() ;
     ElevatorSetpoint = MathUtil.clamp(ElevatorSetpoint, 0, Constants.ElevatorConstants.positions.max); //Clamps the values for safety
 
+    
 
     SmartDashboard.putNumber("ELEVATOR VOLTAGE", motorRight.getMotorVoltage().getValueAsDouble());
 
     if(intakeClear()) //intakeClear() just checks if the range sensor on the robot sees a note.
     { 
-      motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //The actual code for the PID loops
+      motorLeft.set (MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //The actual code for the PID loops
       motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -1, 1));
       SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint); //Sends debug information to SmartDashboard
       SmartDashboard.putNumber("Elevator Position", currentRightPos) ;
+
+      SmartDashboard.putNumber("Elevator Left" , currentLeftPos );
+      SmartDashboard.putNumber("Elevator Right", currentRightPos);
+
+
     }
     else
     {
@@ -95,7 +108,7 @@ public class ElevatorSubsystem extends SubsystemBase {
    * SETS the setpoint of this subsystem, use for auto control
    * @param val The value to set to
    */
-  public void setPosition(double val) 
+  public void setPosition(double val)
   {
     if(intakeClear())
     {

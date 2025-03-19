@@ -19,6 +19,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.AlgaeConstants;
 import frc.robot.Constants.ElevatorConstants;
+import frc.robot.commands.AlgaeCommand;
 
 
 
@@ -59,6 +60,7 @@ public class AlgaeSubsystem extends SubsystemBase {
       SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint)            ;
       SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint());
       SmartDashboard.putNumber("Wrist error", wristPID.getError());
+      SmartDashboard.putNumber("Wrist Home", AlgaeConstants.positions.home);
 
       wristPID.setSetpoint(wristSetpoint);
       double bottomPos;

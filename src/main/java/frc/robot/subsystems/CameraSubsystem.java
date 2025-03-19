@@ -45,10 +45,9 @@ public class CameraSubsystem extends SubsystemBase {
       System.out.println("Switching to CAM 1: Closing CAM 2...") ;
       while(i < 4)
       {
-        
-        server.setSource(camera1);
         camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
         camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
+        server.setSource(camera1);
         i++;
       }
       }
@@ -57,9 +56,10 @@ public class CameraSubsystem extends SubsystemBase {
       while(i < 4)
       {
         
-        server.setSource(camera2);
-        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
+        
+        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ; //Changes camera connection strategy.
         camera1.setConnectionStrategy(ConnectionStrategy.kForceClose);
+        server.setSource(camera2);
         i++;
       }
 

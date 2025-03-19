@@ -42,6 +42,7 @@ public class ClimberSubsystem extends SubsystemBase {
     climberServo.setPulseTimeMicroseconds(500);
     //climberServo.setAngle(60);
     unlockClimb();
+    climberServoHome();
   }
 
 
@@ -102,7 +103,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   public void climberServoHome()
   {
-    intakeServo.setAngle(0);
+    intakeServo.setAngle(ClimberConstants.servoClose);
   }
 
   public void addPosition(double val)
@@ -124,10 +125,10 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void lockClimb(){
-    climberServo.setAngle(120);
+    climberServo.setAngle(120); //This is for closing arm
   }
   public void unlockClimb(){
-    climberServo.setAngle(60);
+    climberServo.setAngle(88); //This is for moving arm
   }
 
 }

@@ -6,7 +6,8 @@ package frc.robot.commands;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.CoralSubsystem;
-import edu.wpi.first.wpilibj.Timer;
+
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class waitIntakeCommand extends Command {
@@ -21,7 +22,6 @@ public class waitIntakeCommand extends Command {
   boolean pieceIsIn = false;
   boolean postPieceIn = false;
   boolean postpostPieceIn = false;
-  Timer intakeTimer;
   int t = 0;
 
   //Timer time;
@@ -41,64 +41,51 @@ public class waitIntakeCommand extends Command {
     postpostPieceIn = false;
     finished = false;
     this.t = 0;
-    this.intakeTimer.reset();
-    this.intakeTimer.start();
   }
 
   @Override
   public void execute() {
 
     
-    //This code is for the intake mechanism, we cannot trust ourselves to safetly intake a piece
-    //and so we utilize a distance sensor to automatically intake it. We first
-    /*
-     * 1. Run the intake until the distance sensor is tripped and a set time has passed, then untripped.
-     * 2. Run the intake backwards until the sensor is tripped.
-     * 3. Return true on isFinished();
-     * 
-     * The set time was added to give us a bit of delay in the event that the sensor was skidishly tripped.
-     * 
-     */
-
-
-
-    if(!pieceIsIn) //Sensor not passed first trip
+    if(!pieceIsIn)
     {
       if((m_coral.getRange() < Constants.CoralConstants.coralInRange))
       {
-        System.out.println("****INTAKE: STEP 1****");
-        pieceIsIn = true; //If the sensor is tripped, say we passed the first check
+        pieceIsIn = true;
       }
       else
       {
-        m_coral.setSpeed(-0.4); //if not tripped, run the intake and run again
-        intakeTimer.reset();
+        m_coral.setSpeed(-0.4);
       }
     }
-    if((pieceIsIn) && (!postPieceIn)) //if pass first check but not second
+    if((pieceIsIn) && (!postPieceIn))
     {
-      m_coral.setSpeed(-0.2); //Slow the speed down to not overshoot
-      if((m_coral.getRange() > Constants.CoralConstants.coralInRange) && (intakeTimer.get() > 0.5)); //on piece exiting
-      { //If the distance sensor doesnt see the piece, and the timer has passed
-        postPieceIn = true;//say second check done
-        System.out.println("****INTAKE: STEP 2****");
+      m_coral.setSpeed(-0.2);
+      if(m_coral.getRange() > Constants.CoralConstants.coralInRange); //on piece exiting
+      {
+        postPieceIn = true;
       }
     }
-    if(postPieceIn) //after second check
+    if(postPieceIn)
     {
-      if(!postpostPieceIn) //if the THIRD check isnt passed 
+      if(!postpostPieceIn)
       {
         if(m_coral.getRange() < Constants.CoralConstants.coralInRange)
         {
+          t++;
 
-          m_coral.setSpeed(0.2); //Run the intake backwards
-          System.out.println("****INTAKE: STEP 3****");
-          postpostPieceIn = true;
+          if(t > 100) //Likely remove, this is bad.
+          {
+            m_coral.setSpeed(0.2);
+          }
+          
+          //postpostPieceIn = true;
           
         }
         else{
           postpostPieceIn = false;
           postPieceIn = false;
+
           pieceIsIn = false;
           finished = true;
         }

@@ -9,18 +9,18 @@ IDS:
     0-30: Drivetrain
     40 - Pigeon
     41 - Climb 
-    42 - Elevator Left 
-    43 - Elevator Right
-    46 - CANCoder
-    47 - CAN Range (Elevator)
-    48 - CAN Range (Coral)
+    42 - Elevator Left  -
+    43 - Elevator Right - 
+    46 - CANCoder -
+    47 - CAN Range (Elevator) -
+    48 - CAN Range (Coral) -
     49 - Candle
     50  Coral and Algae
     {
-        50 - Coral Running motor
-        51 - Coral Side to side
-        52 - Algae runner   
-        53 - Algae wrist
+        50 - Coral Running motor -
+        51 - Coral Side to side -
+        52 - Algae runner    -
+        53 - Algae wrist -
     }
 
 

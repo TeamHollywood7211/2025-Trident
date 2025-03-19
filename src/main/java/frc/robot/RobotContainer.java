@@ -6,7 +6,6 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
-import javax.naming.NameNotFoundException;
 
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
@@ -16,10 +15,8 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathConstraints;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
-import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -41,7 +38,7 @@ import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.HomeAllCommand;
 import frc.robot.commands.waitIntakeCommand;
 import frc.robot.commands.AllMoveCommand;
-import frc.robot.commands.AllMoveCommandWait;
+
 import frc.robot.commands.AutoAlignCommand;
 import frc.robot.commands.AutoAlignManualCommand;
 import frc.robot.commands.AlgaeMoveCommand;
@@ -66,132 +63,122 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
                                                                                         // speed
-    public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Gonna be so On G I have no clue if this actually did anything lol
+    public static double OriginalMaxSpeed = MaxSpeed*ImportantConstants.driveSpeed; //Takes our MaxSpeed then multiplies it by our "safety" value (driveSpeed), and saves it.
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
            
     public static boolean forceLEDoff = false;
     
-    public static CANBus MainBus = new CANBus("rio");
-
-    public static VideoSink server;
+    public static CANBus MainBus = new CANBus("rio"); //This is for our CAN system (what speaks to all components), the default is the roborio. We used to run it on a CANivore.
 
 
-    // second max angular
+
+
+    //Sets up our Subsysystems
     public final static AlgaeSubsystem m_AlgaeSubsystem = new AlgaeSubsystem();                                                                                // velocity
     public final static ElevatorSubsystem m_ElevatorSubsystem = new ElevatorSubsystem();
     public final static CoralSubsystem m_CoralSubsystem = new CoralSubsystem();
     public final static LEDSubsystem   m_LedSubsystem   = new LEDSubsystem();
-    /* Setting up bindings for necessary control of the swerve drive platform */
+    private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
+    private final CameraSubsystem m_CameraSubsystem = new CameraSubsystem();
+
+    //These are "swerve requests" aka how you communicate with the swervedrive.
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
+
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-    // private final SwerveRequest.PointWheelsAt point = new
-    // SwerveRequest.PointWheelsAt();
+
     public final static SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-    private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
-    private final CameraSubsystem m_CameraSubsystem = new CameraSubsystem();
+
     
     
     
-    /*
-     * public final static SwerveRequest.RobotCentric autonMovement = new
-     * SwerveRequest.RobotCentric()
-     * .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
-     * .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.3);
-     */
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
+    //CONTROLLERS
     private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
     private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
-    
-    
-    
-    //private final CommandXboxController autoStick     = new CommandXboxController(2); // For handling the autonomous "drive to positions"
-    //private final CommandXboxController deb_CoralStick = new CommandXboxController(3);
-    
-    private final CommandXboxController buttonBox1 = new CommandXboxController(2);
+//  |
+    private final CommandXboxController buttonBox1 = new CommandXboxController(2); //Our button box is technically two different controllers
     public final CommandXboxController buttonBox2 = new CommandXboxController(3);
-    
+//  | 
     public final CommandXboxController servoStick = new CommandXboxController(4);
 
+    //!!IMPORTANT!! This actually *creates* our Swervedrive. You will want to talk to "drivetrain".
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-
+    
+    //A pid for our limelight (ll) rotations. (unecessary to be here honestly)
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
+
+    //Creates our main constantly running commands.
+    /*
+     * I pass in our controllers, but you can make the controllers "static" and access them that way
+     */
 
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
-
-
-    //AUTO COMMANDS
-
     private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
-
     private final AutoAlignManualCommand a_AutoAlignManualCommand = new AutoAlignManualCommand(false, drivetrain);
-
     private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, m_ElevatorSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
 
 
-
-    //CORAL POSITIONS
+    //Ok so the following are commands for positions. 
+    //This may look like a mess, but notice the different between "coral" and "algae".
+    //Notice: Im stupid. I named things "Low", "Mid", and "High". These are BAD names, the true names are
+    //However I'm lazy and didnt rename them (typical Noah)
+    /*
+     * Bottom -> L1
+     * Low    -> L2
+     * Mid    -> L3
+     * High   -> L4
+     */
+    //CORAL LEFT
     private final AllMoveCommand a_coralLowL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
     private final AllMoveCommand a_coralMidL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
-
     private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
+    //CORAL RIGHT
     private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
     private final AllMoveCommand a_coralMidR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
-
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
+    //L1
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
 
+    //ALGAE (Low -> Low, Mid -> High)
     private final AlgaeMoveCommand a_algaeLow = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_low, AlgaeConstants.positions.grabbing);
     private final AlgaeMoveCommand a_algaeMid = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_high, AlgaeConstants.positions.grabbing);
-    //private final auto_algaeMove a_algaeBarge = new auto_algaeMove(m_ElevatorSubsystem, m_AlgaeSubsystem,
-    // Constants.ElevatorConstants.positions.a_barge);
     private final AlgaeMoveCommand a_algaeFloor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbing);
     private final AlgaeMoveCommand a_algaeProcessor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
 
-
+    //This command wait a few seconds before running the command, this is meant for pathplanner and paths that take place at the same time.
     private final AlgaeMoveCommandWait a_algaeProcessorWait = new AlgaeMoveCommandWait(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
 
     
-
-
-
+    //CORAL MIDDLE
     private final AllMoveCommand a_coralLowM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
-
      private final AllMoveCommand a_coralMidM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
-
     private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.home);
     
     
-
-
-
-
-    //private final auto_moveCoral a_coralLeft = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.left);
-    //private final auto_moveCoral a_coralRight = new auto_moveCoral(m_CoralSubsystem, Constants.CoralConstants.positions.right);
-    //private final auto_moveCoral a_coralHome = new auto_moveCoral(m_CoralSubsystem, 0);
 
 
 
@@ -210,37 +197,16 @@ public class RobotContainer {
     private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
 
 
-    //public final static AlgaeMoveCommand a_closeAlgae = new AlgaeMoveCommand(m_AlgaeSubsystem, null, null, null)
-
-
-    // private final //
-
-
     public final static HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
 
-
-    UsbCamera camera1;
-    UsbCamera camera2;
-
-    /* Path follower */
+    /* Path follower */ //(auto)
     private final SendableChooser<Command> autoChooser;
 
-    public void createFrontUsbCamera() {
-        //CameraServer.startAutomaticCapture(); // Camera stuff :3
-        //CameraServer.startAutomaticCapture(); // Camera stuff :3
-        camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
-        camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
-        camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-        camera1.setResolution(70, 70);
-        camera1.setFPS(15);
-        camera2.setResolution(50, 50);
-        camera2.setFPS(10);
-    }
+
 
     public RobotContainer() {
+        //The following sets up the "NamedCommands" for PathPlanner. I.E. if you put "algaeLow" in pathplanner, it runs a_algaeLow
         //Algae positions
-        //NamedCommands.registerCommand("act_algaeNet", a_algaeHigh);
         NamedCommands.registerCommand("algaeHighest",    a_algaeMid); //OBSOLETE: This is just old backup
         NamedCommands.registerCommand("algaeHigh"   ,    a_algaeMid); //Algae top
         NamedCommands.registerCommand("algaeLow"    ,     a_algaeLow); //Algae bottom
@@ -280,16 +246,11 @@ public class RobotContainer {
 
         
         DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
+        //(btw DriverStation can give you some cool info, like match and comp)
 
-        //Add act_algaeRintake and act_algaeRstop, act_algaeRouttake
-        //Add act_intakeRstart and act_intakeRstop 
-        //act_coralHP
-        //R means runner. Idk man
-            //
-        autoChooser = AutoBuilder.buildAutoChooser("Tests");
+        autoChooser = AutoBuilder.buildAutoChooser("Tests"); //Actually makes the chooser for SmartDashboard
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-        //createFrontUsbCamera();
         configureBindings();
         LimelightHelpers.outputToSmartDashboard(); //This is a quick function that just outputs the X and Y to SmartDashboard
         
@@ -309,48 +270,47 @@ public class RobotContainer {
                                                                                        // negative X (left)
                 )
         );
+        //NOTICE: This is what actually runs the subsystems and commands!
         m_AlgaeSubsystem.setDefaultCommand(m_AlgaeCommand)      ;
         m_CoralSubsystem.setDefaultCommand(m_CoralCommand)      ;
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand)  ;
         
         drivetrain.run(() -> drivetrain.antiTip()); //Only works with Pitch (no yaw) and kinda sucks
+        //^^ I dont think that actually works :(, but look into .run()
 
-        driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
+
+        
+        driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake)); //This is what is known as an "x-stance", where it prevents the bot from moving.
+
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
-        driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
+        driverStick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal)); //This *should* be a command
 
+        //this drives the robot in a "robot-oriented" path depending on what DPAD button is pressed.
+        //(POV is like the DPAD direction)
         driverStick.pov(0).whileTrue(drivetrain
                 .applyRequest(() -> forwardStraight.withVelocityX(1).withVelocityY(0).withRotationalRate(0)));
         driverStick.pov(180).whileTrue(drivetrain
                 .applyRequest(() -> forwardStraight.withVelocityX(-1).withVelocityY(0).withRotationalRate(0))
 
         );
-
         driverStick.pov(90).whileTrue(drivetrain
                 .applyRequest(() -> forwardStraight.withVelocityY(-1).withVelocityX(0).withRotationalRate(0)));
         driverStick.pov(270).whileTrue(drivetrain
                 .applyRequest(() -> forwardStraight.withVelocityY(1).withVelocityX(0).withRotationalRate(0)));
 
-        // reset the field-centric heading on left bumper press
+        // reset the field-centric heading on left select/share/minus/whatever your preference of button name is although minus is correct!
+        //Your "field-centric heading" is your gyro and affects what way the robot sees as forward.
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
+        
         driverStick.x().whileTrue(a_AutoAlignManualCommand);
 
 
         driverStick.start().onTrue(a_autoAligncommand);
 
-        //
-
-        //deb_CoralStick.x().onTrue(new InstantCommand( m_CoralSubsystem::gotoLeft  ));
-        //deb_CoralStick.b().onTrue(new InstantCommand(m_CoralSubsystem::gotoRight  ));
-
-        //
 
         //Coral Left
-
-
-
         buttonBox2.button(10).onTrue(a_coralHighL);
         buttonBox2.button(5).onTrue(a_coralMidL);
         buttonBox1.button(11).onTrue(a_coralLowL);

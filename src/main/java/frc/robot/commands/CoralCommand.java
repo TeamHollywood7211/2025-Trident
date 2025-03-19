@@ -39,9 +39,7 @@ public class CoralCommand extends Command {
     }
     m_coral.runCoral(
       
-
-
-      RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean()) * power
+      -RobotContainer.booleanToDouble(m_bb0.button(9).getAsBoolean())-RobotContainer.booleanToDouble(m_bb0.button(2).getAsBoolean()) * power
     );
     if(m_bb0.button(9).getAsBoolean())
     {

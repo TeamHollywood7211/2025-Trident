@@ -21,6 +21,7 @@ public class auto_waitIntake extends Command {
   double startTime; //TL;DR timers suck. (They are useful just not here)
   boolean finished = false;
   boolean resetTimer = true;
+  int t = 0;
   
   //int timesRan = 1;
   //double timer = 0;
@@ -44,6 +45,7 @@ public class auto_waitIntake extends Command {
     System.out.println("AUTO INTAKE: START THE INTAKE!!");
     pieceIsIn = false  ;
     postPieceIn = false;
+    this.t = 0;
     //startTime = DriverStation.getMatchTime(); //Reset the timer
   }
 
@@ -84,8 +86,13 @@ public class auto_waitIntake extends Command {
       if((m_coral.getRange() > CoralConstants.coralInRange))
       {
         System.out.println("AUTO INTAKE: STAGE 2 DONE!");
-        m_coral.setSpeed(-0.05);
-        postPieceIn = true;
+        t++;
+        if(t > 40)
+        {
+          m_coral.setSpeed(-0.05);
+          postPieceIn = true;
+        }
+        
         
       }
     }
