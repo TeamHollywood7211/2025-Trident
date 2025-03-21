@@ -117,6 +117,12 @@
                       "data": {
                         "pathName": "HPlc - Cr6"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_L4_Right"
+                      }
                     }
                   ]
                 }
@@ -212,6 +218,12 @@
                       "data": {
                         "pathName": "HPlc - Cr6"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_L4_Left"
+                      }
                     }
                   ]
                 }
@@ -285,7 +297,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPrc - Cr 2"
+                        "pathName": "HPlc - Cr6"
                       }
                     }
                   ]
@@ -294,7 +306,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "coral_L2_Left"
+                  "name": "coral_L3_Right"
                 }
               }
             ]

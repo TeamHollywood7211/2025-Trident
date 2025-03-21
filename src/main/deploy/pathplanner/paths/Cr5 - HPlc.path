@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.799363822298324,
-        "y": 6.106509227549466
+        "x": 5.604580479452055,
+        "y": 5.767979452054794
       },
       "isLocked": false,
       "linkedName": "Coral 5"
@@ -31,7 +31,20 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeRouttake",
+      "waypointRelativePos": 0.3952380952380951,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "algaeRstop",
+      "waypointRelativePos": 0.7809523809523813,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
