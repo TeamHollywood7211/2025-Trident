@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.19730308219178,
-        "y": 6.74464897260274
+        "x": 7.147,
+        "y": 1.8462756849315065
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.03083975456621,
-        "y": 6.107378472222222
+        "x": 6.378880232115677,
+        "y": 2.2361111111111107
       },
       "isLocked": false,
-      "linkedName": "Start Left"
+      "linkedName": "Start Right"
     },
     {
       "anchor": {
-        "x": 5.113368055555555,
-        "y": 5.115104166666666
+        "x": 5.070799180327868,
+        "y": 2.9880635245901637
       },
       "prevControl": {
-        "x": 6.021499238964991,
-        "y": 5.785068255327244
+        "x": 5.637937926522693,
+        "y": 2.6688676056403917
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral 5"
+      "linkedName": "Coral 3"
     }
   ],
   "rotationTargets": [],
@@ -34,8 +34,8 @@
   "eventMarkers": [
     {
       "name": "algaeRintake",
-      "waypointRelativePos": 0.4280052840158455,
-      "endWaypointRelativePos": null,
+      "waypointRelativePos": 0.6047619047619047,
+      "endWaypointRelativePos": 1.0,
       "command": null
     }
   ],
@@ -49,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.3577535427912
+    "rotation": 119.35775354279127
   },
   "reversed": false,
-  "folder": "Left Start",
+  "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -179.41349096223018
+    "rotation": 180.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

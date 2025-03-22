@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "StL - Cr5"
+                  "pathName": "Rst - Cr3 NO VISION"
                 }
               },
               {
@@ -51,19 +51,26 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.175
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "coralRstop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRstop"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
+                }
+              }
+            ]
           }
         },
         {
@@ -77,7 +84,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr5 - HPlr"
+                        "pathName": "Cr3 - HPrc"
                       }
                     },
                     {
@@ -98,7 +105,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.4
+                  "waitTime": 0.35
                 }
               },
               {
@@ -108,19 +115,13 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L4_Right"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
                         "name": "algaeRintake"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPlr - Cr6"
+                        "pathName": "HPrc - Cr 2 NO VISION"
                       }
                     }
                   ]
@@ -165,44 +166,13 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr6 - Sh - HPlr"
+                        "pathName": "Cr2 - Sh - HPrc"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
                         "name": "robot_Home"
-                      }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.4
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRouttake"
-                            }
-                          },
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.6
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRstop"
-                            }
-                          }
-                        ]
                       }
                     }
                   ]
@@ -234,19 +204,32 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPlr - Cr6"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coral_L4_Left"
+                        "pathName": "HPrc - Cr 2 NO VISION"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
                         "name": "algaeRintake"
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coral_L4_Right"
+                            }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.2
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -272,15 +255,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "coralRstop"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRouttake"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralRstop"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRstop"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -290,7 +280,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr6 - HPlr"
+                        "pathName": "Cr2 - HPrc"
                       }
                     },
                     {
@@ -321,6 +311,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Start Left",
+  "folder": "Start Right",
   "choreoAuto": false
 }

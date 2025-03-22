@@ -38,6 +38,12 @@
                 "data": {
                   "name": "autoPos"
                 }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.1
+                }
               }
             ]
           }
