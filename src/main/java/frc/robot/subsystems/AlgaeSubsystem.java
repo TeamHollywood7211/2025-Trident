@@ -24,18 +24,14 @@ import frc.robot.commands.AlgaeCommand;
 
 
 public class AlgaeSubsystem extends SubsystemBase {
-  TalonFX intakeMotor = new TalonFX(Constants.AlgaeConstants.intakeID, RobotContainer.MainBus)  ;
-  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID, RobotContainer.MainBus) ;
+  TalonFX intakeMotor = new TalonFX(Constants.AlgaeConstants.intakeID ,  RobotContainer.MainBus)  ;
+  TalonFXS wristMotor =  new TalonFXS(Constants.AlgaeConstants.wristID,  RobotContainer.MainBus) ;
   DigitalInput algaeSensor = new DigitalInput(AlgaeConstants.algaeSwitch);
 
-
   CANcoder encoder = new CANcoder(46, RobotContainer.MainBus);
-
   double wristSetpoint = encoder.getAbsolutePosition().getValueAsDouble();
-
   PIDController wristPID = new PIDController(5.0, 0, 0.000006);
 
-  
   boolean algaeNotRead = false;
     //TalonFXSConfiguration config = new TalonFXSConfiguration();
 
@@ -74,12 +70,15 @@ public class AlgaeSubsystem extends SubsystemBase {
         bottomPos = AlgaeConstants.positions.bottomPostL1;
       }
 
-      wristSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
+
+
+
+      double followSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
 
       if(!wristPID.atSetpoint())
       {
         wristMotor.set(-MathUtil.clamp(
-          wristPID.calculate(encoderVal, wristSetpoint),
+          wristPID.calculate(encoderVal, followSetpoint),
          -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
       }
 

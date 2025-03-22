@@ -39,6 +39,7 @@ public final class Constants {
 
       public static final double grabbing = 0.42-offset;//0.81;//-14; 
       public static final double grabbingHome = 0.25-offset;//0.691;//-10;
+      public static final double grabbingHigh = 0.16;
       public static final double lowpos = 0.22-offset;
       //public static final int home = 0.66;
 
@@ -64,7 +65,7 @@ public final class Constants {
     public static final int intakeID = 50;
     public static final int moverID = 51;
     public static final int canRangeID = 48; 
-    public static final double coralInRange = 0.106; //The value (meters) of the MAX distance between the range sensor and the game piece when typically inputted
+    public static final double coralInRange = 0.12; //The value (meters) of the MAX distance between the range sensor and the game piece when typically inputted
 
     public static final double intakeSpeed = 0.5;
 
@@ -117,7 +118,7 @@ public final class Constants {
 
 
 
-      public static final int max =           106;
+      public static final int max =           130;
 
       public static final int c_home = 0;
       public static final int c_bottom = 11; //THESE ARE TEMP

@@ -5,114 +5,74 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+import frc.robot.Constants.CoralConstants;
 import frc.robot.subsystems.CoralSubsystem;
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
+/** An example command that uses an example subsystem. */
 public class waitIntakeCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final CoralSubsystem m_coral;
+  private int m_state;
+  private boolean finished;
 
-  Double startTime; //TL;DR timers suck. (They are useful just not here)
-  boolean finished = false;
-  boolean resetTimer = true;
-  double timer = 0;
-  double timeToKill = 4; //Time until to give up on the intake
-  boolean pieceIsIn = false;
-  boolean postPieceIn = false;
-  boolean postpostPieceIn = false;
-  Timer intakeTimer;
-  int t = 0;
-
-  //Timer time;
- // double timer = 0;
+  
 
   public waitIntakeCommand(CoralSubsystem coral) {
     m_coral = coral;
-    //timeToKill = time;
-
+    
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(coral);
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pieceIsIn = false;
-    postPieceIn = false;
-    postpostPieceIn = false;
-    finished = false;
-    this.t = 0;
-    this.intakeTimer.reset();
-    this.intakeTimer.start();
+    this.m_state = 0;
+    this.finished = false;
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    
-    //This code is for the intake mechanism, we cannot trust ourselves to safetly intake a piece
-    //and so we utilize a distance sensor to automatically intake it. We first
-    /*
-     * 1. Run the intake until the distance sensor is tripped and a set time has passed, then untripped.
-     * 2. Run the intake backwards until the sensor is tripped.
-     * 3. Return true on isFinished();
-     * 
-     * The set time was added to give us a bit of delay in the event that the sensor was skidishly tripped.
-     * 
-     */
-
-
-
-    if(!pieceIsIn) //Sensor not passed first trip
+    SmartDashboard.putNumber("Auto Intake State", m_state);
+    if(m_state == 0)
     {
-      if((m_coral.getRange() < Constants.CoralConstants.coralInRange))
+      m_coral.setSpeed(-0.3);
+      if(m_coral.getRange() < CoralConstants.coralInRange)
       {
-        System.out.println("****INTAKE: STEP 1****");
-        pieceIsIn = true; //If the sensor is tripped, say we passed the first check
-      }
-      else
-      {
-        m_coral.setSpeed(-0.4); //if not tripped, run the intake and run again
-        intakeTimer.reset();
+        m_state = 1;
       }
     }
-    if((pieceIsIn) && (!postPieceIn)) //if pass first check but not second
+    if(m_state == 1)
     {
-      m_coral.setSpeed(-0.2); //Slow the speed down to not overshoot
-      if((m_coral.getRange() > Constants.CoralConstants.coralInRange) && (intakeTimer.get() > 0.5)); //on piece exiting
-      { //If the distance sensor doesnt see the piece, and the timer has passed
-        postPieceIn = true;//say second check done
-        System.out.println("****INTAKE: STEP 2****");
-      }
-    }
-    if(postPieceIn) //after second check
-    {
-      if(!postpostPieceIn) //if the THIRD check isnt passed 
+      m_coral.setSpeed(-0.2);
+      if(m_coral.getRange() > CoralConstants.coralInRange)
       {
-        if(m_coral.getRange() < Constants.CoralConstants.coralInRange)
-        {
-
-          m_coral.setSpeed(0.2); //Run the intake backwards
-          System.out.println("****INTAKE: STEP 3****");
-          postpostPieceIn = true;
-          
-        }
-        else{
-          postpostPieceIn = false;
-          postPieceIn = false;
-          pieceIsIn = false;
-          finished = true;
-        }
+        m_state = 2;
       }
     }
-    
+    if(m_state == 2)
+    {
+      m_coral.setSpeed(0.1);
+      if(m_coral.getRange() < CoralConstants.coralInRange)
+      {
+        m_coral.setSpeed(0);
+        m_state = 0;
+        finished = true;
+      }
+    }
   }
 
+  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
+  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished; 
+    return finished;
   }
 }

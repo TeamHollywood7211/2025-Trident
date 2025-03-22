@@ -24,7 +24,7 @@ public class CoralSubsystem extends SubsystemBase {
 
   TalonFX intakeMotor = new TalonFX(Constants.CoralConstants.intakeID, RobotContainer.MainBus);
   TalonFXS moverMotor = new TalonFXS(Constants.CoralConstants.moverID, RobotContainer.MainBus);
-  PIDController moverPID = new PIDController(0.03, 0, 0.005);
+  PIDController moverPID = new PIDController(0.03, 0, 0.003);
   CANrange rangeSensor = new CANrange(Constants.CoralConstants.canRangeID, RobotContainer.MainBus);
 
   
@@ -69,6 +69,7 @@ public class CoralSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Intake Range", getRange());
     if(RobotContainer.m_ElevatorSubsystem.intakeClear())
     {
       moverEncoder = moverMotor.getPosition().getValueAsDouble()   ;

@@ -6,8 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.CoralSubsystem;
-
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class waitIntakeCommand extends Command {
@@ -22,7 +21,7 @@ public class waitIntakeCommand extends Command {
   boolean pieceIsIn = false;
   boolean postPieceIn = false;
   boolean postpostPieceIn = false;
-  int t = 0;
+
 
   //Timer time;
  // double timer = 0;
@@ -40,45 +39,46 @@ public class waitIntakeCommand extends Command {
     postPieceIn = false;
     postpostPieceIn = false;
     finished = false;
-    this.t = 0;
   }
 
   @Override
   public void execute() {
 
-    
+    SmartDashboard.putBoolean("pieceIsIn", pieceIsIn);
+    SmartDashboard.putBoolean("postpieceIsIn", postPieceIn);
     if(!pieceIsIn)
     {
-      if((m_coral.getRange() < Constants.CoralConstants.coralInRange))
-      {
-        pieceIsIn = true;
+      if((m_coral.getRange() < Constants.CoralConstants.coralInRange)) 
+      { 
+        pieceIsIn = true; 
       }
       else
       {
         m_coral.setSpeed(-0.4);
       }
     }
+
     if((pieceIsIn) && (!postPieceIn))
     {
       m_coral.setSpeed(-0.2);
-      if(m_coral.getRange() > Constants.CoralConstants.coralInRange); //on piece exiting
+      double val = m_coral.getRange();
+      if(val > Constants.CoralConstants.coralInRange); //on piece exiting
       {
+        System.out.println("AUTO CORAL: Pulling piece all the way through! (STEP 2)");
+        System.out.println(  "AUTO CORAL: " + val + " is bigger than " + Constants.CoralConstants.coralInRange);
         postPieceIn = true;
       }
     }
     if(postPieceIn)
     {
-      if(!postpostPieceIn)
+      if(false) //(!postpostPieceIn)
       {
-        if(m_coral.getRange() < Constants.CoralConstants.coralInRange)
+        double val = m_coral.getRange();
+        if(val < Constants.CoralConstants.coralInRange)
         {
-          t++;
-
-          if(t > 100) //Likely remove, this is bad.
-          {
-            m_coral.setSpeed(0.2);
-          }
-          
+          System.out.println(val);
+          System.out.println("AUTO CORAL: Pulling piece safetly back! (STEP 3)");
+          m_coral.setSpeed(0.2);
           //postpostPieceIn = true;
           
         }

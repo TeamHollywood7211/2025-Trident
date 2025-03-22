@@ -15,6 +15,7 @@ import com.pathplanner.lib.config.RobotConfig;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
@@ -81,7 +82,9 @@ public class AutoAlignManualCommand extends Command {
       double xSpeed = forward_limelight;
       double ySpeed = hori_limelight;
 
-      double rotValue = -rotController.calculate(positions[4]);
+      double rotValue = rotController.calculate(positions[4]);
+
+      SmartDashboard.putNumber("auto rotation", rotValue);
 
       xSpeed = MathUtil.clamp(xSpeed, -maxSpeed, maxSpeed);
       ySpeed = MathUtil.clamp(ySpeed, -maxSpeed, maxSpeed);

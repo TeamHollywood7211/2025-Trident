@@ -26,5 +26,4 @@ IDS:
 
 
 ==Subsystems we need to make==
-- Limelight
-- Climber
+- Improve everything

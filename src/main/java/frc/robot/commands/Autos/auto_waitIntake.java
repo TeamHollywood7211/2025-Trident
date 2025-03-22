@@ -6,119 +6,89 @@ package frc.robot.commands.Autos;
 
 import frc.robot.Constants;
 import frc.robot.Constants.CoralConstants;
-import frc.robot.Constants.ElevatorConstants;
 import frc.robot.subsystems.CoralSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
-import edu.wpi.first.wpilibj.DriverStation;
-
+import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
+/** An example command that uses an example subsystem. */
 public class auto_waitIntake extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final CoralSubsystem m_coral;
-  private final ElevatorSubsystem m_elevator;
+  private int m_state;
+  private boolean finished;
+  private boolean reset;
 
-  double startTime; //TL;DR timers suck. (They are useful just not here)
-  boolean finished = false;
-  boolean resetTimer = true;
-  int t = 0;
   
-  //int timesRan = 1;
-  //double timer = 0;
-  double timeToKill = 4; //Time until to give up on the intake
-  boolean pieceIsIn = false;
-  boolean postPieceIn = false;
 
-  //Timer time;
- // double timer = 0;
-
-  public auto_waitIntake(CoralSubsystem coral, ElevatorSubsystem elevator) {
+  public auto_waitIntake(CoralSubsystem coral) {
     m_coral = coral;
-    m_elevator = elevator;
-    //timeToKill = time;
-
+    
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(coral);
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("AUTO INTAKE: START THE INTAKE!!");
-    pieceIsIn = false  ;
-    postPieceIn = false;
-    this.t = 0;
-    //startTime = DriverStation.getMatchTime(); //Reset the timer
+    this.m_state = 0;
+    this.reset = false;
+    this.finished = false;
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("AUTO INTAKE: RANGE? :" + m_coral.getRange() + "\n");
-    
-    if(resetTimer)
+    SmartDashboard.putNumber("Auto Intake State", m_state);
+    if(reset)
     {
-      resetTimer = false; 
-      pieceIsIn = false;
-      postPieceIn = false;
-      finished = false;
-
-      System.out.println("AUTO INTAKE: RESET!!");
-      
+      m_state = 0;
     }
-
-    if(!pieceIsIn)
+    if(m_state == 0) //take in the piece
     {
-      if((m_coral.getRange() < CoralConstants.coralInRange)) //if we grab a piece (or we pass our time to kill by a weeee bit)
-      {            
-        System.out.println("AUTO INTAKE: STAGE 1 DONE");   
-        if(m_elevator.getRange() < ElevatorConstants.coralRange)  
-        {
-          pieceIsIn = true; //say we done :3
-        }
-      }
-      else
+      m_coral.setSpeed(-0.3);
+      if(m_coral.getRange() < CoralConstants.coralInRange)
       {
-        m_coral.setSpeed(0.5);
+        m_state = 1;
       }
     }
-  
-    if((pieceIsIn) && (!postPieceIn))
+    if(m_state == 1) //once sensor hit, run intake more but slower till we cant see piece
     {
-      m_coral.setSpeed(0.3);
-      if((m_coral.getRange() > CoralConstants.coralInRange))
-      {
-        System.out.println("AUTO INTAKE: STAGE 2 DONE!");
-        t++;
-        if(t > 40)
-        {
-          m_coral.setSpeed(-0.05);
-          postPieceIn = true;
-        }
-        
-        
-      }
-    }
-    if(postPieceIn)
-    {
-      if((m_coral.getRange() < CoralConstants.coralInRange)) //If we HAVE that piece
+      m_coral.setSpeed(-0.2);
+      if(m_coral.getRange() > CoralConstants.coralInRange)
       {
         m_coral.setSpeed(0);
-        resetTimer = true;
-        System.out.println("AUTO INTAKE: IM DONE!");
-        System.out.println("AUTO INTAKE: HERE IS SOME DATA:");
-        System.out.println("CURRENT RANGE: " + m_coral.getRange());
-        System.out.println("TARGET RANGE" + CoralConstants.coralInRange);
-        System.out.println("------");
+        m_state = 0;
+        reset = true;
         finished = true;
       }
     }
+    if(m_state == 2)
+    {
+      m_coral.setSpeed(0.1);
+      if(m_coral.getRange() < CoralConstants.coralInRange)
+      {
+        m_state = 0;
+        reset = true;
+        finished = true;
+      }
+    }
+    if(m_state == 4)
+    {
+      m_coral.setSpeed(0);
+      reset = true;
+      finished = true;
+      m_state = 0;
+    }
   }
 
+  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    resetTimer = true;
-  }
+  public void end(boolean interrupted) {}
 
+  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished; 
+    return finished;
   }
 }

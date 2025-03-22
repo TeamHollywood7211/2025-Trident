@@ -15,6 +15,7 @@ import com.pathplanner.lib.config.RobotConfig;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
@@ -86,26 +87,18 @@ public class AutoAlignCommand extends Command {
 
       double rotValue = -rotController.calculate(positions[4]);
 
+      SmartDashboard.putNumber("Auto Angle", positions[4]);
+
 
       xSpeed = MathUtil.clamp(xSpeed, -maxSpeed, maxSpeed);
       ySpeed = MathUtil.clamp(ySpeed, -maxSpeed, maxSpeed);
 
-
-      //xSpeed = (yController.getError() < autoAlign.Y_TOLERANCE_REEF_ALIGNMENT ? xSpeed : 0);
 
       m_drivetrain.setControl(
         RobotContainer.forwardStraight.withVelocityX(xSpeed)
         .withVelocityY(ySpeed)
         .withRotationalRate(rotValue)
       );      
-
-
-      /*if(!rotController.atSetpoint() ||
-        !xController.atSetpoint() ||
-          !yController.atSetpoint()) {
-            stopTimer.reset();
-          }*/
-
 
     }
     else{

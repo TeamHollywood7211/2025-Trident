@@ -15,8 +15,10 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathConstraints;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
+import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -122,7 +124,7 @@ public class RobotContainer {
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
     private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
     private final AutoAlignManualCommand a_AutoAlignManualCommand = new AutoAlignManualCommand(false, drivetrain);
-    private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem, m_ElevatorSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
+    private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
 
 
     //Ok so the following are commands for positions. 
@@ -137,19 +139,19 @@ public class RobotContainer {
      */
     //CORAL LEFT
     private final AllMoveCommand a_coralLowL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralMidL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbingHigh);
 
     //CORAL RIGHT
     private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.home);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_low, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralMidR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbingHigh);
 
     //L1
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
@@ -190,8 +192,8 @@ public class RobotContainer {
     private final auto_algaeRunner a_algaeStop = new auto_algaeRunner(m_AlgaeSubsystem, 0.1);
 
     //CORAL
-    private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
-    private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralIntake = new auto_coralRunner(m_CoralSubsystem, Constants.CoralConstants.intakeSpeed);
+    private final auto_coralRunner a_coralOuttake = new auto_coralRunner(m_CoralSubsystem, -Constants.CoralConstants.intakeSpeed);
     private final auto_coralRunner a_coralStop = new auto_coralRunner(m_CoralSubsystem, 0);
 
     private final waitIntakeCommand c_waitIntake = new waitIntakeCommand(m_CoralSubsystem);
@@ -199,9 +201,24 @@ public class RobotContainer {
 
     public final static HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
 
+    UsbCamera camera1;
+    UsbCamera camera2;
+
+
     /* Path follower */ //(auto)
     private final SendableChooser<Command> autoChooser;
-
+    public void createFrontUsbCamera() {
+        //CameraServer.startAutomaticCapture(); // Camera stuff :3
+        //CameraServer.startAutomaticCapture(); // Camera stuff :3
+        camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
+        camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
+        camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        camera1.setResolution(70, 70);
+        camera1.setFPS(15);
+        camera2.setResolution(50, 50);
+        camera2.setFPS(10);
+    }
 
 
     public RobotContainer() {
@@ -526,4 +543,15 @@ public class RobotContainer {
 
     return false;
     }
+    public static boolean inRange(double val0, double val1, double range)
+    {
+        double val2 = Math.abs(val0 - val1);
+        if(val2 < range)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }

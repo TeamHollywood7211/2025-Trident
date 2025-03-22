@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 5.941868932038835,
+        "x": 5.649657534246575,
         "y": 4.0
       },
       "prevControl": {
-        "x": 6.682689691353544,
+        "x": 6.3904782935612845,
         "y": 4.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Coral 4"
     }
   ],
   "rotationTargets": [],

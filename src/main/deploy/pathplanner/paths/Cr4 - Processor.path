@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.785558252427185,
+        "x": 5.649657534246575,
         "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.5542214468716296,
-        "y": 3.0356770833333333
+        "x": 6.3258133561643834,
+        "y": 3.9648972602739723
       },
       "isLocked": false,
       "linkedName": "Coral 4"
     },
     {
       "anchor": {
-        "x": 6.007812499999999,
-        "y": 0.44722222222222174
+        "x": 5.76986301369863,
+        "y": 0.4939640410958907
       },
       "prevControl": {
-        "x": 6.35720486111111,
-        "y": 1.5373263888954989
+        "x": 6.1192553748097405,
+        "y": 1.584068207769168
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeProcessor",
+      "waypointRelativePos": 0.4523809523809523,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.070799180327868,
-        "y": 2.9880635245901637
+        "x": 5.022848360655738,
+        "y": 2.9281249999999988
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.430382336020503,
-        "y": 2.092547180482623
+        "x": 5.3824315163483725,
+        "y": 2.032608655892458
       },
       "isLocked": false,
       "linkedName": "Coral 3"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 0.919235924932975,
-        "y": 0.5827077747989268
+        "x": 0.7672131147540984,
+        "y": 0.5425717213114762
       },
       "prevControl": {
-        "x": 1.3890242838699562,
-        "y": 0.8397850712056838
+        "x": 1.2370014736910795,
+        "y": 0.7996490177182333
       },
       "nextControl": null,
       "isLocked": false,
@@ -56,7 +56,7 @@
     {
       "name": "algaeRouttake",
       "waypointRelativePos": 0.3095238095238096,
-      "endWaypointRelativePos": 1.6263269639065816,
+      "endWaypointRelativePos": null,
       "command": null
     },
     {
