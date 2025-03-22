@@ -123,6 +123,12 @@
                       "data": {
                         "pathName": "HPrc - Cr 2 NO VISION"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coral_L4_Left"
+                      }
                     }
                   ]
                 }
