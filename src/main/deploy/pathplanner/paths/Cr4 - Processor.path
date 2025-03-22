@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.41832072869102,
-        "y": 3.0356770833333333
+        "x": 6.3258133561643834,
+        "y": 3.9648972602739723
       },
       "isLocked": false,
       "linkedName": "Coral 4"
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeProcessor",
+      "waypointRelativePos": 0.4523809523809523,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
