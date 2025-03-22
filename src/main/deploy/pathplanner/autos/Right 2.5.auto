@@ -205,37 +205,6 @@
                       "data": {
                         "name": "robot_Home"
                       }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.4
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRouttake"
-                            }
-                          },
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.6
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRstop"
-                            }
-                          }
-                        ]
-                      }
                     }
                   ]
                 }
