@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.070799180327868,
-        "y": 2.9880635245901637
+        "x": 4.838270547945205,
+        "y": 2.717765410958904
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.546365548933545,
-        "y": 2.057063760286815
+        "x": 5.313836916550882,
+        "y": 1.7867656466555553
       },
       "isLocked": false,
       "linkedName": "Coral 3"
     },
     {
       "anchor": {
-        "x": 5.860017123287671,
+        "x": 5.76986301369863,
         "y": 0.4939640410958907
       },
       "prevControl": {
-        "x": 5.27129805005333,
+        "x": 5.181143940464289,
         "y": 1.62071401702285
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Processor"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
