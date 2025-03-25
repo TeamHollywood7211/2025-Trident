@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.512397540983606,
-        "y": 3.1798668032786876
+        "x": 3.4921874999999987,
+        "y": 3.0187499999999994
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8380872289592536,
-        "y": 2.3477332891995406
+        "x": 3.2266493055555547,
+        "y": 2.8650173611111107
       },
       "isLocked": false,
       "linkedName": "Coral 2"
     },
     {
       "anchor": {
-        "x": 0.7672131147540984,
-        "y": 0.5425717213114762
+        "x": 0.2638020833333321,
+        "y": 0.8804687499999989
       },
       "prevControl": {
-        "x": 2.118255970537966,
-        "y": 1.769716888739179
+        "x": 1.6148449391171986,
+        "y": 2.107613917427702
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,6 +42,12 @@
           "name": "algaeRouttake"
         }
       }
+    },
+    {
+      "name": "algaeRstop",
+      "waypointRelativePos": 0.7288135593220333,
+      "endWaypointRelativePos": null,
+      "command": null
     }
   ],
   "globalConstraints": {
