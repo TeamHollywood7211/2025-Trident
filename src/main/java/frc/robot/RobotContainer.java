@@ -241,6 +241,11 @@ public class RobotContainer {
         NamedCommands.registerCommand("coral_L3_Right", a_coralMidR);
         NamedCommands.registerCommand("coral_L4_Right" , a_coralHighR);
 
+        NamedCommands.registerCommand("coral_L2_Center", a_coralLowM);
+        NamedCommands.registerCommand("coral_L3_Center", a_coralMidM);
+        NamedCommands.registerCommand("coral_L4_Center", a_coralHighM);
+
+
         NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
         NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
         NamedCommands.registerCommand("coral_HP"      , a_waitIntake);

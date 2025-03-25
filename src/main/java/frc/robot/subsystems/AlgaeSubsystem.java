@@ -57,10 +57,10 @@ public class AlgaeSubsystem extends SubsystemBase {
       //DEBUG VALUES  
       SmartDashboard.putNumber ("Wrist Encoder", encoderVal)                ;
       SmartDashboard.putNumber ("Wrist Setpoint", wristSetpoint)            ;
-      SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint());
-      SmartDashboard.putNumber ("Wrist error", wristPID.getError());
+      SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint()) ;
+      SmartDashboard.putNumber ("Wrist error", wristPID.getError())         ;
       SmartDashboard.putNumber ("Wrist Home", AlgaeConstants.positions.home);
-      SmartDashboard.putNumber ("Wrist Speed", wristMotor.get());
+      SmartDashboard.putNumber ("Wrist Speed", wristMotor.get())            ;
 
       wristPID.setSetpoint(wristSetpoint); 
       double bottomPos;
@@ -94,7 +94,7 @@ public class AlgaeSubsystem extends SubsystemBase {
 
       if(readSensor()) //Cool LED indicator
       {
-        RobotContainer.m_LedSubsystem.setTeal(); //
+        RobotContainer.m_LedSubsystem.setTeal(); 
         algaeNotRead = false; 
        }
        else
