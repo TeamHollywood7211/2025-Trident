@@ -30,10 +30,9 @@ public class AlgaeSubsystem extends SubsystemBase {
 
   CANcoder encoder = new CANcoder(46, RobotContainer.MainBus);
   double wristSetpoint = encoder.getAbsolutePosition().getValueAsDouble();
-  PIDController wristPID = new PIDController(5.0, 0, 0.000006);
+  PIDController wristPID = new PIDController(5.0, 0, 0.000006); //I hate PID loops
 
   boolean algaeNotRead = false;
-    //TalonFXSConfiguration config = new TalonFXSConfiguration();
 
     public AlgaeSubsystem(){
       wristPID.setTolerance(0.00001);
@@ -49,7 +48,10 @@ public class AlgaeSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
       
-      double encoderVal = encoder.getAbsolutePosition().getValueAsDouble();
+      double encoderVal = encoder.getAbsolutePosition().getValueAsDouble(); 
+      //The algae wrist has its own independent encoder (canCoder) so that
+      //we dont need to re-zero the arm each time, and save some space
+
 
 
       //DEBUG VALUES  
@@ -64,6 +66,8 @@ public class AlgaeSubsystem extends SubsystemBase {
       double bottomPos;
 
 
+
+      //Changes the min value of the wrist depending on how high the elevator works.
       if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < AlgaeConstants.ElevatorSafetyPos)
       {
         bottomPos = AlgaeConstants.positions.bottomL1;
@@ -80,17 +84,18 @@ public class AlgaeSubsystem extends SubsystemBase {
       //^ We have a "ghost" setpoint (the original) and then one that tries to follow that setpoint.
 
 
-      if(!wristPID.atSetpoint())
+
+      if(!wristPID.atSetpoint()) //if not close to the setpoint
       {
-        wristMotor.set(-MathUtil.clamp(
-          wristPID.calculate(encoderVal, followSetpoint),
+        wristMotor.set(-MathUtil.clamp( 
+          wristPID.calculate(encoderVal, followSetpoint), 
          -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
       }
 
-      if(readSensor())
+      if(readSensor()) //Cool LED indicator
       {
-        RobotContainer.m_LedSubsystem.setTeal();
-        algaeNotRead = false;
+        RobotContainer.m_LedSubsystem.setTeal(); //
+        algaeNotRead = false; 
        }
        else
        {
@@ -103,7 +108,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
   
 
-    public void runGrip(double speed)
+    public void runGrip(double speed) 
     {
       intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5)); 
     }
@@ -132,8 +137,6 @@ public class AlgaeSubsystem extends SubsystemBase {
     {
       return wristSetpoint;
     }
-
-
     public boolean readSensor(){
       return !algaeSensor.get();
     }

@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.hal.PowerJNI;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
@@ -39,9 +41,12 @@ public class LEDSubsystem extends SubsystemBase {
 
   double bootDelay = 60;
 
+  Timer preteleTimer = new Timer();
 
 
-  //These are the actual preset animations.
+
+  //These are the actual preset animations.\
+  //My system is bad, I reccomend learning LED stuff via the docs https://team2168.org/javadoc/com/ctre/phoenix/led/CANdle.html
   SingleFadeAnimation redFadeAnim;
   TwinkleAnimation twinkleAnim;
   //speed = 0.2;
@@ -56,8 +61,8 @@ public class LEDSubsystem extends SubsystemBase {
     twinkleAnim = new TwinkleAnimation(12, 250, 140);
     twinkleAnim.setNumLed(numLED);
     twinkleAnim.setSpeed(0.05);
-
-    
+    SmartDashboard.putString("Battery Status", "Good!");
+    preteleTimer.start();
     
   }
 
@@ -69,6 +74,8 @@ public class LEDSubsystem extends SubsystemBase {
     {
       RobotContainer.forceLEDoff = true;
       setLEDs(0, 0, 0);
+      SmartDashboard.putString("Battery Status", "NOT GOOD!");
+      //SmartDashboard.putBoolean("Battery Warning", true);
       //System.out.println("AHHH!!! BATTERY DIPPING!!!!");
     }
 
@@ -105,6 +112,10 @@ public class LEDSubsystem extends SubsystemBase {
               baCalledRedFade = true;
             }
           }
+        }
+        if(preteleTimer.get() > 60) //If a minute passes while waiiting pre-teleop, shutoff lights to save batteries
+        {
+          setOff();
         }
       }
       else

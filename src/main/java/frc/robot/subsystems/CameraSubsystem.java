@@ -53,7 +53,7 @@ public class CameraSubsystem extends SubsystemBase {
     if(toggleCam) //Sometimes it takes a second switch to get the camera actually working. (Kinda noticed I think my order of operations was just effed, oops!)
     {
       System.out.println("Switching to CAM 1: Closing CAM 2...") ;
-      while(i < 4)
+      while(i < 4) //Just an fyi this doesnt fix it, but doesnt break it. Im not removing it >:(
       {
         server.setSource(camera1);
         camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
