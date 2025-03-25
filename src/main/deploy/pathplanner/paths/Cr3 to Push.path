@@ -1,0 +1,61 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.022848360655738,
+        "y": 2.9281249999999988
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.945901639344262,
+        "y": 1.9331454918032782
+      },
+      "isLocked": false,
+      "linkedName": "Coral 3"
+    },
+    {
+      "anchor": {
+        "x": 7.61219262295082,
+        "y": 1.8252561475409823
+      },
+      "prevControl": {
+        "x": 6.401434426229509,
+        "y": 1.7413422131147547
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "coral_Home",
+      "waypointRelativePos": 0.5015713387806411,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "Right start HP center ",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 119.35775354279127
+  },
+  "useDefaultConstraints": false
+}

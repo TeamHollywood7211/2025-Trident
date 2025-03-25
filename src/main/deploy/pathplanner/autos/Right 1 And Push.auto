@@ -1,0 +1,89 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Rst - Cr3 NO VISION"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coral_L4_Left"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRouttake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.23
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Cr3 to Push"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Start Right",
+  "choreoAuto": false
+}

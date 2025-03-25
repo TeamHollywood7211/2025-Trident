@@ -52,16 +52,19 @@ public class AlgaeSubsystem extends SubsystemBase {
       double encoderVal = encoder.getAbsolutePosition().getValueAsDouble();
 
 
-      SmartDashboard.putNumber("Wrist Encoder", encoderVal)                ;
-      SmartDashboard.putNumber("Wrist Setpoint", wristSetpoint)            ;
+      //DEBUG VALUES  
+      SmartDashboard.putNumber ("Wrist Encoder", encoderVal)                ;
+      SmartDashboard.putNumber ("Wrist Setpoint", wristSetpoint)            ;
       SmartDashboard.putBoolean("Wrist At Position", wristPID.atSetpoint());
-      SmartDashboard.putNumber("Wrist error", wristPID.getError());
-      SmartDashboard.putNumber("Wrist Home", AlgaeConstants.positions.home);
+      SmartDashboard.putNumber ("Wrist error", wristPID.getError());
+      SmartDashboard.putNumber ("Wrist Home", AlgaeConstants.positions.home);
+      SmartDashboard.putNumber ("Wrist Speed", wristMotor.get());
 
-      wristPID.setSetpoint(wristSetpoint);
+      wristPID.setSetpoint(wristSetpoint); 
       double bottomPos;
 
-      if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < ElevatorConstants.positions.c_low)
+
+      if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < AlgaeConstants.ElevatorSafetyPos)
       {
         bottomPos = AlgaeConstants.positions.bottomL1;
       }
@@ -74,6 +77,8 @@ public class AlgaeSubsystem extends SubsystemBase {
 
 
       double followSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
+      //^ We have a "ghost" setpoint (the original) and then one that tries to follow that setpoint.
+
 
       if(!wristPID.atSetpoint())
       {
@@ -82,9 +87,8 @@ public class AlgaeSubsystem extends SubsystemBase {
          -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
       }
 
-
       if(readSensor())
-       {
+      {
         RobotContainer.m_LedSubsystem.setTeal();
         algaeNotRead = false;
        }
@@ -95,13 +99,12 @@ public class AlgaeSubsystem extends SubsystemBase {
           algaeNotRead = true;
           RobotContainer.m_LedSubsystem.setRed();
         }
-       } //asfjahdsad
+       } 
     }
   
 
     public void runGrip(double speed)
     {
-      //System.out.println(speed);
       intakeMotor.set(MathUtil.clamp(speed, -0.5, 0.5)); 
     }
   

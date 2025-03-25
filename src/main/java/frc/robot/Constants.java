@@ -31,6 +31,7 @@ public final class Constants {
   
     public static final double intakeSpeed = 0.5;
 
+    public static final int ElevatorSafetyPos = 14;
 
     public static class positions {
       public static final double offset = 0.26;
