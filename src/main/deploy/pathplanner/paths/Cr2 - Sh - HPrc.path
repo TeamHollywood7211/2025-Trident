@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.7719837402786704,
-        "y": 2.077055309817449
+        "x": 2.771983740278671,
+        "y": 2.0770553098174487
       },
       "isLocked": false,
       "linkedName": "Coral 2"
@@ -40,7 +40,7 @@
     {
       "name": "algaeRouttake",
       "waypointRelativePos": 0.2484076433121019,
-      "endWaypointRelativePos": 0.7749469214437367,
+      "endWaypointRelativePos": null,
       "command": null
     },
     {

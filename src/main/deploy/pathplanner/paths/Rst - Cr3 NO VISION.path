@@ -35,7 +35,7 @@
     {
       "name": "algaeRintake",
       "waypointRelativePos": 0.6047619047619047,
-      "endWaypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
       "command": null
     }
   ],

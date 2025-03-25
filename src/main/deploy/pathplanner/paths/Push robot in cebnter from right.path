@@ -8,20 +8,36 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.378880232115677,
-        "y": 2.2361111111111107
+        "x": 6.130479452050574,
+        "y": 3.033304794523331
       },
       "isLocked": false,
       "linkedName": "Start Right"
     },
     {
       "anchor": {
-        "x": 5.238470873786407,
-        "y": 2.7354368932038824
+        "x": 7.362585616434134,
+        "y": 3.859717465756207
       },
       "prevControl": {
-        "x": 5.805609619981232,
-        "y": 2.4162409742541104
+        "x": 7.047046232872491,
+        "y": 3.7996147260301796
+      },
+      "nextControl": {
+        "x": 7.775605043354238,
+        "y": 3.9383878327886084
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.9651969178082185,
+        "y": 3.9799229452054794
+      },
+      "prevControl": {
+        "x": 6.911815068488929,
+        "y": 4.205308219180864
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,14 +47,7 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "algaeRintake",
-      "waypointRelativePos": 0.6047619047619047,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -49,7 +58,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.35775354279127
+    "rotation": 179.32330965972068
   },
   "reversed": false,
   "folder": "Right start HP center ",
@@ -57,5 +66,5 @@
     "velocity": 0,
     "rotation": 180.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
