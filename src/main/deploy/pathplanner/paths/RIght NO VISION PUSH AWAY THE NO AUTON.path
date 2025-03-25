@@ -3,49 +3,38 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.512397540983606,
-        "y": 3.1798668032786876
+        "x": 7.147,
+        "y": 1.8462756849315065
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.771983740278671,
-        "y": 2.0770553098174487
+        "x": 9.4361301369863,
+        "y": 1.7410958904109588
       },
       "isLocked": false,
-      "linkedName": "Coral 2"
+      "linkedName": "Start Right"
     },
     {
       "anchor": {
-        "x": 0.7672131147540984,
-        "y": 0.5425717213114762
+        "x": 5.022848360655738,
+        "y": 2.9281249999999988
       },
       "prevControl": {
-        "x": 2.2686789853353506,
-        "y": 3.7655256981540086
+        "x": 6.3708904109589035,
+        "y": 1.6208904109589037
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HPR Center"
+      "linkedName": "Coral 3"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.3527054108216433,
-      "rotationDegrees": 4.32996162560489
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "algaeRouttake",
-      "waypointRelativePos": 0.2484076433121019,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
-      "name": "algaeRstop",
-      "waypointRelativePos": 0.8853503184713375,
+      "name": "algaeRintake",
+      "waypointRelativePos": 0.6,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -60,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.25319461272526
+    "rotation": 119.35775354279127
   },
   "reversed": false,
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.42077312751098
+    "rotation": 180.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }
