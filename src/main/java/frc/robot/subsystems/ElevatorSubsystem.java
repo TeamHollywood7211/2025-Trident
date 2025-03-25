@@ -29,7 +29,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   double ElevatorSetpoint = encoderRight;
   CANrange rangeSensor = new CANrange(ElevatorConstants.canRangeID, RobotContainer.MainBus);
   boolean elevatorNotRead = false;
-
   boolean emergencyHome = false;
 
   
@@ -51,7 +50,6 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     if(intakeClear()) //intakeClear() just checks if the range sensor on the robot sees a note.
     { 
-      //double followSetpoint = 
       motorLeft.set(MathUtil.clamp(ArmPID.calculate(currentLeftPos, -ElevatorSetpoint), -1, 1)); //The actual code for the PID loops
       motorRight.set(MathUtil.clamp(ArmPID.calculate(currentRightPos, ElevatorSetpoint), -1, 1));
       SmartDashboard.putNumber("Elevator Setpoint", ElevatorSetpoint); //Sends debug information to SmartDashboard

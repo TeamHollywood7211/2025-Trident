@@ -73,6 +73,8 @@ public class ClimberSubsystem extends SubsystemBase {
 
     SmartDashboard.putBoolean("ClimberLeft", !leftGrabberOn.get());
 
+
+
     if(!leftGrabberOn.get() && !rightGrabberOn.get())
     {
       SmartDashboard.putBoolean("Grabbed", true);
@@ -84,6 +86,8 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
 
+    SmartDashboard.putBoolean("Climber Left Switch", leftGrabberOn.get());
+    SmartDashboard.putBoolean("Climber Right Switch", rightGrabberOn.get());
 
     encoder = climber.getPosition().getValueAsDouble();
 

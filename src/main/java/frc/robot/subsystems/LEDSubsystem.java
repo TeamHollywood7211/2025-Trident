@@ -44,6 +44,7 @@ public class LEDSubsystem extends SubsystemBase {
   //These are the actual preset animations.
   SingleFadeAnimation redFadeAnim;
   TwinkleAnimation twinkleAnim;
+  //speed = 0.2;
   RainbowAnimation rainbow = new RainbowAnimation(255, 0.2, 999);
 
 
@@ -60,29 +61,6 @@ public class LEDSubsystem extends SubsystemBase {
     
   }
 
-  /**
-   * Example command factory method.
-   *
-   * @return a command
-   */
-  public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
-  }
-
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
-  }
 
   @Override
    public void periodic() {
@@ -140,26 +118,20 @@ public class LEDSubsystem extends SubsystemBase {
     {
       setLEDs(0, 0, 0);
     }
-    //setErrors();
   } 
 
   public void setLEDs(int R, int B, int G) 
   {
     clearAnimation();
-    LED.setLEDs(R, G, B, 255, 0  , numLED-10);
+    LED.setLEDs(R, G, B, 255, 0  , numLED);
     //int ledRestLength = numLED - 210;
     //LED.setLEDs(R, G, B, 255, numLED-10, 10);
-
-    
-
-
-
   }
 
   public void setErrors() //UNUSED: Meant to  display errors on the LED strip. 
   {
-    LED.setLEDs(0, 255, 255, 255, numLED-10, 10);
-
+    //LED.setLEDs(0, 255, 255, 255, numLED-10, 10);
+    //We dont use this yet D:
   }
 
   public void animRedFade()
