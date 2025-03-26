@@ -115,7 +115,7 @@ public class LEDSubsystem extends SubsystemBase {
         }
         if(preteleTimer.get() > 60) //If a minute passes while waiiting pre-teleop, shutoff lights to save batteries
         {
-          setOff();
+          //setOff();
         }
       }
       else

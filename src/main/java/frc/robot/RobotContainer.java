@@ -245,7 +245,6 @@ public class RobotContainer {
         NamedCommands.registerCommand("coral_L3_Center", a_coralMidM);
         NamedCommands.registerCommand("coral_L4_Center", a_coralHighM);
 
-
         NamedCommands.registerCommand("coral_L1_Right", a_coralBottom);
         NamedCommands.registerCommand("coral_L1_Left" , a_coralBottom);
         NamedCommands.registerCommand("coral_HP"      , a_waitIntake);
@@ -264,8 +263,6 @@ public class RobotContainer {
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
         NamedCommands.registerCommand("autoPos", a_autoAligncommand);
-
-
         
         DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
         //(btw DriverStation can give you some cool info, like match and comp)
