@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Rst - Cr3"
+                  "pathName": "Rst - Cr3 NO VISION"
                 }
               },
               {
@@ -70,7 +70,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.175
+            "waitTime": 0.2
           }
         },
         {
@@ -81,12 +81,6 @@
                 "type": "named",
                 "data": {
                   "name": "coralRstop"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
                 }
               }
             ]
@@ -111,6 +105,37 @@
                       "data": {
                         "name": "robot_Home"
                       }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 1.2
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRouttake"
+                            }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.4
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRstop"
+                            }
+                          }
+                        ]
+                      }
                     }
                   ]
                 }
@@ -132,24 +157,31 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "named",
+                      "type": "path",
                       "data": {
-                        "name": "algaeRintake"
+                        "pathName": "HPrc - Cr 2 NO VISION"
                       }
                     },
                     {
-                      "type": "path",
+                      "type": "named",
                       "data": {
-                        "pathName": "HPrc - Cr 2 mid L4"
+                        "name": "coral_L4_Center"
                       }
                     }
                   ]
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "autoPos"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "autoPos"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -197,7 +229,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr2 - Sh - HPrc"
+                        "pathName": "Cr2 - HPrc"
                       }
                     },
                     {
@@ -235,13 +267,20 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPrc - Cr 2"
+                        "pathName": "HPrc - Cr 2 NO VISION"
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "sequential",
                       "data": {
-                        "name": "algaeRintake"
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coral_L4_Right"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]

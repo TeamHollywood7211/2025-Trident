@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Rst - Cr3 NO VISION"
+                  "pathName": "Rst - Cr3"
                 }
               },
               {
@@ -70,7 +70,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.175
           }
         },
         {
@@ -81,6 +81,12 @@
                 "type": "named",
                 "data": {
                   "name": "coralRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRstop"
                 }
               }
             ]
@@ -105,37 +111,6 @@
                       "data": {
                         "name": "robot_Home"
                       }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 1.2
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRouttake"
-                            }
-                          },
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.4
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "algaeRstop"
-                            }
-                          }
-                        ]
-                      }
                     }
                   ]
                 }
@@ -157,31 +132,24 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "named",
                       "data": {
-                        "pathName": "HPrc - Cr 2 NO VISION"
+                        "name": "algaeRintake"
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "path",
                       "data": {
-                        "name": "coral_L4_Center"
+                        "pathName": "HPrc - Cr 2 mid L4"
                       }
                     }
                   ]
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "autoPos"
-                      }
-                    }
-                  ]
+                  "name": "autoPos"
                 }
               },
               {
@@ -229,7 +197,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr2 - HPrc"
+                        "pathName": "Cr2 - Sh - HPrc"
                       }
                     },
                     {
@@ -267,20 +235,13 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HPrc - Cr 2 NO VISION"
+                        "pathName": "HPrc - Cr 2"
                       }
                     },
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "coral_L4_Right"
-                            }
-                          }
-                        ]
+                        "name": "algaeRintake"
                       }
                     }
                   ]
