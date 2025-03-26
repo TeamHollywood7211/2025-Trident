@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.227095379409358,
-        "y": 2.426036739389126
+        "x": 6.028687727115943,
+        "y": 2.003504374696172
       },
       "isLocked": false,
       "linkedName": "Start Right"
     },
     {
       "anchor": {
-        "x": 5.093707191787722,
-        "y": 2.9581763698681574
+        "x": 5.043489583333333,
+        "y": 2.9348958333333326
       },
       "prevControl": {
-        "x": 6.240195826405759,
-        "y": 2.29567498990261
+        "x": 5.820438175774214,
+        "y": 2.297520822400881
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,14 +31,7 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "algaeRintake",
-      "waypointRelativePos": 0.6,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -49,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.35775354279127
+    "rotation": 121.5042667192042
   },
   "reversed": false,
   "folder": "Right start HP center ",

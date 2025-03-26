@@ -3,32 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.76986301369863,
+        "x": 5.52,
         "y": 0.4939640410958907
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.750244326209567,
-        "y": 2.076572777225872
+        "x": 5.518663194444444,
+        "y": 1.2997395833333325
       },
       "isLocked": false,
       "linkedName": "Processor"
     },
     {
       "anchor": {
-        "x": 4.838270547945205,
-        "y": 2.717765410958904
+        "x": 4.72204861111111,
+        "y": 2.725260416666666
       },
       "prevControl": {
-        "x": 5.328497445870076,
-        "y": 1.9781840815955003
+        "x": 5.42368756418264,
+        "y": 1.8082838994631736
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "coral 3 when it is on cneter run"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.11835748792270531,
+      "rotationDegrees": -89.86741926367763
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],

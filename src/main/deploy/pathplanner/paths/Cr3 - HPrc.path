@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.093707191787722,
-        "y": 2.9581763698681574
+        "x": 5.043489583333333,
+        "y": 2.9348958333333326
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.900824584563542,
-        "y": 1.9965325342568634
+        "x": 5.336979166666667,
+        "y": 2.3479166666666664
       },
       "isLocked": false,
       "linkedName": "Coral 3"
@@ -31,10 +31,24 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.5855614973262036,
-      "rotationDegrees": 47.27001325042904
+      "rotationDegrees": 69.33384655045226
     }
   ],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.42686567164179073,
+      "maxWaypointRelativePos": 0.8268656716417906,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
@@ -52,7 +66,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 3.0,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -66,7 +80,7 @@
   "folder": "Right start HP center ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.35775354279127
+    "rotation": 121.5042667192042
   },
   "useDefaultConstraints": false
 }

@@ -16,11 +16,11 @@
     },
     {
       "anchor": {
-        "x": 5.76986301369863,
+        "x": 5.52,
         "y": 0.4939640410958907
       },
       "prevControl": {
-        "x": 6.1192553748097405,
+        "x": 5.86939236111111,
         "y": 1.584068207769168
       },
       "nextControl": null,
@@ -31,14 +31,7 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "algaeProcessor",
-      "waypointRelativePos": 0.4523809523809523,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

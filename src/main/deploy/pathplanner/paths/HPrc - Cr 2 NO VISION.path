@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.4921874999999987,
-        "y": 3.0187499999999994
+        "x": 3.3384548611111104,
+        "y": 3.0886284722222217
       },
       "prevControl": {
-        "x": 3.268576388888888,
-        "y": 2.3618923611111104
+        "x": 3.11484375,
+        "y": 2.4317708333333328
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +49,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.42077312751098
+    "rotation": 59.42100000000001
   },
   "reversed": false,
   "folder": "Right start HP center ",
@@ -57,5 +57,5 @@
     "velocity": 0,
     "rotation": 52.25319461272526
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

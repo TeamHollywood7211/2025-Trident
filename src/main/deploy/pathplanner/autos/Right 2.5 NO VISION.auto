@@ -82,12 +82,6 @@
                 "data": {
                   "name": "coralRstop"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRstop"
-                }
               }
             ]
           }
@@ -110,6 +104,37 @@
                       "type": "named",
                       "data": {
                         "name": "robot_Home"
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 1.2
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRouttake"
+                            }
+                          },
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.4
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeRstop"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -347,19 +372,6 @@
                 "type": "wait",
                 "data": {
                   "waitTime": 0.2
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "HPrc - Cr 2 NO VISION"
-                      }
-                    }
-                  ]
                 }
               }
             ]
