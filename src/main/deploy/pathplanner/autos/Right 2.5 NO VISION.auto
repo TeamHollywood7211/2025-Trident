@@ -19,6 +19,12 @@
                 "data": {
                   "name": "coral_L4_Left"
                 }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
+                }
               }
             ]
           }
@@ -134,7 +140,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coral_L4_Left"
+                        "name": "coral_L4_Center"
                       }
                     }
                   ]
@@ -198,7 +204,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Cr2 - Sh - HPrc"
+                        "pathName": "Cr2 - HPrc"
                       }
                     },
                     {
@@ -248,12 +254,6 @@
                             "data": {
                               "name": "coral_L4_Right"
                             }
-                          },
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.2
-                            }
                           }
                         ]
                       }
@@ -272,6 +272,12 @@
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.1
                 }
               },
               {
