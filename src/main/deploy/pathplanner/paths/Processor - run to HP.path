@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 5.52,
-        "y": 0.4939640410958907
+        "y": 0.19999999999999998
       },
       "prevControl": null,
       "nextControl": {
         "x": 5.406857638888888,
-        "y": 1.034201388888888
+        "y": 0.7402373477929969
       },
       "isLocked": false,
       "linkedName": "Processor"
@@ -58,7 +58,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.7899106082460856
+    "rotation": -1.7899106082460858
   },
   "reversed": false,
   "folder": "Middel",
