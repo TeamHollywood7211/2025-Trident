@@ -4,7 +4,16 @@
 
 package frc.robot.subsystems;
 
+import java.io.OutputStream;
+
+import org.opencv.core.Mat;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
@@ -19,15 +28,9 @@ public class CameraSubsystem extends SubsystemBase {
   UsbCamera camera2; //backup camera
   VideoSink server;
   boolean toggleCam = false;
-
   public CameraSubsystem() {
-
-
-
     camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
     camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
-  
-    
 
     if(!Robot.isSimulation())
     {
@@ -38,12 +41,7 @@ public class CameraSubsystem extends SubsystemBase {
       server = CameraServer.getServer();
       server.setSource(camera1);
     }
-    
-
-
   }
-
-
 
   public void toggleCam()
   {
@@ -57,11 +55,10 @@ public class CameraSubsystem extends SubsystemBase {
       {
         server.setSource(camera1);
         camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen)  ;
-        camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);
-        
+        camera2.setConnectionStrategy(ConnectionStrategy.kForceClose);        
         i++;
       }
-      }
+    }
     else{
       System.out.println("Switching to CAM 2: Closing CAM 1...") ;
       while(i < 4)
@@ -73,8 +70,9 @@ public class CameraSubsystem extends SubsystemBase {
         
         i++;
       }
-
+  
       
     }
   }
+  
 }

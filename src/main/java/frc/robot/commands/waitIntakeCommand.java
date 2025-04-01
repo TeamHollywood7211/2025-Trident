@@ -40,7 +40,7 @@ public class waitIntakeCommand extends Command {
     SmartDashboard.putNumber("Auto Intake State", m_state);
     if(m_state == 0)
     {
-      m_coral.setSpeed(-0.3);
+      m_coral.setSpeed(-0.5);
       if(m_coral.getRange() < CoralConstants.coralInRange)
       {
         m_state = 1;

@@ -46,7 +46,7 @@ public class auto_waitIntake extends Command {
     }
     if(m_state == 0) //take in the piece
     {
-      m_coral.setSpeed(-0.3);
+      m_coral.setSpeed(-0.5);
       if(m_coral.getRange() < CoralConstants.coralInRange)
       {
         m_state = 1;
