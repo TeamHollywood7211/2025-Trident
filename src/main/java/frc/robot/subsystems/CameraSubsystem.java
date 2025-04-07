@@ -32,6 +32,7 @@ public class CameraSubsystem extends SubsystemBase {
     camera1 = CameraServer.startAutomaticCapture("Coral Cam", 0);
     camera2 = CameraServer.startAutomaticCapture("Climber Cam", 1);
 
+
     if(!Robot.isSimulation())
     {
       camera1.setResolution(70, 70);
@@ -41,6 +42,12 @@ public class CameraSubsystem extends SubsystemBase {
       server = CameraServer.getServer();
       server.setSource(camera1);
     }
+
+    camera2.setFPS(15);
+    camera1.setFPS(15);
+    camera2.setResolution(120,120);
+    camera1.setResolution(120, 120);
+    
   }
 
   public void toggleCam()

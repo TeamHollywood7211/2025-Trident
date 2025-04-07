@@ -84,7 +84,9 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {}
 
   @Override
-  public void autonomousExit() {}
+  public void autonomousExit() {
+    RobotContainer.m_CoralSubsystem.runCoral(-Constants.AlgaeConstants.intakeSpeed); //im sorry its for l2.5
+  }
 
   @Override
   public void teleopInit() {

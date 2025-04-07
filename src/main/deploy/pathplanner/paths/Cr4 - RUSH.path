@@ -3,45 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.962909836065574,
-        "y": 0.45865778688524644
+        "x": 5.649657534246575,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.849767474954462,
-        "y": 0.9988951346782433
+        "x": 6.3258133561643834,
+        "y": 3.9648972602739723
       },
       "isLocked": false,
-      "linkedName": "Processor"
+      "linkedName": "Coral 4"
     },
     {
       "anchor": {
-        "x": 4.21892361111111,
-        "y": 0.30746527777777716
+        "x": 4.962909836065574,
+        "y": 0.45865778688524644
       },
       "prevControl": {
-        "x": 5.279844604763701,
-        "y": 0.47423293983976544
-      },
-      "nextControl": {
-        "x": 3.743749999999999,
-        "y": 0.2327720700152191
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 2.849305555555554,
-        "y": 0.06987847222222171
-      },
-      "prevControl": {
-        "x": 3.6459201388888878,
-        "y": 0.16289359779299728
+        "x": 8.307479508196721,
+        "y": 0.7703381147541002
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Processor"
     }
   ],
   "rotationTargets": [],
@@ -58,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.7899106082460858
+    "rotation": 1.5481576989778707
   },
   "reversed": false,
   "folder": "Middel",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 1.5481576989778707
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

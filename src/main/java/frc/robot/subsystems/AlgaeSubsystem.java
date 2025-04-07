@@ -133,6 +133,17 @@ public class AlgaeSubsystem extends SubsystemBase {
     {
       setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
+
+    public void gotoHome()
+    {
+      setPosition(Constants.AlgaeConstants.positions.home);
+    }
+
+    public void gotoFloorGrab()
+    {
+      setPosition(Constants.AlgaeConstants.positions.floorGrab);
+    }
+
     public double getTarget()
     {
       return wristSetpoint;

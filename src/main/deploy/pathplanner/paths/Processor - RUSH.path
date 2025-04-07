@@ -8,36 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.849767474954462,
-        "y": 0.9988951346782433
+        "x": 6.062847336065576,
+        "y": 2.7299355646630254
       },
       "isLocked": false,
       "linkedName": "Processor"
     },
     {
       "anchor": {
-        "x": 4.21892361111111,
-        "y": 0.30746527777777716
+        "x": 5.778073770491804,
+        "y": 6.88406762295082
       },
       "prevControl": {
-        "x": 5.279844604763701,
-        "y": 0.47423293983976544
-      },
-      "nextControl": {
-        "x": 3.743749999999999,
-        "y": 0.2327720700152191
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 2.849305555555554,
-        "y": 0.06987847222222171
-      },
-      "prevControl": {
-        "x": 3.6459201388888878,
-        "y": 0.16289359779299728
+        "x": 6.62920081967213,
+        "y": 5.577407786885245
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "robot_Home",
+      "waypointRelativePos": 0.572586090479402,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -58,7 +49,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.7899106082460858
+    "rotation": -39.0938588862295
   },
   "reversed": false,
   "folder": "Middel",

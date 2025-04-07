@@ -221,6 +221,19 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "named",
+                      "data": {
+                        "name": "robot_Home"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
                       "type": "path",
                       "data": {
                         "pathName": "Cr2 - HPrc"
@@ -310,37 +323,6 @@
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Cr2 - HPrc"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "robot_Home"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coral_HP"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.2
                 }
               }
             ]

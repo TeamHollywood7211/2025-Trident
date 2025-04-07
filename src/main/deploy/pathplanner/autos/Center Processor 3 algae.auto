@@ -17,7 +17,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeLow"
+                  "name": "coral_L3_Left"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeRintake"
                 }
               }
             ]
@@ -32,6 +38,31 @@
                 "data": {
                   "name": "autoPos"
                 }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.3
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRouttake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.2
+                }
               }
             ]
           }
@@ -43,22 +74,16 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeRintake"
+                  "name": "algaeRstop"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralRstop"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "algaeRstop"
           }
         },
         {
@@ -72,12 +97,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "algaeProcessor"
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.2
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeProcessor"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
           }
         },
         {
@@ -89,7 +133,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.4
           }
         },
         {
@@ -117,6 +161,12 @@
                       "data": {
                         "name": "algaeHigh"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeRintake"
+                      }
                     }
                   ]
                 }
@@ -124,13 +174,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "algaeRintake"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
+                  "name": "autoPos"
                 }
               },
               {
@@ -150,9 +194,22 @@
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "sequential",
                       "data": {
-                        "name": "algaeProcessor"
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.3
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeProcessor"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -167,7 +224,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.4
                 }
               },
               {
@@ -175,14 +232,7 @@
                 "data": {
                   "name": "algaeRstop"
                 }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
+              },
               {
                 "type": "parallel",
                 "data": {
@@ -194,14 +244,34 @@
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "sequential",
                       "data": {
-                        "name": "algaeHigh"
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 2.0
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "algaeHigh"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
                 }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
               {
                 "type": "named",
                 "data": {
@@ -211,32 +281,32 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 0.2
                 }
               },
               {
-                "type": "parallel",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Cr5 - Processor"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeProcessor"
-                      }
-                    }
-                  ]
+                  "name": "algaeRouttake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeProcessor"
                 }
               },
               {
-                "type": "wait",
+                "type": "path",
                 "data": {
-                  "waitTime": 0.5
+                  "pathName": "Cr5 - Processor"
                 }
               }
             ]

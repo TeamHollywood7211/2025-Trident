@@ -184,6 +184,12 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "autoPos"
+                }
+              },
+              {
                 "type": "parallel",
                 "data": {
                   "commands": [
@@ -313,6 +319,12 @@
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "autoPos"
                 }
               },
               {

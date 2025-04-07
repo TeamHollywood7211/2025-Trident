@@ -31,7 +31,7 @@ public final class Constants {
   
     public static final double intakeSpeed = 0.5;
 
-    public static final int ElevatorSafetyPos = 14;
+    public static final int ElevatorSafetyPos = -1;
 
     public static class positions {
       public static final double offset = 0.26;
@@ -50,6 +50,7 @@ public final class Constants {
       public static final double top = 0.2-offset;
       public static final double bottomL1 = 0.31-offset; //The lowest value if we are below L1 (maybe change to L2)
       public static final double bottomPostL1 = 0.42-offset; //The lowest value after L1 (read above for maybe)
+      public static final double floorGrab = 0.166;
 
       
 
@@ -89,8 +90,8 @@ public final class Constants {
     public static final int armMotorID = 41;
     public static final int servoOpen = 40; //The degrees to open the servo to
     public static final int servoClose = 115;
-    public static final int clOpenPosition = -206;
-    public static final int climberClose = 0;
+    public static final int clOpenPosition = -217;
+    public static final int climberClose = 4;
 
     public static final int leftSwitchID = 7;
     public static final int rightSwitchID = 8;
@@ -112,7 +113,7 @@ public final class Constants {
       public static final int a_high =         102;
       public static final int a_low =         63; //
       public static final int a_floor =       0;
-      public static final int a_processing =  31;
+      public static final int a_processing =  27;
       public static final int a_home = 0;
 
 

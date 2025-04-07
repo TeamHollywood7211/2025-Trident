@@ -180,6 +180,8 @@ public class RobotContainer {
     private final AllMoveCommand a_coralHighM = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.home, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.home);
     
+    private final AllMoveCommand a_floorPickup = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 
+    Constants.CoralConstants.positions.home, 13.5, 0.166); //This is hard coded, fix later
     
 
 
@@ -351,6 +353,9 @@ public class RobotContainer {
         buttonBox1.button(2).onTrue(c_waitIntake)    ;
 
         //
+
+
+        buttonBox2.button(11).onTrue(a_floorPickup);
 
         buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
         buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));

@@ -45,6 +45,10 @@ public class CoralCommand extends Command {
     {
       RobotContainer.m_LedSubsystem.setRed();
     }
+    //if(m_bb1.button(11).getAsBoolean())
+    //{
+      //m_coral.runCoral(-Constants.AlgaeConstants.intakeSpeed/4);
+    //}
 
 
      if(Math.abs(m_controller.getLeftX()) > 0.05 )
