@@ -17,6 +17,7 @@ public class AlgaeMoveCommand extends Command {
   double algaePos;
   double elevatorPos;
   boolean finished = false;
+  double overrideSpeed;
 
   /**
    * Creates a new ExampleCommand.
@@ -28,6 +29,7 @@ public class AlgaeMoveCommand extends Command {
     m_algae = algae;
     elevatorPos = ElPos;
     algaePos = alPos;
+    //this.overrideSpeed = overrideSpeed[0];
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(elevator);
   }

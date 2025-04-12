@@ -26,7 +26,7 @@ public class AutoAlignManualCommand extends Command {
   private PIDController rotController;
   private Timer dontSeeTagTimer, stopTimer;
   private double tagID = -1;
-  private double maxSpeed = RobotContainer.MaxSpeed/2;
+  private double maxSpeed = RobotContainer.MaxSpeed/4;
 
   /**
    * Creates a new ExampleCommand.

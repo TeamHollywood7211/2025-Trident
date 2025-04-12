@@ -133,6 +133,10 @@ public class AlgaeSubsystem extends SubsystemBase {
     {
       setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
+    public void gotoClear()
+    {
+      setPosition(Constants.AlgaeConstants.positions.wristUpPos);
+    }
 
     public void gotoHome()
     {

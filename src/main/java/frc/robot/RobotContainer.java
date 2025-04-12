@@ -153,6 +153,17 @@ public class RobotContainer {
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbingHigh);
 
+
+
+    //MANUAL ONES (oh god this is so bad)
+    private final AllMoveCommand a_coralMidRMan = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.wristUpPos);
+    private final AllMoveCommand a_coralMidLMan = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.wristUpPos);
+    
+
+
+
     //L1
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
@@ -236,11 +247,11 @@ public class RobotContainer {
         //Coral positions
         //THESE ARE LEFT
         NamedCommands.registerCommand("coral_L2_Left", a_coralLowL); //Coral low tier
-        NamedCommands.registerCommand("coral_L3_Left", a_coralMidL); //Coral middle tier
+        NamedCommands.registerCommand("coral_L3_Left", a_coralMidLMan); //Coral middle tier
         NamedCommands.registerCommand("coral_L4_Left" , a_coralHighL); //Coral high tier
         //THESE ARE RIGHT
         NamedCommands.registerCommand("coral_L2_Right", a_coralLowR);
-        NamedCommands.registerCommand("coral_L3_Right", a_coralMidR);
+        NamedCommands.registerCommand("coral_L3_Right", a_coralMidRMan);
         NamedCommands.registerCommand("coral_L4_Right" , a_coralHighR);
 
         NamedCommands.registerCommand("coral_L2_Center", a_coralLowM);
@@ -358,7 +369,7 @@ public class RobotContainer {
         buttonBox2.button(11).onTrue(a_floorPickup);
 
         buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
-        buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoIn));
+        buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoClear));
 
         buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.

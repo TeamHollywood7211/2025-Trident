@@ -34,23 +34,26 @@ public final class Constants {
     public static final int ElevatorSafetyPos = -1;
 
     public static class positions {
-      public static final double offset = 0.26;
-      public static final double home = 0.2-offset;
+      public static final double offset = 0.17;
+      public static final double home = -0.06-offset; 
       ;//0.66;
 
-      public static final double grabbing = 0.42-offset;//0.81;//-14; 
-      public static final double grabbingHome = 0.25-offset;//0.691;//-10;
-      public static final double grabbingHigh = 0.16;
-      public static final double lowpos = 0.22-offset;
+      public static final double grabbing = 0.16-offset;//0.81;//-14; 
+      public static final double grabbingHome = -0.01-offset;//0.691;//-10;
+      public static final double grabbingHigh = 0.16-offset;
+      public static final double lowpos = -0.04-offset;
       //public static final int home = 0.66;
 
       public static final int safety = 2; //TODO: Grab better safety positions :3
                                 //Positive values bypass the safety
+                                //Yeah the safety doesnt do anything anymore
     
-      public static final double top = 0.2-offset;
-      public static final double bottomL1 = 0.31-offset; //The lowest value if we are below L1 (maybe change to L2)
-      public static final double bottomPostL1 = 0.42-offset; //The lowest value after L1 (read above for maybe)
-      public static final double floorGrab = 0.166;
+      public static final double top = -0.06-offset;
+      public static final double bottomL1 = 0.05-offset; //The lowest value if we are below L1 (maybe change to L2)
+      public static final double bottomPostL1 = 0.16-offset; //The lowest value after L1 (read above for maybe)
+      public static final double floorGrab = 0.166-offset;
+
+      public static final double wristUpPos = 0.038; //These names SUCK
 
       
 
