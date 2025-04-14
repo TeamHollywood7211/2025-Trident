@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.962909836065574,
-        "y": 0.45865778688524644
+        "x": 5.649657534246575,
+        "y": 0.47064549180327847
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.254296256753803,
-        "y": 1.6076936892094535
+        "x": 5.941043954934805,
+        "y": 1.6196813941274857
       },
       "isLocked": false,
       "linkedName": "Processor"
     },
     {
       "anchor": {
-        "x": 3.188,
-        "y": 3.089
+        "x": 3.428483606557377,
+        "y": 2.916137295081967
       },
       "prevControl": {
-        "x": 3.4086714027264207,
-        "y": 2.7848082534138694
+        "x": 3.6491550092837977,
+        "y": 2.6119455484958363
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "Middel",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 1.5481576989778707
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

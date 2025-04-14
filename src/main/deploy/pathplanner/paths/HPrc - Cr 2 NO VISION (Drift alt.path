@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": -0.03596311475409834,
-        "y": 0.5665471311475403
+        "x": 0.276,
+        "y": 0.962
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9014239191145085,
-        "y": 1.2258674317507143
+        "x": 1.2133870338686068,
+        "y": 1.621320300603174
       },
       "isLocked": false,
       "linkedName": "HPR Left Second Run"
     },
     {
       "anchor": {
-        "x": 3.0322500000000003,
-        "y": 3.2937499999999993
+        "x": 2.901024590163934,
+        "y": 3.3716700819672125
       },
       "prevControl": {
-        "x": 2.80863888888889,
-        "y": 2.6368923611111104
+        "x": 2.6774134790528237,
+        "y": 2.7148124430783236
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +49,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.42100000000001
+    "rotation": 53.219289891411854
   },
   "reversed": false,
   "folder": "Right start HP center ",

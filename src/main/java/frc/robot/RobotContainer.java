@@ -281,6 +281,7 @@ public class RobotContainer {
         //(btw DriverStation can give you some cool info, like match and comp)
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests"); //Actually makes the chooser for SmartDashboard
+    
         SmartDashboard.putData("Auto Mode", autoChooser);
 
         configureBindings();
@@ -363,24 +364,23 @@ public class RobotContainer {
         buttonBox1.button(4).onTrue(a_homeAll)       ;
         buttonBox1.button(2).onTrue(c_waitIntake)    ;
 
-        //
+
+
 
 
         buttonBox2.button(11).onTrue(a_floorPickup);
-
-        buttonBox2.button(1).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
-        buttonBox2.button(8).onTrue(new InstantCommand(m_AlgaeSubsystem::gotoClear));
-
-        buttonBox2.button(2).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
-        buttonBox2.button(9).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
+        buttonBox2.button(1) .onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
+        buttonBox2.button(8) .onTrue(new InstantCommand(m_AlgaeSubsystem::gotoClear));
+        buttonBox2.button(2) .onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
+        buttonBox2.button(9) .onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
 
 
         buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 
 
 
-        servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::climberEngage));
-        servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberServoHome));
+        servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::intakeRelease));
+        servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::intakeLock));
         //servoStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         //servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
 

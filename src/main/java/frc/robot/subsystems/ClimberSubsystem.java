@@ -42,7 +42,7 @@ public class ClimberSubsystem extends SubsystemBase {
     climberServo.setPulseTimeMicroseconds(500);
     //climberServo.setAngle(60);
     unlockClimb();
-    climberServoHome();
+    intakeLock();
   }
 
 
@@ -101,13 +101,15 @@ public class ClimberSubsystem extends SubsystemBase {
 
   //This code is conviluted and bad. Could be made better 
   
-  public void climberEngage() //Puts the climber in the "open" position
+
+  
+  public void intakeRelease() //Puts the climber in the "open" position
   {
-    intakeServo.setAngle(ClimberConstants.servoOpen);
+    intakeServo.setAngle(ClimberConstants.servoOpen); // 
   }
-  public void climberServoHome()
+  public void intakeLock()
   {
-    intakeServo.setAngle(ClimberConstants.servoClose);
+    intakeServo.setAngle(ClimberConstants.servoClose); // 
   }
 
   public void addPosition(double val)
@@ -117,9 +119,9 @@ public class ClimberSubsystem extends SubsystemBase {
 
   public void climberRun1() //Starts the climber
   {
-    setpoint = ClimberConstants.clOpenPosition;
-    climberEngage();
-    unlockClimb();
+    setpoint = ClimberConstants.clOpenPosition; 
+    intakeRelease() ; 
+    unlockClimb()   ;   
     //RobotContainer.server.setSource(RobotContainer.camera1);
   }
   public void climberRun2() //pulls down the climber
