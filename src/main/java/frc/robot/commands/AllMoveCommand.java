@@ -55,7 +55,7 @@ public class AllMoveCommand extends Command {
     
     //RobotContainer.m_AlgaeSubsystem.gotoOut(); //Just being safe :)
     //Safety check: Ensures that the algae is passed the safety position
-    if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.safety) || (Constants.safetyBypass)))
+    if((RobotContainer.m_AlgaeSubsystem.getPosition() < (Constants.AlgaeConstants.positions.nearHomePos) || (Constants.safetyBypass)))
     {
       // -12 < -11.5
       m_coral.setPosition(coralPos);

@@ -49,13 +49,13 @@ public class HomeAllCommand extends Command {
   @Override
   public void execute() {
     m_coral.setPosition(0);
-    if(Math.abs(m_coral.getPosition()) < 10)
+    if(Math.abs(m_coral.getPosition()) < 6) //If coral is close to home
     {
       coralMoved = true;
     }
     if(coralMoved){
-      m_algae.setPosition(AlgaeConstants.positions.home);
-      if(m_algae.getPosition() < AlgaeConstants.positions.safety)
+      m_algae.setPosition(AlgaeConstants.positions.home); //sets algae to home if coral is homed
+      if(m_algae.getPosition() < AlgaeConstants.positions.nearHomePos)  //if algae is close to home
       {
         algaeMoved = true;
       }

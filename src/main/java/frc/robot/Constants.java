@@ -14,20 +14,20 @@ package frc.robot;
  */
 public final class Constants {
 
-  public static final boolean safetyBypass = false; //Bypass all the safety functions
+  public static final boolean safetyBypass = false; //Bypass all the safety functions, may be unfinished
 
 
   public static class ImportantConstants {
     public static final double driveSpeed = 1.00; //In the event we need to run the robot at a slower speed
   }
 
-//\\//\\//\\//\\//\\
+  //PLEASE NOTE: A lot of names are gonna be bad since mid-comp its hard to make names.
 
   public static class AlgaeConstants {
 
     public static final int intakeID = 52;
     public static final int wristID = 53;
-    public static final int algaeSwitch = 9;
+    public static final int algaeSwitch = 9; //The little switch in the algae mechanism
   
     public static final double intakeSpeed = 0.5;
 
@@ -40,21 +40,18 @@ public final class Constants {
 
       public static final double grabbing = 0.16-offset;//0.81;//-14; 
       public static final double grabbingHome = -0.01-offset;//0.691;//-10;
-      public static final double grabbingHigh = 0.16-offset;
+      //public static final double grabbingHigh = 0.16-offset;
       public static final double lowpos = -0.04-offset;
-      //public static final int home = 0.66;
 
-      public static final int safety = 2; //TODO: Grab better safety positions :3
-                                //Positive values bypass the safety
-                                //Yeah the safety doesnt do anything anymore
+      public static final double nearHomePos = -2;
     
       public static final double top = -0.06-offset;
-      public static final double bottomL1 = 0.05-offset; //The lowest value if we are below L1 (maybe change to L2)
-      public static final double bottomPostL1 = 0.16-offset; //The lowest value after L1 (read above for maybe)
+      public static final double preSafety = 0.05-offset; //The lowest value if we are below a certain amount
+      public static final double postSafety = 0.16-offset; //The lowest value after a certain amount
       public static final double floorGrab = 0.166-offset;
 
-      public static final double wristUpPos = 0.038; //These names SUCK
-
+      public static final double wristUpPos = -0.14;; 
+      
       
 
     }

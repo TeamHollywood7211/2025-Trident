@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.27571721311475417,
-        "y": 0.9621413934426232
+        "x": 0.1,
+        "y": 0.84
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.2757172131147543,
-        "y": 0.9621413934426232
+        "x": 1.0999999999999999,
+        "y": 0.84
       },
       "isLocked": false,
       "linkedName": "HPR Center"

@@ -70,11 +70,11 @@ public class AlgaeSubsystem extends SubsystemBase {
       //Changes the min value of the wrist depending on how high the elevator works.
       if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < AlgaeConstants.ElevatorSafetyPos)
       {
-        bottomPos = AlgaeConstants.positions.bottomL1;
+        bottomPos = AlgaeConstants.positions.preSafety;
       }
       else
       {
-        bottomPos = AlgaeConstants.positions.bottomPostL1;
+        bottomPos = AlgaeConstants.positions.postSafety;
       }
 
 
@@ -135,7 +135,7 @@ public class AlgaeSubsystem extends SubsystemBase {
     }
     public void gotoClear()
     {
-      setPosition(Constants.AlgaeConstants.positions.wristUpPos);
+      setPosition(Constants.AlgaeConstants.positions.grabbing);
     }
 
     public void gotoHome()

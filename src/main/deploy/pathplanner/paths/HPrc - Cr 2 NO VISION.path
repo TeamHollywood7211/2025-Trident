@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.276,
-        "y": 0.962
+        "x": 0.1,
+        "y": 0.84
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.2133870338686068,
-        "y": 1.621320300603174
+        "x": 1.0373870338686069,
+        "y": 1.499320300603174
       },
       "isLocked": false,
       "linkedName": "HPR Left Second Run"

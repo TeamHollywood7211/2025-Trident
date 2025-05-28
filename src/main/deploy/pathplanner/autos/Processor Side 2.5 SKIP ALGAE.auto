@@ -19,18 +19,6 @@
                 "data": {
                   "name": "coral_L4_Left"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRintake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "toggleShootAtEnd"
-                }
               }
             ]
           }
@@ -62,12 +50,6 @@
                 "type": "named",
                 "data": {
                   "name": "coralRouttake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeRintake"
                 }
               }
             ]

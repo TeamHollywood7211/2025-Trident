@@ -47,6 +47,7 @@ import frc.robot.commands.AlgaeMoveCommand;
 import frc.robot.commands.AlgaeMoveCommandWait;
 import frc.robot.commands.Autos.auto_algaeRunner;
 import frc.robot.commands.Autos.auto_coralRunner;
+import frc.robot.commands.Autos.auto_toggleShootAtEnd;
 import frc.robot.commands.Autos.auto_waitIntake;
 import frc.robot.commands.AlgaeCommand;
 import frc.robot.commands.ClimberCommand;
@@ -70,7 +71,10 @@ public class RobotContainer {
            
     public static boolean forceLEDoff = false;
     
+    public static boolean shootAtAutoEnd = false;
+
     public static CANBus MainBus = new CANBus("rio"); //This is for our CAN system (what speaks to all components), the default is the roborio. We used to run it on a CANivore.
+
 
 
 
@@ -125,7 +129,7 @@ public class RobotContainer {
     private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
     private final AutoAlignManualCommand a_AutoAlignManualCommand = new AutoAlignManualCommand(false, drivetrain);
     private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
-
+    private final auto_toggleShootAtEnd a_toggleShootAtEnd = new auto_toggleShootAtEnd(m_CoralSubsystem);
 
     //Ok so the following are commands for positions. 
     //This may look like a mess, but notice the different between "coral" and "algae".
@@ -143,7 +147,7 @@ public class RobotContainer {
     private final AllMoveCommand a_coralMidL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralHighL = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbingHigh);
+     Constants.CoralConstants.positions.left, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
     //CORAL RIGHT
     private final AllMoveCommand a_coralLowR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
@@ -151,7 +155,7 @@ public class RobotContainer {
     private final AllMoveCommand a_coralMidR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_mid, AlgaeConstants.positions.grabbing);
     private final AllMoveCommand a_coralHighR = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
-     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbingHigh);
+     Constants.CoralConstants.positions.right, Constants.ElevatorConstants.positions.c_high, AlgaeConstants.positions.grabbing);
 
 
 
@@ -276,6 +280,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
         NamedCommands.registerCommand("autoPos", a_autoAligncommand);
+
+        NamedCommands.registerCommand("toggleShootAtEnd", a_toggleShootAtEnd);
         
         DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
         //(btw DriverStation can give you some cool info, like match and comp)

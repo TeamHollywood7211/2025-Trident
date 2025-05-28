@@ -85,7 +85,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousExit() {
-    RobotContainer.m_CoralSubsystem.runCoral(-Constants.AlgaeConstants.intakeSpeed); //im sorry its for l2.5
+    if(RobotContainer.shootAtAutoEnd)
+    {
+      RobotContainer.m_CoralSubsystem.runCoral(-Constants.AlgaeConstants.intakeSpeed); //im sorry its for l2.5
+    }
   }
 
   @Override

@@ -3,35 +3,42 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.649657534246575,
-        "y": 4.0
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 6.3258133561643834,
-        "y": 3.9648972602739723
-      },
-      "isLocked": false,
-      "linkedName": "Coral 4"
-    },
-    {
-      "anchor": {
         "x": 5.52,
         "y": 0.36
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.619937500000002,
+        "y": 2.63127777777778
+      },
+      "isLocked": false,
+      "linkedName": "Processor"
+    },
+    {
+      "anchor": {
+        "x": 5.71813524590164,
+        "y": 6.056915983606557
+      },
       "prevControl": {
-        "x": 5.86939236111111,
-        "y": 1.4501041666732764
+        "x": 7.69610655737705,
+        "y": 4.8581454918032785
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Processor"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeHigh",
+      "waypointRelativePos": 0.572586090479402,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -42,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -116.56505117707799
   },
   "reversed": false,
   "folder": "Middel",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }
