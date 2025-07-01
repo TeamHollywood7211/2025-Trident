@@ -42,6 +42,7 @@ public final class Constants {
       public static final double grabbingHome = -0.01-offset;//0.691;//-10;
       public static final double grabbingHigh = 0.16-offset;
       public static final double lowpos = -0.04-offset;
+      public static final double otherStupidPos = 0;
       //public static final int home = 0.66;
 
       public static final int safety = 2; //TODO: Grab better safety positions :3
@@ -54,6 +55,7 @@ public final class Constants {
       public static final double floorGrab = 0.166-offset;
 
       public static final double wristUpPos = 0.038; //These names SUCK
+      public static final double actualWristUp = -0.125;
 
       
 

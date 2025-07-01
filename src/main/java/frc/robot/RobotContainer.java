@@ -38,6 +38,7 @@ import frc.robot.Constants.ImportantConstants;
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.HomeAllCommand;
+import frc.robot.commands.WristMoveCommand;
 import frc.robot.commands.waitIntakeCommand;
 import frc.robot.commands.AllMoveCommand;
 
@@ -193,6 +194,7 @@ public class RobotContainer {
     
     private final AllMoveCommand a_floorPickup = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 
     Constants.CoralConstants.positions.home, 13.5, 0.166); //This is hard coded, fix later
+    private final WristMoveCommand a_wristUp = new WristMoveCommand(m_AlgaeSubsystem, Constants.AlgaeConstants.positions.actualWristUp);
     
 
 
@@ -213,6 +215,8 @@ public class RobotContainer {
 
 
     public final static HomeAllCommand a_homeAll = new HomeAllCommand(m_CoralSubsystem, m_ElevatorSubsystem, m_AlgaeSubsystem);
+
+
 
     UsbCamera camera1;
     UsbCamera camera2;
@@ -276,6 +280,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("coralRstop"   , a_coralStop);
 
         NamedCommands.registerCommand("autoPos", a_autoAligncommand);
+
+        
         
         DriverStation.silenceJoystickConnectionWarning(true); //When you have debug joysticks that are unplugged, it complains... a lot.
         //(btw DriverStation can give you some cool info, like match and comp)
@@ -354,7 +360,7 @@ public class RobotContainer {
         buttonBox1.button(8).onTrue(a_coralMidM)     ;
         buttonBox1.button(5).onTrue(a_coralLowM)     ;
         //Coral Right
-        buttonBox1.button(12).onTrue(a_coralHighR)    ;
+        buttonBox1.button(12).onTrue(a_coralHighR)   ;
         buttonBox1.button(7).onTrue(a_coralMidR)     ;
         buttonBox1.button(6).onTrue(a_coralLowR)     ;
         //
@@ -370,14 +376,15 @@ public class RobotContainer {
 
         buttonBox2.button(11).onTrue(a_floorPickup);
         buttonBox2.button(1) .onTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
-        buttonBox2.button(8) .onTrue(new InstantCommand(m_AlgaeSubsystem::gotoClear));
+        buttonBox2.button(8) .onTrue(a_wristUp);
         buttonBox2.button(2) .onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
         buttonBox2.button(9) .onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2)); //Notice: This doesnt have an undo button.
 
+            //
 
         buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 
-
+            //
 
         servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::intakeRelease));
         servoStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::intakeLock));
