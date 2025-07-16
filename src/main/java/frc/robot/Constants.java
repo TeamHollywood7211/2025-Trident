@@ -18,7 +18,7 @@ public final class Constants {
 
 
   public static class ImportantConstants {
-    public static final double driveSpeed = 1.00; //In the event we need to run the robot at a slower speed
+    public static final double driveSpeed = 0.5; //In the event we need to run the robot at a slower speed
   }
 
 //\\//\\//\\//\\//\\
@@ -34,8 +34,8 @@ public final class Constants {
     public static final int ElevatorSafetyPos = -1;
 
     public static class positions {
-      public static final double offset = 0.17;
-      public static final double home = -0.06-offset; 
+      public static final double offset = 0;
+      public static final double home = -0.25; 
       ;//0.66;
 
       public static final double grabbing = 0.16-offset;//0.81;//-14; 
@@ -79,7 +79,7 @@ public final class Constants {
 
     public static class positions { //the movers positions
       public static final int right = -17;
-      public static final int left = 17; //17
+      public static final int left = 17; 
       public static final int home = 0;
     }
   }

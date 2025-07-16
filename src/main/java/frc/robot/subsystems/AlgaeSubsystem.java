@@ -61,6 +61,7 @@ public class AlgaeSubsystem extends SubsystemBase {
       SmartDashboard.putNumber ("Wrist error", wristPID.getError())         ;
       SmartDashboard.putNumber ("Wrist Home", AlgaeConstants.positions.home);
       SmartDashboard.putNumber ("Wrist Speed", wristMotor.get())            ;
+      //SmartDashboard.putBoolean("Wrist ", algaeNotRead)
 
       wristPID.setSetpoint(wristSetpoint); 
       double bottomPos;
@@ -87,9 +88,12 @@ public class AlgaeSubsystem extends SubsystemBase {
 
       if(!wristPID.atSetpoint()) //if not close to the setpoint
       {
-        wristMotor.set(-MathUtil.clamp( 
+        wristMotor.set(MathUtil.clamp( 
           wristPID.calculate(encoderVal, followSetpoint), 
-         -0.3, 0.3)); //Probably dont exceed 0.4 lol, broke a gearbox :(
+         -0.1, 0.1)); //Probably dont exceed 0.4 lol, broke a gearbox :(
+      }
+      else{
+        wristMotor.set(0);
       }
 
       if(readSensor()) //Cool LED indicator
