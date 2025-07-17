@@ -21,6 +21,16 @@ public final class Constants {
     public static final double driveSpeed = 0.5; //In the event we need to run the robot at a slower speed
   }
 
+
+  public static class WorkingFunctions {
+    public static final boolean activeAlgaeWrist = false; // Allows the Algae Wrist to run
+    public static final boolean activeCoralSide = false; // Allows the side-to-side of the Coral Manipulator to run
+    public static final boolean activeElevalor = true; // Allows the elevator to move
+    public static final boolean activeClimer = false; // Allows the climber and its servo to move
+    public static final boolean activeFlippyTable = false; // Allows the flippy table to move.
+  }
+
+
 //\\//\\//\\//\\//\\
 
   public static class AlgaeConstants {

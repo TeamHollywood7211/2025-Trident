@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.WorkingFunctions;
 
 
 
@@ -39,7 +40,7 @@ public class CoralSubsystem extends SubsystemBase {
   public CoralSubsystem(){ 
 
 
-   
+   //a
     
    
   }
@@ -47,14 +48,21 @@ public class CoralSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Intake Range", getRange());
-    if(RobotContainer.m_ElevatorSubsystem.intakeClear())
+    if(WorkingFunctions.activeCoralSide)
     {
-      moverEncoder = moverMotor.getPosition().getValueAsDouble()   ;
-      SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
-      moverMotor.set(MathUtil.clamp(
-        moverPID.calculate(moverEncoder, moverSetpoint)
-      , -1, 1));
+      if(RobotContainer.m_ElevatorSubsystem.intakeClear())
+      {
+        moverEncoder = moverMotor.getPosition().getValueAsDouble()   ;
+        SmartDashboard.putNumber("Mover Setpoint", moverSetpoint);
+        moverMotor.set(MathUtil.clamp(
+          moverPID.calculate(moverEncoder, moverSetpoint)
+        , -1, 1));
+      }
     }
+    else{
+      moverMotor.set(0);
+    }
+    
 
 
     if(pieceInRange())

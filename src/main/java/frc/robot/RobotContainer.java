@@ -343,12 +343,20 @@ public class RobotContainer {
         driverStick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
         
-        driverStick.x().whileTrue(a_AutoAlignManualCommand);
+        //driverStick.x().whileTrue(a_AutoAlignManualCommand);
 
 
         driverStick.start().onTrue(a_autoAligncommand);
+        
+        //B-roll one controller driver stuff
 
 
+        driverStick.a().onTrue(a_coralLowM);
+        driverStick.b().onTrue(a_coralMidM);
+        driverStick.y().onTrue(a_coralHighM);
+        driverStick.x().onTrue(c_waitIntake);
+
+        /* 
         //Coral Left
         buttonBox2.button(10).onTrue(a_coralHighL);
         buttonBox2.button(5).onTrue(a_coralMidL);
@@ -384,6 +392,8 @@ public class RobotContainer {
 
         buttonBox2.button(7).onTrue(new InstantCommand(m_CameraSubsystem::toggleCam));
 
+
+        */
             //
 
         servoStick.a().onTrue(new InstantCommand(m_ClimberSubsystem::intakeRelease));
