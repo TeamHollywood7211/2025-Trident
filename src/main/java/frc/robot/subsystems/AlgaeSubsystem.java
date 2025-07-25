@@ -31,7 +31,7 @@ public class AlgaeSubsystem extends SubsystemBase {
 
   CANcoder encoder = new CANcoder(46, RobotContainer.MainBus);
   double wristSetpoint = encoder.getAbsolutePosition().getValueAsDouble();
-  PIDController wristPID = new PIDController(5.0, 0, 0.000006); //I hate PID loops
+  PIDController wristPID = new PIDController(2, 0, 0.000000006); //I hate PID loops
 
   boolean algaeNotRead = false;
 
@@ -62,46 +62,33 @@ public class AlgaeSubsystem extends SubsystemBase {
       SmartDashboard.putNumber ("Wrist error", wristPID.getError())         ;
       SmartDashboard.putNumber ("Wrist Home", AlgaeConstants.positions.home);
       SmartDashboard.putNumber ("Wrist Speed", wristMotor.get())            ;
+      //SmartDashboard.putNumber("Wrist PID stuff", wristPID.)
       //SmartDashboard.putBoolean("Wrist ", algaeNotRead)
 
       wristPID.setSetpoint(wristSetpoint); 
-      double bottomPos;
+      //double bottomPos;
 
 
 
       //Changes the min value of the wrist depending on how high the elevator works.
-      if(RobotContainer.m_ElevatorSubsystem.motorRight.getPosition().getValueAsDouble() < AlgaeConstants.ElevatorSafetyPos)
-      {
-        bottomPos = AlgaeConstants.positions.bottomL1;
-      }
-      else
-      {
-        bottomPos = AlgaeConstants.positions.bottomPostL1;
-      }
 
 
 
-
-      double followSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
+      //double followSetpoint = MathUtil.clamp(wristSetpoint, AlgaeConstants.positions.top, bottomPos);
       //^ We have a "ghost" setpoint (the original) and then one that tries to follow that setpoint.
 
 
-      if(WorkingFunctions.activeAlgaeWrist) // For when we want to disable the AlgaeWrist.
-      {
+
         if(!wristPID.atSetpoint()) //if not close to the setpoint
         {
           wristMotor.set(MathUtil.clamp( 
-            wristPID.calculate(encoderVal, followSetpoint), 
+            -wristPID.calculate(encoderVal, wristSetpoint), 
           -0.1, 0.1)); //Probably dont exceed 0.4 lol, broke a gearbox :(*/
         }
         else{
           wristMotor.set(0);
         }
-      }
-      else
-      {
-        wristMotor.set(0);
-      }
+
       
 
       if(readSensor()) //Cool LED indicator

@@ -31,14 +31,18 @@ public class ElevatorCommand extends Command {
   @Override
   public void execute() { 
     //MANUAL CONTROL:
-    if(m_controller.pov(0).getAsBoolean())
-    {
-      m_elevator.addPosition(0.5);
-    }
-    if(m_controller.pov(180).getAsBoolean())
-    {
-      m_elevator.addPosition(-0.5);
-    }
+
+    /*
+     *  m_algae.runGrip(
+      RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean())
+      -
+      RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean())
+    );
+     */
+
+     m_elevator.addPosition(
+      -m_controller.getLeftY()
+     );
   }
   @Override
   public void end(boolean interrupted) {}

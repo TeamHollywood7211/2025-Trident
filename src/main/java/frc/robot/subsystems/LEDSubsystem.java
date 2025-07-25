@@ -149,8 +149,9 @@ public class LEDSubsystem extends SubsystemBase {
   {
     if(!RobotContainer.forceLEDoff)
     {
-      clearAnimation();
-      LED.animate(redFadeAnim);
+      setRainbow();
+      //clearAnimation();
+      //LED.animate(redFadeAnim);
       
     }
   }
@@ -163,8 +164,9 @@ public class LEDSubsystem extends SubsystemBase {
   {
     if(!RobotContainer.forceLEDoff)
     {
-      clearAnimation();
-      LED.setLEDs(255, 0, 0);
+      setRainbow();
+      //clearAnimation();
+      //LED.setLEDs(255, 0, 0);
     }
     
   }
@@ -197,8 +199,9 @@ public class LEDSubsystem extends SubsystemBase {
   {
     if(!RobotContainer.forceLEDoff)
     {
-      clearAnimation();
-      LED.setLEDs(100, 0, 0);
+      //clearAnimation();
+      //LED.setLEDs(100, 0, 0);
+      setRainbow();
     }
   }
   public void setTwinkle()

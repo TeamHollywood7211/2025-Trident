@@ -23,7 +23,7 @@ public final class Constants {
 
 
   public static class WorkingFunctions {
-    public static final boolean activeAlgaeWrist = false; // Allows the Algae Wrist to run
+    public static final boolean activeAlgaeWrist = true; // Allows the Algae Wrist to run
     public static final boolean activeCoralSide = false; // Allows the side-to-side of the Coral Manipulator to run
     public static final boolean activeElevalor = true; // Allows the elevator to move
     public static final boolean activeClimer = false; // Allows the climber and its servo to move
@@ -48,11 +48,15 @@ public final class Constants {
       public static final double home = -0.25; 
       ;//0.66;
 
-      public static final double grabbing = 0.16-offset;//0.81;//-14; 
-      public static final double grabbingHome = -0.01-offset;//0.691;//-10;
+      public static final double grabbing = -0.108;//0.81;//-14; 
+      public static final double grabbingHome = -0.07;//0.691;//-10;
       public static final double grabbingHigh = 0.16-offset;
+      public static final double barge = -0.215;
       public static final double lowpos = -0.04-offset;
       public static final double otherStupidPos = 0;
+
+      public static final double idlePos = -0.3;
+
       //public static final int home = 0.66;
 
       public static final int safety = 2; //TODO: Grab better safety positions :3
@@ -124,10 +128,10 @@ public final class Constants {
 
 
     public static class positions {
-      public static final int a_barge =        210; //this is barge
-      public static final int a_high =         102;
-      public static final int a_low =         63; //
-      public static final int a_floor =       0;
+      public static final int a_barge =        117; //this is barge
+      public static final int a_high =         66;
+      public static final int a_low =         41; //
+      public static final int a_floor =       12;
       public static final int a_processing =  27;
       public static final int a_home = 0;
 
@@ -142,6 +146,12 @@ public final class Constants {
       public static final int c_low = 28;
       public static final int c_mid = 63;
       public static final int c_high = 117;
+      
+      
+
+      public static final int L2 = 17;
+      public static final int L3 = 40;
+      public static final int L4 = 77;
 
       
       public static final int home = 0;

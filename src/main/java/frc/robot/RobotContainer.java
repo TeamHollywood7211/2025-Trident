@@ -119,7 +119,7 @@ public class RobotContainer {
      * I pass in our controllers, but you can make the controllers "static" and access them that way
      */
 
-    private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, buttonBox1, buttonBox2, operatorStick);
+    private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, operatorStick, operatorStick, operatorStick);
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
@@ -165,6 +165,15 @@ public class RobotContainer {
 
 
 
+     //B-roll ones cuz im lazy
+     private final AllMoveCommand a_coralL2 = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 0, 
+     Constants.ElevatorConstants.positions.L2, AlgaeConstants.positions.idlePos);
+     private final AllMoveCommand a_coralL3 = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 0, 
+     Constants.ElevatorConstants.positions.L3, AlgaeConstants.positions.idlePos);
+     private final AllMoveCommand a_coralL4 = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 0, 
+     Constants.ElevatorConstants.positions.L4, AlgaeConstants.positions.idlePos);
+     private final AllMoveCommand a_home = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem, 0, 
+     1, AlgaeConstants.positions.idlePos);
     //L1
     private final AllMoveCommand a_coralBottom = new AllMoveCommand(m_ElevatorSubsystem, m_CoralSubsystem,
      0, Constants.ElevatorConstants.positions.c_bottom, AlgaeConstants.positions.lowpos);
@@ -175,7 +184,9 @@ public class RobotContainer {
     private final AlgaeMoveCommand a_algaeMid = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
      Constants.ElevatorConstants.positions.a_high, AlgaeConstants.positions.grabbing);
     private final AlgaeMoveCommand a_algaeFloor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem,
-     Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbing);
+     Constants.ElevatorConstants.positions.home, AlgaeConstants.positions.grabbingHome);
+    private final AlgaeMoveCommand a_algaeBarge = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem, 
+    Constants.ElevatorConstants.positions.a_barge, AlgaeConstants.positions.barge);
     private final AlgaeMoveCommand a_algaeProcessor = new AlgaeMoveCommand(m_ElevatorSubsystem, m_AlgaeSubsystem
     , Constants.ElevatorConstants.positions.a_processing, AlgaeConstants.positions.grabbing);
 
@@ -314,7 +325,7 @@ public class RobotContainer {
         m_CoralSubsystem.setDefaultCommand(m_CoralCommand)      ;
         m_ElevatorSubsystem.setDefaultCommand(m_ElevatorCommand);
         m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand)  ;
-        
+
         drivetrain.run(() -> drivetrain.antiTip()); //Only works with Pitch (no yaw) and kinda sucks
         //^^ I dont think that actually works :(, but look into .run()
 
@@ -346,7 +357,7 @@ public class RobotContainer {
         //driverStick.x().whileTrue(a_AutoAlignManualCommand);
 
 
-        driverStick.start().onTrue(a_autoAligncommand);
+        //driverStick.start().onTrue(a_autoAligncommand);
         
         //B-roll one controller driver stuff
 
@@ -355,6 +366,20 @@ public class RobotContainer {
         driverStick.b().onTrue(a_coralMidM);
         driverStick.y().onTrue(a_coralHighM);
         driverStick.x().onTrue(c_waitIntake);
+
+
+        operatorStick.povLeft().onTrue(a_algaeMid);
+        operatorStick.povRight().onTrue(a_algaeFloor);
+        operatorStick.povUp().onTrue(a_algaeBarge);
+        operatorStick.povDown().onTrue(a_algaeLow);
+
+        operatorStick.a().onTrue(a_coralL2);
+        operatorStick.b().onTrue(a_home);
+        operatorStick.x().onTrue(a_coralL3);
+        operatorStick.y().onTrue(a_coralL4);
+
+        operatorStick.leftBumper().onTrue(a_waitIntake);
+
 
         /* 
         //Coral Left

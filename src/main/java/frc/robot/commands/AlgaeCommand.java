@@ -37,9 +37,9 @@ public class AlgaeCommand extends Command {
     //- RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean()));
     
     m_algae.runGrip(
-      RobotContainer.booleanToDouble(m_bb0.button(1).getAsBoolean())
+      RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean())
       -
-      RobotContainer.booleanToDouble(m_bb0.button(10).getAsBoolean())
+      RobotContainer.booleanToDouble(m_controller.rightTrigger().getAsBoolean())
     );
     /*m_algae.setMotor(
       RobotContainer.booleanToDouble(m_controller.pov(90).getAsBoolean()) -
