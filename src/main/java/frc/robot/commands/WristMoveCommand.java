@@ -44,8 +44,8 @@ public class WristMoveCommand extends Command {
     //m_elevator.setPosition(elevatorPos);
     m_algae.setPosition(algaePos);
     System.out.println("Moving algae wrist...");
-    //m_algae.gotoOut();
-    //m_algae.setPosition(algaePos);
+    m_algae.gotoOut();
+    m_algae.setPosition(algaePos);
     finished = true;
   }
 

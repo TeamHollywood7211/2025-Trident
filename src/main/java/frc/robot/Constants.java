@@ -64,10 +64,8 @@ public final class Constants {
       public static final double bottomPostL1 = 0.16-offset; //The lowest value after L1 (read above for maybe)
       public static final double floorGrab = 0.166-offset;
 
-      public static final double wristUpPos = 0.038; //These names SUCK
-      public static final double actualWristUp = -0.125;
-
-      
+      public static final double wristUpPos = -0.038; //These names SUCK
+      public static final double actualWristUp = -0.280;
 
     }
 
@@ -103,8 +101,8 @@ public final class Constants {
   }
   public static class ClimberConstants {
     public static final int armMotorID = 41;
-    public static final int servoOpen = 40; //The degrees to open the servo to
-    public static final int servoClose = 102;
+    public static final int servoOpen = 102; //40; //The degrees to open the servo to
+    public static final int servoClose = 40; //102;
     public static final int clOpenPosition = -217;
     public static final int climberClose = 4;
 
@@ -118,18 +116,18 @@ public final class Constants {
     public static final int canRangeID = 47;
     
     
-    public static final double motorSpeed = 0.25;
+    public static final double motorSpeed = 0.10;
 
     public static final double coralRange = 0.20; //TODO: Fill in
 
 
     public static class positions {
       public static final int a_barge =        210; //this is barge
-      public static final int a_high =         102;
-      public static final int a_low =         63; //
-      public static final int a_floor =       0;
-      public static final int a_processing =  27;
-      public static final int a_home = 0;
+      public static final int a_high =          69; // 69.16
+      public static final int a_low =           46; // 45.67
+      public static final int a_floor =          0;
+      public static final int a_processing =    27;
+      public static final int a_home =           0;
 
 
 

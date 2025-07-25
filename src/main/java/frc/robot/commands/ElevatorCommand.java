@@ -31,6 +31,19 @@ public class ElevatorCommand extends Command {
   @Override
   public void execute() { 
     //MANUAL CONTROL:
+    
+    if(m_controller.getLeftY()<0.2)
+    {
+      m_elevator.addPosition(0.5);
+    }
+    if(m_controller.getLeftY()>-0.2)
+    {
+      m_elevator.addPosition(-0.5);
+    }
+    
+
+
+    /*
     if(m_controller.pov(0).getAsBoolean())
     {
       m_elevator.addPosition(0.5);
@@ -39,6 +52,7 @@ public class ElevatorCommand extends Command {
     {
       m_elevator.addPosition(-0.5);
     }
+    */
   }
   @Override
   public void end(boolean interrupted) {}

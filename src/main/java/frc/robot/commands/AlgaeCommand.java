@@ -47,8 +47,8 @@ public class AlgaeCommand extends Command {
     );*/
     
     
-    //System.out.println(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()));
-    /*if(m_controller.leftTrigger().getAsBoolean())
+    System.out.println(RobotContainer.booleanToDouble(m_controller.leftTrigger().getAsBoolean()));
+    if(m_controller.leftTrigger().getAsBoolean())
     {
       m_algae.runGrip(1);
     }
@@ -59,7 +59,7 @@ public class AlgaeCommand extends Command {
     if((!m_controller.rightTrigger().getAsBoolean()) && (!m_controller.leftTrigger().getAsBoolean()))
     {
       m_algae.runGrip(0);
-    }*/
+    }
 
 
     if(Math.abs(m_controller.getRightY()) > 0.05 )

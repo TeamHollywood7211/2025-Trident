@@ -356,6 +356,27 @@ public class RobotContainer {
         driverStick.y().onTrue(a_coralHighM);
         driverStick.x().onTrue(c_waitIntake);
 
+
+
+
+        //operatorStick.pov(90).whileTrue(a_coralHighL);
+        //operatorStick.pov(270).whileTrue(a_coralLowL);
+
+        operatorStick.pov(0).whileTrue(a_algaeMid);
+        operatorStick.pov(90).whileTrue(a_algaeFloor);
+        operatorStick.pov(180).whileTrue(a_algaeIntake);
+        operatorStick.pov(270).whileTrue(a_algaeMid);
+
+        //operatorStick.pov(270).whileTrue(new InstantCommand(m_AlgaeSubsystem::gotoOut));
+
+        operatorStick.leftBumper().onTrue(a_algaeIntake);
+        operatorStick.rightBumper().onTrue(a_algaeOuttake);
+
+        operatorStick.a().onTrue(a_algaeFloor);
+        operatorStick.b().onTrue(a_algaeLow);
+        operatorStick.y().onTrue(a_algaeMid);
+        operatorStick.x().onTrue(c_waitIntake);
+
         /* 
         //Coral Left
         buttonBox2.button(10).onTrue(a_coralHighL);
