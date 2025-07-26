@@ -122,7 +122,7 @@ public class RobotContainer {
     private final AlgaeCommand m_AlgaeCommand = new AlgaeCommand(m_AlgaeSubsystem, operatorStick, operatorStick, operatorStick);
     private final CoralCommand m_CoralCommand = new CoralCommand(m_CoralSubsystem, buttonBox1, buttonBox2, operatorStick);
     private final ElevatorCommand m_ElevatorCommand = new ElevatorCommand(m_ElevatorSubsystem, operatorStick);
-    private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick);
+    private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, driverStick, servoStick);
     private final AutoAlignCommand a_autoAligncommand = new AutoAlignCommand(false, drivetrain);
     private final AutoAlignManualCommand a_AutoAlignManualCommand = new AutoAlignManualCommand(false, drivetrain);
     private final auto_waitIntake a_waitIntake = new auto_waitIntake(m_CoralSubsystem); //The second input is how much time (in seconds) we take till we give up on intake
@@ -379,6 +379,10 @@ public class RobotContainer {
         operatorStick.y().onTrue(a_coralL4);
 
         operatorStick.leftBumper().onTrue(a_waitIntake);
+
+
+        operatorStick.button(7).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun1));
+        operatorStick.button(8).onTrue(new InstantCommand(m_ClimberSubsystem::climberRun2));
 
 
         /* 

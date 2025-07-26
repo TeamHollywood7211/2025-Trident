@@ -107,9 +107,9 @@ public final class Constants {
   }
   public static class ClimberConstants {
     public static final int armMotorID = 41;
-    public static final int servoOpen = 40; //The degrees to open the servo to
-    public static final int servoClose = 102;
-    public static final int clOpenPosition = -217;
+    public static final int servoOpen = 55; //The degrees to open the servo to
+    public static final int servoClose = 45;
+    public static final int clOpenPosition = -199; //Welcome to the land of innacurate namings
     public static final int climberClose = 4;
 
     public static final int leftSwitchID = 7;

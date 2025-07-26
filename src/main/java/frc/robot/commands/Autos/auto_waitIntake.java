@@ -54,7 +54,7 @@ public class auto_waitIntake extends Command {
     }
     if(m_state == 1) //once sensor hit, run intake more but slower till we cant see piece
     {
-      m_coral.setSpeed(-0.2);
+      m_coral.setSpeed(0.2);
       if(m_coral.getRange() > CoralConstants.coralInRange)
       {
         m_coral.setSpeed(0);
@@ -65,7 +65,7 @@ public class auto_waitIntake extends Command {
     }
     if(m_state == 2)
     {
-      m_coral.setSpeed(0.1);
+      m_coral.setSpeed(-0.1);
       if(m_coral.getRange() < CoralConstants.coralInRange)
       {
         m_state = 0;

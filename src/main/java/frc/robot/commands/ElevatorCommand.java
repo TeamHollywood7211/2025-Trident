@@ -41,7 +41,7 @@ public class ElevatorCommand extends Command {
      */
 
      m_elevator.addPosition(
-      -m_controller.getLeftY()
+      -m_controller.getRightY()
      );
   }
   @Override

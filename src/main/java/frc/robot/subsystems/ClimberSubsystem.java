@@ -103,7 +103,7 @@ public class ClimberSubsystem extends SubsystemBase {
   
 
   
-  public void intakeRelease() //Puts the climber in the "open" position
+  public void intakeRelease() //Puts the flap in the "open" position
   {
     intakeServo.setAngle(ClimberConstants.servoOpen); // 
   }
@@ -130,11 +130,11 @@ public class ClimberSubsystem extends SubsystemBase {
     lockClimb();
   }
 
-  public void lockClimb(){
+  public void lockClimb(){ //CLIMBER ARM
     climberServo.setAngle(120); //This is for closing arm
   }
   public void unlockClimb(){
-    climberServo.setAngle(88); //This is for moving arm
+    climberServo.setAngle(75); //This is for moving arm
   }
 
 }

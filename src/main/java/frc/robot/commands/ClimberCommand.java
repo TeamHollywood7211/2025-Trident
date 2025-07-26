@@ -14,15 +14,17 @@ public class ClimberCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ClimberSubsystem m_climber;
   private final CommandXboxController m_controller;
+  private final CommandXboxController m_debugController;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ClimberCommand(ClimberSubsystem subsystem, CommandXboxController controller) {
+  public ClimberCommand(ClimberSubsystem subsystem, CommandXboxController controller, CommandXboxController debug) {
     m_climber = subsystem;
     m_controller = controller;
+    m_debugController = debug;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -39,7 +41,11 @@ public class ClimberCommand extends Command {
       -
       RobotContainer.booleanToDouble(m_controller.rightBumper().getAsBoolean())
     );
-
+    m_climber.addPosition(
+      RobotContainer.booleanToDouble(m_debugController.leftBumper().getAsBoolean())
+      -
+      RobotContainer.booleanToDouble(m_debugController.rightBumper().getAsBoolean())
+    );
 
 
   }

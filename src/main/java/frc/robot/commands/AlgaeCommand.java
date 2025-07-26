@@ -62,9 +62,9 @@ public class AlgaeCommand extends Command {
     }*/
 
 
-    if(Math.abs(m_controller.getRightY()) > 0.05 )
+    if(Math.abs(m_controller.getLeftY()) > 0.05 )
     {
-      m_algae.addPosition(m_controller.getRightY() * 0.1);
+      m_algae.addPosition(m_controller.getLeftY() * 0.1);
     }
   
   
