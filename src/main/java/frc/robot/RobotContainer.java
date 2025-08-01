@@ -100,8 +100,8 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     //CONTROLLERS
-    private final CommandXboxController driverStick   = new CommandXboxController(0); // For driver
-    private final CommandXboxController operatorStick = new CommandXboxController(1); // For operator
+    public final static CommandXboxController driverStick   = new CommandXboxController(0); // For driver
+    public final static CommandXboxController operatorStick = new CommandXboxController(1); // For operator
 //  |
     private final CommandXboxController buttonBox1 = new CommandXboxController(2); //Our button box is technically two different controllers
     public final CommandXboxController buttonBox2 = new CommandXboxController(3);

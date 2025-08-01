@@ -10,6 +10,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -78,7 +79,10 @@ public class ClimberSubsystem extends SubsystemBase {
     if(!leftGrabberOn.get() && !rightGrabberOn.get())
     {
       SmartDashboard.putBoolean("Grabbed", true);
-      RobotContainer.m_LedSubsystem.setRainbow();
+      RobotContainer.m_LedSubsystem.setRainbow(); //                            RAINBOW
+      //RobotContainer.driverStick.setRumble(RumbleType.kBothRumble, 1);//  RUMBLE!
+      //RobotContainer.operatorStick.setRumble(RumbleType.kBothRumble, 1);
+      
     }
     else{
       SmartDashboard.putBoolean("Grabbed", false);
